@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MISSÃO 01"
+            android:textColor="#00FF66"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INVASÃO À REDE"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OBJETIVO"
+            android:textColor="#00FF66"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invada a rede da corporação HexaCryp e encontre informações sobre o projeto Orion."
+            android:textColor="#CCCCCC"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INFORMAÇÕES"
+            android:textColor="#00FF66"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Dificuldade: Fácil"
+            android:textColor="#CCCCCC"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Risco de detecção: Baixo"
+            android:textColor="#CCCCCC"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RECOMPENSA"
+            android:textColor="#00FF66"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+150 REPUTAÇÃO"
+            android:textColor="#00FF66"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@+id/btnStartMission"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="INICIAR MISSÃO"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"
+            android:layout_marginTop="40dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

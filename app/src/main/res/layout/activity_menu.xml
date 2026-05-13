@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DARKNET: PROTOCOL"
+            android:textColor="#00FF66"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/btnMissions"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="MISSÕES"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"/>
+
+        <Button
+            android:id="@+id/btnTerminal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="TERMINAL"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"
+            android:layout_marginTop="12dp"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#101010"
+        app:itemIconTint="#00FF66"
+        app:itemTextColor="#00FF66"
+        app:menu="@menu/bottom_menu"/>
+
+</RelativeLayout>
