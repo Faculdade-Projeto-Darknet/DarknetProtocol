@@ -3,7 +3,6 @@ package com.darknetprotocol;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,13 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PasswordMissionActivity extends AppCompatActivity {
 
-    TextView txtStatusPassword, txtStatsPassword, txtLogPassword;
-    EditText edtPassword;
-    Button btnCheckPassword, btnPasswordHint, btnResetPasswordMission;
+    TextView txtStatusPassword, txtStatsPassword, txtLogPassword, txtPasswordDisplay;
+
+    Button btnCheckPassword, btnPasswordHint, btnResetPasswordMission, btnDeleteKey;
+    Button btnKeyO, btnKeyR, btnKeyI, btnKeyN, btnKeyA, btnKeyB, btnKeyC, btnKeyX, btnKeyZ;
 
     SharedPreferences preferences;
 
     String correctPassword = "ORION";
+    String currentInput = "";
 
     int attempts = 4;
     int hintsUsed = 0;
@@ -30,11 +31,22 @@ public class PasswordMissionActivity extends AppCompatActivity {
         txtStatusPassword = findViewById(R.id.txtStatusPassword);
         txtStatsPassword = findViewById(R.id.txtStatsPassword);
         txtLogPassword = findViewById(R.id.txtLogPassword);
-        edtPassword = findViewById(R.id.edtPassword);
+        txtPasswordDisplay = findViewById(R.id.txtPasswordDisplay);
 
         btnCheckPassword = findViewById(R.id.btnCheckPassword);
         btnPasswordHint = findViewById(R.id.btnPasswordHint);
         btnResetPasswordMission = findViewById(R.id.btnResetPasswordMission);
+        btnDeleteKey = findViewById(R.id.btnDeleteKey);
+
+        btnKeyO = findViewById(R.id.btnKeyO);
+        btnKeyR = findViewById(R.id.btnKeyR);
+        btnKeyI = findViewById(R.id.btnKeyI);
+        btnKeyN = findViewById(R.id.btnKeyN);
+        btnKeyA = findViewById(R.id.btnKeyA);
+        btnKeyB = findViewById(R.id.btnKeyB);
+        btnKeyC = findViewById(R.id.btnKeyC);
+        btnKeyX = findViewById(R.id.btnKeyX);
+        btnKeyZ = findViewById(R.id.btnKeyZ);
 
         preferences = getSharedPreferences("player_data", MODE_PRIVATE);
 
@@ -42,9 +54,64 @@ public class PasswordMissionActivity extends AppCompatActivity {
             showCompletedMission();
         }
 
+        btnKeyO.setOnClickListener(v -> addLetter("O"));
+        btnKeyR.setOnClickListener(v -> addLetter("R"));
+        btnKeyI.setOnClickListener(v -> addLetter("I"));
+        btnKeyN.setOnClickListener(v -> addLetter("N"));
+        btnKeyA.setOnClickListener(v -> addLetter("A"));
+        btnKeyB.setOnClickListener(v -> addLetter("B"));
+        btnKeyC.setOnClickListener(v -> addLetter("C"));
+        btnKeyX.setOnClickListener(v -> addLetter("X"));
+        btnKeyZ.setOnClickListener(v -> addLetter("Z"));
+
+        btnDeleteKey.setOnClickListener(v -> deleteLetter());
         btnCheckPassword.setOnClickListener(v -> checkPassword());
         btnPasswordHint.setOnClickListener(v -> showHint());
         btnResetPasswordMission.setOnClickListener(v -> resetMission());
+
+        updatePasswordDisplay();
+    }
+
+    private void addLetter(String letter) {
+
+        if (preferences.getBoolean("mission2_completed", false)) {
+            return;
+        }
+
+        if (currentInput.length() >= 5) {
+            Toast.makeText(this, "A senha tem só 5 letras, Sherlock.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        currentInput += letter;
+        updatePasswordDisplay();
+    }
+
+    private void deleteLetter() {
+
+        if (currentInput.length() > 0) {
+            currentInput = currentInput.substring(0, currentInput.length() - 1);
+            updatePasswordDisplay();
+        }
+    }
+
+    private void updatePasswordDisplay() {
+
+        StringBuilder display = new StringBuilder();
+
+        for (int i = 0; i < 5; i++) {
+            if (i < currentInput.length()) {
+                display.append(currentInput.charAt(i));
+            } else {
+                display.append("_");
+            }
+
+            if (i < 4) {
+                display.append(" ");
+            }
+        }
+
+        txtPasswordDisplay.setText(display.toString());
     }
 
     private void checkPassword() {
@@ -54,22 +121,22 @@ public class PasswordMissionActivity extends AppCompatActivity {
             return;
         }
 
-        String input = edtPassword.getText().toString().trim().toUpperCase();
-
-        if (input.isEmpty()) {
-            Toast.makeText(this, "Digite uma senha primeiro, gênio do teclado.", Toast.LENGTH_SHORT).show();
+        if (currentInput.length() < 5) {
+            Toast.makeText(this, "Complete as 5 letras da senha.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (input.equals(correctPassword)) {
+        if (currentInput.equals(correctPassword)) {
             completeMission();
         } else {
             attempts--;
 
             txtStatusPassword.setText("STATUS: SENHA INCORRETA");
-            txtLogPassword.append("\n> Tentativa falhou: " + input);
+            txtLogPassword.append("\n> Tentativa falhou: " + currentInput);
             txtLogPassword.append("\n> Assinatura inválida.");
 
+            currentInput = "";
+            updatePasswordDisplay();
             updateStats();
 
             if (attempts <= 0) {
@@ -78,8 +145,6 @@ public class PasswordMissionActivity extends AppCompatActivity {
                 Toast.makeText(this, "Senha errada. Tentativas restantes: " + attempts, Toast.LENGTH_SHORT).show();
             }
         }
-
-        edtPassword.setText("");
     }
 
     private void showHint() {
@@ -96,7 +161,7 @@ public class PasswordMissionActivity extends AppCompatActivity {
         } else if (hintsUsed == 2) {
             txtLogPassword.append("\n> Dica 3: começa com O.");
         } else if (hintsUsed == 3) {
-            txtLogPassword.append("\n> Dica 4: O _ I O N");
+            txtLogPassword.append("\n> Dica 4: O R I O N.");
         } else {
             txtLogPassword.append("\n> Sem mais dicas. Agora é contigo, operador.");
         }
@@ -172,11 +237,7 @@ public class PasswordMissionActivity extends AppCompatActivity {
         txtLogPassword.append("\n> Sistema bloqueado temporariamente.");
         txtLogPassword.append("\n> Use REINICIAR MISSÃO para tentar de novo.");
 
-        btnCheckPassword.setEnabled(false);
-        btnPasswordHint.setEnabled(false);
-
-        btnCheckPassword.setAlpha(0.5f);
-        btnPasswordHint.setAlpha(0.5f);
+        disableKeyboardOnly();
 
         Toast.makeText(this, "Missão falhou. Reinicie para tentar novamente.", Toast.LENGTH_LONG).show();
     }
@@ -190,8 +251,8 @@ public class PasswordMissionActivity extends AppCompatActivity {
 
         attempts = 4;
         hintsUsed = 0;
+        currentInput = "";
 
-        edtPassword.setText("");
         txtStatusPassword.setText("STATUS: AGUARDANDO TENTATIVA");
 
         txtLogPassword.setText(
@@ -199,13 +260,9 @@ public class PasswordMissionActivity extends AppCompatActivity {
                         "\n> Dica 1: nome do projeto mencionado na missão 1."
         );
 
-        btnCheckPassword.setEnabled(true);
-        btnPasswordHint.setEnabled(true);
-
-        btnCheckPassword.setAlpha(1f);
-        btnPasswordHint.setAlpha(1f);
-
+        updatePasswordDisplay();
         updateStats();
+        enableAll();
 
         Toast.makeText(this, "Missão reiniciada.", Toast.LENGTH_SHORT).show();
     }
@@ -229,19 +286,61 @@ public class PasswordMissionActivity extends AppCompatActivity {
                         "\n> XP já foi adicionado ao perfil."
         );
 
+        currentInput = "ORION";
+        updatePasswordDisplay();
+
         disableAll();
     }
 
+    private void disableKeyboardOnly() {
+        btnKeyO.setEnabled(false);
+        btnKeyR.setEnabled(false);
+        btnKeyI.setEnabled(false);
+        btnKeyN.setEnabled(false);
+        btnKeyA.setEnabled(false);
+        btnKeyB.setEnabled(false);
+        btnKeyC.setEnabled(false);
+        btnKeyX.setEnabled(false);
+        btnKeyZ.setEnabled(false);
+
+        btnDeleteKey.setEnabled(false);
+        btnCheckPassword.setEnabled(false);
+        btnPasswordHint.setEnabled(false);
+
+        btnResetPasswordMission.setEnabled(true);
+    }
+
     private void disableAll() {
+        btnKeyO.setEnabled(false);
+        btnKeyR.setEnabled(false);
+        btnKeyI.setEnabled(false);
+        btnKeyN.setEnabled(false);
+        btnKeyA.setEnabled(false);
+        btnKeyB.setEnabled(false);
+        btnKeyC.setEnabled(false);
+        btnKeyX.setEnabled(false);
+        btnKeyZ.setEnabled(false);
 
-        edtPassword.setEnabled(false);
-
+        btnDeleteKey.setEnabled(false);
         btnCheckPassword.setEnabled(false);
         btnPasswordHint.setEnabled(false);
         btnResetPasswordMission.setEnabled(false);
+    }
 
-        btnCheckPassword.setAlpha(0.5f);
-        btnPasswordHint.setAlpha(0.5f);
-        btnResetPasswordMission.setAlpha(0.5f);
+    private void enableAll() {
+        btnKeyO.setEnabled(true);
+        btnKeyR.setEnabled(true);
+        btnKeyI.setEnabled(true);
+        btnKeyN.setEnabled(true);
+        btnKeyA.setEnabled(true);
+        btnKeyB.setEnabled(true);
+        btnKeyC.setEnabled(true);
+        btnKeyX.setEnabled(true);
+        btnKeyZ.setEnabled(true);
+
+        btnDeleteKey.setEnabled(true);
+        btnCheckPassword.setEnabled(true);
+        btnPasswordHint.setEnabled(true);
+        btnResetPasswordMission.setEnabled(true);
     }
 }

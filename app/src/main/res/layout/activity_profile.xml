@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DARKNET PROFILE"
+            android:textColor="#00FF66"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#101010"
+            android:padding="22dp"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:text="G_"
+                android:textColor="#00FF66"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:background="#050505"/>
+
+            <TextView
+                android:id="@+id/txtNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ghost_404"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_marginTop="18dp"/>
+
+            <TextView
+                android:id="@+id/txtRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rank: Operador Iniciante"
+                android:textColor="#00FF66"
+                android:textSize="17sp"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:id="@+id/txtXp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XP Total: 0"
+                android:textColor="#CCCCCC"
+                android:textSize="16sp"
+                android:layout_marginTop="22dp"/>
+
+            <ProgressBar
+                android:id="@+id/progressXp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="450"
+                android:progress="0"
+                android:progressTint="#00FF66"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="18dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#101010"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MISSÕES"
+                    android:textColor="#777777"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/txtMissions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/2"
+                    android:textColor="#00FF66"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="14dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#101010"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STATUS"
+                    android:textColor="#777777"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/txtStatusProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ONLINE"
+                    android:textColor="#00FF66"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtAchievements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONQUISTAS\n\nNenhuma conquista desbloqueada ainda."
+            android:textColor="#00FF66"
+            android:textSize="15sp"
+            android:fontFamily="monospace"
+            android:background="#101010"
+            android:padding="18dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/txtProfileLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="> Perfil sincronizado.\n> Dados carregados do dispositivo.\n> Sistema operacional."
+            android:textColor="#00FF66"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:background="#101010"
+            android:padding="18dp"
+            android:layout_marginTop="18dp"/>
+
+        <Button
+            android:id="@+id/btnResetProfile"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="RESETAR PROGRESSO"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#333333"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

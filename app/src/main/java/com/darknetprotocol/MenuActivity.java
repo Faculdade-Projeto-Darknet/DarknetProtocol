@@ -10,44 +10,30 @@ public class MenuActivity extends AppCompatActivity {
 
     Button btnMissions;
     Button btnTerminal;
+    Button btnProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_menu);
 
-        // BOTÃO MISSÕES
-
         btnMissions = findViewById(R.id.btnMissions);
+        btnTerminal = findViewById(R.id.btnTerminal);
+        btnProfile = findViewById(R.id.btnProfile);
 
         btnMissions.setOnClickListener(v -> {
-
-            Intent intent = new Intent(
-                    MenuActivity.this,
-                    MissionsActivity.class
-            );
-
+            Intent intent = new Intent(MenuActivity.this, MissionsActivity.class);
             startActivity(intent);
-
         });
-
-        // BOTÃO TERMINAL
-
-        btnTerminal = findViewById(R.id.btnTerminal);
 
         btnTerminal.setOnClickListener(v -> {
-
-            Intent intent = new Intent(
-                    MenuActivity.this,
-                    TerminalActivity.class
-            );
-
+            Intent intent = new Intent(MenuActivity.this, TerminalActivity.class);
             startActivity(intent);
-
         });
 
+        btnProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
     }
-
 }
