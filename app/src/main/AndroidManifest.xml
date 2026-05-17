@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DarknetProtocol">
         <activity
+            android:name=".PasswordMissionActivity"
+            android:exported="false" />
+        <activity
             android:name=".TerminalActivity"
             android:exported="false" />
         <activity
