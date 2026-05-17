@@ -6,34 +6,71 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MenuActivity extends AppCompatActivity {
 
     Button btnMissions;
     Button btnTerminal;
     Button btnProfile;
 
+    BottomNavigationView bottomNavigation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu);
 
-        btnMissions = findViewById(R.id.btnMissions);
-        btnTerminal = findViewById(R.id.btnTerminal);
-        btnProfile = findViewById(R.id.btnProfile);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        btnMissions.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, MissionsActivity.class);
-            startActivity(intent);
+        // MENU INFERIOR
+
+        bottomNavigation.setSelectedItemId(R.id.nav_missions);;
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+
+            int id = item.getItemId();
+
+            if (id == R.id.nav_missions) {
+
+                startActivity(
+                        new Intent(
+                                MenuActivity.this,
+                                MissionsActivity.class
+                        )
+                );
+
+                return true;
+            }
+
+            if (id == R.id.nav_terminal) {
+
+                startActivity(
+                        new Intent(
+                                MenuActivity.this,
+                                TerminalActivity.class
+                        )
+                );
+
+                return true;
+            }
+
+            if (id == R.id.nav_profile) {
+
+                startActivity(
+                        new Intent(
+                                MenuActivity.this,
+                                ProfileActivity.class
+                        )
+                );
+
+                return true;
+            }
+
+            return false;
         });
 
-        btnTerminal.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, TerminalActivity.class);
-            startActivity(intent);
-        });
-
-        btnProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
-            startActivity(intent);
-        });
     }
 }

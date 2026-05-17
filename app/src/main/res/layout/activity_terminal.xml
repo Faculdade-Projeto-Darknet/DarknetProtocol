@@ -1,44 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#050505"
-    android:padding="20dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TERMINAL"
-        android:textColor="#00FF66"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
+    android:background="#050505">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="20dp">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigation">
 
-        <TextView
-            android:id="@+id/txtTerminal"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#00FF66"
-            android:textSize="16sp"
-            android:text="> SISTEMA INICIADO..."
-            android:fontFamily="monospace"/>
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:text="TERMINAL ÉTICO"
+                android:textColor="#00FF66"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtTerminal"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_marginTop="18dp"
+                android:background="#101010"
+                android:fontFamily="monospace"
+                android:padding="16dp"
+                android:text="> Terminal iniciado.\n> Digite INFO para comandos."
+                android:textColor="#00FF66"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/txtCommandDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="#101010"
+                android:fontFamily="monospace"
+                android:padding="14dp"
+                android:text=">"
+                android:textColor="#00FF66"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <!-- LINHA 1 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="18dp">
+
+                <Button android:id="@+id/keyQ" style="@style/KeyboardButton" android:text="Q"/>
+                <Button android:id="@+id/keyW" style="@style/KeyboardButton" android:text="W"/>
+                <Button android:id="@+id/keyE" style="@style/KeyboardButton" android:text="E"/>
+                <Button android:id="@+id/keyR" style="@style/KeyboardButton" android:text="R"/>
+                <Button android:id="@+id/keyT" style="@style/KeyboardButton" android:text="T"/>
+                <Button android:id="@+id/keyY" style="@style/KeyboardButton" android:text="Y"/>
+                <Button android:id="@+id/keyU" style="@style/KeyboardButton" android:text="U"/>
+                <Button android:id="@+id/keyI" style="@style/KeyboardButton" android:text="I"/>
+                <Button android:id="@+id/keyO" style="@style/KeyboardButton" android:text="O"/>
+                <Button android:id="@+id/keyP" style="@style/KeyboardButton" android:text="P"/>
+
+            </LinearLayout>
+
+            <!-- LINHA 2 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <Button android:id="@+id/keyA" style="@style/KeyboardButton" android:text="A"/>
+                <Button android:id="@+id/keyS" style="@style/KeyboardButton" android:text="S"/>
+                <Button android:id="@+id/keyD" style="@style/KeyboardButton" android:text="D"/>
+                <Button android:id="@+id/keyF" style="@style/KeyboardButton" android:text="F"/>
+                <Button android:id="@+id/keyG" style="@style/KeyboardButton" android:text="G"/>
+                <Button android:id="@+id/keyH" style="@style/KeyboardButton" android:text="H"/>
+                <Button android:id="@+id/keyJ" style="@style/KeyboardButton" android:text="J"/>
+                <Button android:id="@+id/keyK" style="@style/KeyboardButton" android:text="K"/>
+                <Button android:id="@+id/keyL" style="@style/KeyboardButton" android:text="L"/>
+
+            </LinearLayout>
+
+            <!-- LINHA 3 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <Button android:id="@+id/keyZ" style="@style/KeyboardButton" android:text="Z"/>
+                <Button android:id="@+id/keyX" style="@style/KeyboardButton" android:text="X"/>
+                <Button android:id="@+id/keyC" style="@style/KeyboardButton" android:text="C"/>
+                <Button android:id="@+id/keyV" style="@style/KeyboardButton" android:text="V"/>
+                <Button android:id="@+id/keyB" style="@style/KeyboardButton" android:text="B"/>
+                <Button android:id="@+id/keyN" style="@style/KeyboardButton" android:text="N"/>
+                <Button android:id="@+id/keyM" style="@style/KeyboardButton" android:text="M"/>
+
+            </LinearLayout>
+
+            <!-- LINHA 4 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="55dp"
+                    android:text="APAGAR"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#333333"/>
+
+                <Button
+                    android:id="@+id/btnSpace"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="55dp"
+                    android:text="ESPAÇO"
+                    android:textColor="#00FF66"
+                    android:backgroundTint="#101010"/>
+
+                <Button
+                    android:id="@+id/btnExecute"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="55dp"
+                    android:text="ENVIAR"
+                    android:textColor="#00FF66"
+                    android:backgroundTint="#101010"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnClearTerminal"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="LIMPAR TERMINAL"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#333333"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnHack"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="EXECUTAR INVASÃO"
-        android:textColor="#00FF66"
-        android:backgroundTint="#101010"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#101010"
+        app:itemIconTint="#00FF66"
+        app:itemTextColor="#00FF66"
+        app:menu="@menu/bottom_menu"/>
 
-</LinearLayout>
+</RelativeLayout>

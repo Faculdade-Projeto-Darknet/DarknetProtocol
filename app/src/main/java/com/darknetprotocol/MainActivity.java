@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
             btnStart.setEnabled(false);
 
+            progressBar.setVisibility(android.view.View.VISIBLE);
+
             Handler handler = new Handler();
 
             txtStatus.setText("CONECTANDO...");
@@ -60,10 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(
                         MainActivity.this,
-                        MenuActivity.class
+                        MissionsActivity.class
                 );
 
                 startActivity(intent);
+
+                overridePendingTransition(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left
+                );
 
             }, 4000);
 

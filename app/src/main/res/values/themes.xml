@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.DarknetProtocol" parent="Base.Theme.DarknetProtocol" />
-</resources>
+        <style name="KeyboardButton">
+
+            <item name="android:layout_width">0dp</item>
+            <item name="android:layout_weight">1</item>
+            <item name="android:layout_height">48dp</item>
+
+            <item name="android:textColor">#00FF66</item>
+
+            <item name="android:backgroundTint">#101010</item>
+
+        </style>
+
+    </resources>
