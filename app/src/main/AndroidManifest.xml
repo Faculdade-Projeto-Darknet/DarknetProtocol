@@ -12,28 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DarknetProtocol">
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.ProfileActivity"
             android:exported="false"/>
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.PasswordMissionActivity"
             android:exported="false" />
         <activity
-            android:name=".PasswordMissionActivity"
+            android:name=".activities.TerminalActivity"
             android:exported="false" />
         <activity
-            android:name=".TerminalActivity"
+            android:name=".activities.MissionDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".MissionDetailActivity"
+            android:name=".activities.MissionsActivity"
             android:exported="false" />
         <activity
-            android:name=".MissionsActivity"
+            android:name=".activities.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

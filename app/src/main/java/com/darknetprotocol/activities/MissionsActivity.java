@@ -1,7 +1,6 @@
-package com.darknetprotocol;
+package com.darknetprotocol.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,24 +9,33 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.darknetprotocol.R;
+import com.darknetprotocol.utils.PlayerPrefs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MissionsActivity extends AppCompatActivity {
 
-    LinearLayout mission1, mission2;
-    LinearLayout layoutAvailableMissions, layoutCompletedMissions;
-    Button btnAvailable, btnCompleted;
+    LinearLayout mission1;
+    LinearLayout mission2;
+
+    LinearLayout layoutAvailableMissions;
+    LinearLayout layoutCompletedMissions;
+
+    Button btnAvailable;
+    Button btnCompleted;
+
     TextView txtCompletedList;
+
     BottomNavigationView bottomNavigation;
 
-    SharedPreferences preferences;
+    PlayerPrefs playerPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_missions);
 
-        preferences = getSharedPreferences("player_data", MODE_PRIVATE);
+        playerPrefs = new PlayerPrefs(this);
 
         mission1 = findViewById(R.id.mission1);
         mission2 = findViewById(R.id.mission2);
@@ -42,22 +50,45 @@ public class MissionsActivity extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
         mission1.setOnClickListener(v -> {
-            Intent intent = new Intent(MissionsActivity.this, MissionDetailActivity.class);
+            Intent intent = new Intent(
+                    MissionsActivity.this,
+                    MissionDetailActivity.class
+            );
+
             startActivity(intent);
+
+            overridePendingTransition(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left
+            );
         });
 
         mission2.setOnClickListener(v -> {
-            Intent intent = new Intent(MissionsActivity.this, PasswordMissionActivity.class);
+            Intent intent = new Intent(
+                    MissionsActivity.this,
+                    PasswordMissionActivity.class
+            );
+
             startActivity(intent);
+
+            overridePendingTransition(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left
+            );
         });
 
         btnAvailable.setOnClickListener(v -> showAvailable());
         btnCompleted.setOnClickListener(v -> showCompleted());
 
+        setupBottomNavigation();
+
+        showAvailable();
+    }
+
+    private void setupBottomNavigation() {
         bottomNavigation.setSelectedItemId(R.id.nav_missions);
 
         bottomNavigation.setOnItemSelectedListener(item -> {
-
             int id = item.getItemId();
 
             if (id == R.id.nav_missions) {
@@ -65,19 +96,39 @@ public class MissionsActivity extends AppCompatActivity {
             }
 
             if (id == R.id.nav_terminal) {
-                startActivity(new Intent(MissionsActivity.this, TerminalActivity.class));
+                Intent intent = new Intent(
+                        MissionsActivity.this,
+                        TerminalActivity.class
+                );
+
+                startActivity(intent);
+
+                overridePendingTransition(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left
+                );
+
                 return true;
             }
 
             if (id == R.id.nav_profile) {
-                startActivity(new Intent(MissionsActivity.this, ProfileActivity.class));
+                Intent intent = new Intent(
+                        MissionsActivity.this,
+                        ProfileActivity.class
+                );
+
+                startActivity(intent);
+
+                overridePendingTransition(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left
+                );
+
                 return true;
             }
 
             return false;
         });
-
-        showAvailable();
     }
 
     private void showAvailable() {
@@ -87,8 +138,13 @@ public class MissionsActivity extends AppCompatActivity {
         btnAvailable.setTextColor(0xFFFFFFFF);
         btnCompleted.setTextColor(0xFFAAAAAA);
 
-        btnAvailable.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF087A35));
-        btnCompleted.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF101010));
+        btnAvailable.setBackgroundTintList(
+                android.content.res.ColorStateList.valueOf(0xFF087A35)
+        );
+
+        btnCompleted.setBackgroundTintList(
+                android.content.res.ColorStateList.valueOf(0xFF101010)
+        );
     }
 
     private void showCompleted() {
@@ -98,11 +154,16 @@ public class MissionsActivity extends AppCompatActivity {
         btnAvailable.setTextColor(0xFFAAAAAA);
         btnCompleted.setTextColor(0xFFFFFFFF);
 
-        btnAvailable.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF101010));
-        btnCompleted.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF087A35));
+        btnAvailable.setBackgroundTintList(
+                android.content.res.ColorStateList.valueOf(0xFF101010)
+        );
 
-        boolean mission1Completed = preferences.getBoolean("mission1_completed", false);
-        boolean mission2Completed = preferences.getBoolean("mission2_completed", false);
+        btnCompleted.setBackgroundTintList(
+                android.content.res.ColorStateList.valueOf(0xFF087A35)
+        );
+
+        boolean mission1Completed = playerPrefs.isMission1Completed();
+        boolean mission2Completed = playerPrefs.isMission2Completed();
 
         StringBuilder completed = new StringBuilder();
 

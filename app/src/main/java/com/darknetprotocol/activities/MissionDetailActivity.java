@@ -1,6 +1,5 @@
-package com.darknetprotocol;
+package com.darknetprotocol.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -9,20 +8,35 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.darknetprotocol.R;
+import com.darknetprotocol.utils.PlayerPrefs;
+
 public class MissionDetailActivity extends AppCompatActivity {
 
-    TextView txtStatus, txtStats, txtLog;
+    TextView txtStatus;
+    TextView txtStats;
+    TextView txtLog;
+
     ProgressBar progressMission;
 
-    Button btnScan, btnProxy, btnBypass, btnExtract, btnReset;
+    Button btnScan;
+    Button btnProxy;
+    Button btnBypass;
+    Button btnExtract;
+    Button btnReset;
 
-    SharedPreferences preferences;
+    PlayerPrefs playerPrefs;
 
     int step = 0;
     int attempts = 3;
     int detection = 0;
 
-    String[] correctSequence = {"SCAN", "PROXY", "BYPASS", "EXTRACT"};
+    String[] correctSequence = {
+            "SCAN",
+            "PROXY",
+            "BYPASS",
+            "EXTRACT"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +46,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         txtStatus = findViewById(R.id.txtStatus);
         txtStats = findViewById(R.id.txtStats);
         txtLog = findViewById(R.id.txtLog);
+
         progressMission = findViewById(R.id.progressMission);
 
         btnScan = findViewById(R.id.btnScan);
@@ -40,9 +55,9 @@ public class MissionDetailActivity extends AppCompatActivity {
         btnExtract = findViewById(R.id.btnExtract);
         btnReset = findViewById(R.id.btnReset);
 
-        preferences = getSharedPreferences("player_data", MODE_PRIVATE);
+        playerPrefs = new PlayerPrefs(this);
 
-        if (preferences.getBoolean("mission1_completed", false)) {
+        if (playerPrefs.isMission1Completed()) {
             showCompletedMission();
         }
 
@@ -50,25 +65,41 @@ public class MissionDetailActivity extends AppCompatActivity {
         btnProxy.setOnClickListener(v -> executeCommand("PROXY"));
         btnBypass.setOnClickListener(v -> executeCommand("BYPASS"));
         btnExtract.setOnClickListener(v -> executeCommand("EXTRACT"));
+
         btnReset.setOnClickListener(v -> resetAttempt());
+
+        updateStats();
     }
 
     private void executeCommand(String command) {
 
-        if (preferences.getBoolean("mission1_completed", false)) {
-            Toast.makeText(this, "Missão já concluída.", Toast.LENGTH_SHORT).show();
+        if (playerPrefs.isMission1Completed()) {
+
+            Toast.makeText(
+                    this,
+                    "Missão já concluída.",
+                    Toast.LENGTH_SHORT
+            ).show();
+
             return;
         }
 
         if (attempts <= 0 || detection >= 100) {
-            txtLog.append("\n> Sistema bloqueado. Use reiniciar tentativa.");
+
+            txtLog.append(
+                    "\n> Sistema bloqueado. Use reiniciar tentativa."
+            );
+
             return;
         }
 
         if (command.equals(correctSequence[step])) {
 
             step++;
-            txtLog.append("\n> " + command + " executado com sucesso.");
+
+            txtLog.append(
+                    "\n> " + command + " executado com sucesso."
+            );
 
             updateMissionProgress();
 
@@ -77,61 +108,101 @@ public class MissionDetailActivity extends AppCompatActivity {
             }
 
         } else {
+
             failCommand(command);
+
         }
+
     }
 
     private void updateMissionProgress() {
 
         if (step == 1) {
+
             txtStatus.setText("STATUS: REDE MAPEADA");
+
             progressMission.setProgress(25);
-            txtLog.append("\n> Portas fictícias analisadas.");
+
+            txtLog.append(
+                    "\n> Portas fictícias analisadas."
+            );
+
         }
 
         if (step == 2) {
+
             txtStatus.setText("STATUS: PROXY ATIVADO");
+
             progressMission.setProgress(50);
-            txtLog.append("\n> Rota segura simulada.");
+
+            txtLog.append(
+                    "\n> Rota segura simulada."
+            );
+
         }
 
         if (step == 3) {
+
             txtStatus.setText("STATUS: FIREWALL CONTORNADO");
+
             progressMission.setProgress(75);
-            txtLog.append("\n> Camada de defesa fictícia neutralizada.");
+
+            txtLog.append(
+                    "\n> Camada de defesa fictícia neutralizada."
+            );
+
         }
 
         updateStats();
+
     }
 
     private void failCommand(String command) {
 
         attempts--;
+
         detection += 35;
+
         step = 0;
+
         progressMission.setProgress(0);
 
         txtStatus.setText("STATUS: ERRO NA SEQUÊNCIA");
-        txtLog.append("\n> Comando inválido: " + command);
-        txtLog.append("\n> Sequência reiniciada.");
-        txtLog.append("\n> Detecção aumentou.");
+
+        txtLog.append(
+                "\n> Comando inválido: " + command
+        );
+
+        txtLog.append(
+                "\n> Sequência reiniciada."
+        );
+
+        txtLog.append(
+                "\n> Detecção aumentou."
+        );
 
         updateStats();
 
         if (attempts <= 0 || detection >= 100) {
+
             gameOver();
+
         } else {
+
             Toast.makeText(
                     this,
                     "Sequência errada. Tentativas restantes: " + attempts,
                     Toast.LENGTH_SHORT
             ).show();
+
         }
+
     }
 
     private void completeMission() {
 
         progressMission.setProgress(100);
+
         txtStatus.setText("STATUS: MISSÃO CONCLUÍDA");
 
         txtLog.append("\n> EXTRACT concluído.");
@@ -141,17 +212,14 @@ public class MissionDetailActivity extends AppCompatActivity {
 
         int xpReward = calculateXpReward();
 
-        int currentXp = preferences.getInt("xp_total", 0);
-        int newXp = currentXp + xpReward;
+        playerPrefs.addXp(xpReward);
 
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("xp_total", newXp);
-        editor.putBoolean("mission1_completed", true);
-        editor.apply();
+        playerPrefs.setMission1Completed(true);
 
         String rank = getRank(xpReward);
 
         txtLog.append("\n> XP recebido: +" + xpReward);
+
         txtLog.append("\n> Rank da missão: " + rank);
 
         disableAllButtons();
@@ -161,6 +229,7 @@ public class MissionDetailActivity extends AppCompatActivity {
                 "Missão concluída! +" + xpReward + " XP",
                 Toast.LENGTH_LONG
         ).show();
+
     }
 
     private int calculateXpReward() {
@@ -174,6 +243,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         }
 
         return 100;
+
     }
 
     private String getRank(int xpReward) {
@@ -187,14 +257,20 @@ public class MissionDetailActivity extends AppCompatActivity {
         }
 
         return "B";
+
     }
 
     private void gameOver() {
 
         txtStatus.setText("STATUS: MISSÃO FALHOU");
+
         txtLog.append("\n> ALERTA MÁXIMO.");
+
         txtLog.append("\n> Sistema bloqueado.");
-        txtLog.append("\n> Use REINICIAR TENTATIVA para tentar novamente.");
+
+        txtLog.append(
+                "\n> Use REINICIAR TENTATIVA para tentar novamente."
+        );
 
         disableCommandButtons();
 
@@ -203,46 +279,72 @@ public class MissionDetailActivity extends AppCompatActivity {
                 "Missão falhou. Reinicie a tentativa.",
                 Toast.LENGTH_LONG
         ).show();
+
     }
 
     private void resetAttempt() {
 
-        if (preferences.getBoolean("mission1_completed", false)) {
-            Toast.makeText(this, "Missão já concluída.", Toast.LENGTH_SHORT).show();
+        if (playerPrefs.isMission1Completed()) {
+
+            Toast.makeText(
+                    this,
+                    "Missão já concluída.",
+                    Toast.LENGTH_SHORT
+            ).show();
+
             return;
         }
 
         step = 0;
+
         attempts = 3;
+
         detection = 0;
 
         progressMission.setProgress(0);
-        txtStatus.setText("STATUS: AGUARDANDO COMANDO");
+
+        txtStatus.setText(
+                "STATUS: AGUARDANDO COMANDO"
+        );
 
         txtLog.setText(
                 "> Sistema reiniciado." +
                         "\n> Descubra a sequência correta de infiltração." +
-                        "\n> Dica: mapeie a rede antes de tentar esconder o tráfego."
+                        "\n> Dica: mapeie a rede antes de esconder o tráfego."
         );
 
         updateStats();
+
         enableCommandButtons();
 
-        Toast.makeText(this, "Tentativa reiniciada.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(
+                this,
+                "Tentativa reiniciada.",
+                Toast.LENGTH_SHORT
+        ).show();
+
     }
 
     private void updateStats() {
+
         txtStats.setText(
                 "Tentativas: " + attempts +
                         " | Detecção: " + detection + "%" +
                         " | XP: até +200"
         );
+
     }
 
     private void showCompletedMission() {
 
-        txtStatus.setText("STATUS: MISSÃO JÁ CONCLUÍDA");
-        txtStats.setText("Recompensa já recebida.");
+        txtStatus.setText(
+                "STATUS: MISSÃO JÁ CONCLUÍDA"
+        );
+
+        txtStats.setText(
+                "Recompensa já recebida."
+        );
+
         progressMission.setProgress(100);
 
         txtLog.setText(
@@ -252,6 +354,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         );
 
         disableAllButtons();
+
     }
 
     private void disableAllButtons() {
@@ -267,6 +370,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         btnBypass.setAlpha(0.5f);
         btnExtract.setAlpha(0.5f);
         btnReset.setAlpha(0.5f);
+
     }
 
     private void disableCommandButtons() {
@@ -282,7 +386,9 @@ public class MissionDetailActivity extends AppCompatActivity {
         btnExtract.setAlpha(0.5f);
 
         btnReset.setEnabled(true);
+
         btnReset.setAlpha(1f);
+
     }
 
     private void enableCommandButtons() {
@@ -298,5 +404,6 @@ public class MissionDetailActivity extends AppCompatActivity {
         btnBypass.setAlpha(1f);
         btnExtract.setAlpha(1f);
         btnReset.setAlpha(1f);
+
     }
 }

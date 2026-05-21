@@ -1,6 +1,5 @@
-package com.darknetprotocol;
+package com.darknetprotocol.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -8,14 +7,32 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.darknetprotocol.R;
+import com.darknetprotocol.utils.PlayerPrefs;
+
 public class PasswordMissionActivity extends AppCompatActivity {
 
-    TextView txtStatusPassword, txtStatsPassword, txtLogPassword, txtPasswordDisplay;
+    TextView txtStatusPassword;
+    TextView txtStatsPassword;
+    TextView txtLogPassword;
+    TextView txtPasswordDisplay;
 
-    Button btnCheckPassword, btnPasswordHint, btnResetPasswordMission, btnDeleteKey;
-    Button btnKeyO, btnKeyR, btnKeyI, btnKeyN, btnKeyA, btnKeyB, btnKeyC, btnKeyX, btnKeyZ;
+    Button btnCheckPassword;
+    Button btnPasswordHint;
+    Button btnResetPasswordMission;
+    Button btnDeleteKey;
 
-    SharedPreferences preferences;
+    Button btnKeyO;
+    Button btnKeyR;
+    Button btnKeyI;
+    Button btnKeyN;
+    Button btnKeyA;
+    Button btnKeyB;
+    Button btnKeyC;
+    Button btnKeyX;
+    Button btnKeyZ;
+
+    PlayerPrefs playerPrefs;
 
     String correctPassword = "ORION";
     String currentInput = "";
@@ -27,6 +44,8 @@ public class PasswordMissionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_mission);
+
+        playerPrefs = new PlayerPrefs(this);
 
         txtStatusPassword = findViewById(R.id.txtStatusPassword);
         txtStatsPassword = findViewById(R.id.txtStatsPassword);
@@ -48,9 +67,7 @@ public class PasswordMissionActivity extends AppCompatActivity {
         btnKeyX = findViewById(R.id.btnKeyX);
         btnKeyZ = findViewById(R.id.btnKeyZ);
 
-        preferences = getSharedPreferences("player_data", MODE_PRIVATE);
-
-        if (preferences.getBoolean("mission2_completed", false)) {
+        if (playerPrefs.isMission2Completed()) {
             showCompletedMission();
         }
 
@@ -70,11 +87,11 @@ public class PasswordMissionActivity extends AppCompatActivity {
         btnResetPasswordMission.setOnClickListener(v -> resetMission());
 
         updatePasswordDisplay();
+        updateStats();
     }
 
     private void addLetter(String letter) {
-
-        if (preferences.getBoolean("mission2_completed", false)) {
+        if (playerPrefs.isMission2Completed()) {
             return;
         }
 
@@ -88,7 +105,6 @@ public class PasswordMissionActivity extends AppCompatActivity {
     }
 
     private void deleteLetter() {
-
         if (currentInput.length() > 0) {
             currentInput = currentInput.substring(0, currentInput.length() - 1);
             updatePasswordDisplay();
@@ -96,7 +112,6 @@ public class PasswordMissionActivity extends AppCompatActivity {
     }
 
     private void updatePasswordDisplay() {
-
         StringBuilder display = new StringBuilder();
 
         for (int i = 0; i < 5; i++) {
@@ -115,8 +130,7 @@ public class PasswordMissionActivity extends AppCompatActivity {
     }
 
     private void checkPassword() {
-
-        if (preferences.getBoolean("mission2_completed", false)) {
+        if (playerPrefs.isMission2Completed()) {
             Toast.makeText(this, "Missão já concluída.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -142,14 +156,17 @@ public class PasswordMissionActivity extends AppCompatActivity {
             if (attempts <= 0) {
                 gameOver();
             } else {
-                Toast.makeText(this, "Senha errada. Tentativas restantes: " + attempts, Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        this,
+                        "Senha errada. Tentativas restantes: " + attempts,
+                        Toast.LENGTH_SHORT
+                ).show();
             }
         }
     }
 
     private void showHint() {
-
-        if (preferences.getBoolean("mission2_completed", false)) {
+        if (playerPrefs.isMission2Completed()) {
             Toast.makeText(this, "Missão já concluída.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -157,20 +174,21 @@ public class PasswordMissionActivity extends AppCompatActivity {
         hintsUsed++;
 
         if (hintsUsed == 1) {
-            txtLogPassword.append("\n> Dica 2: a senha tem 5 letras.");
+            txtLogPassword.append("\n> Pista 2: a senha é o nome do projeto extraído na Missão 1.");
         } else if (hintsUsed == 2) {
-            txtLogPassword.append("\n> Dica 3: começa com O.");
+            txtLogPassword.append("\n> Pista 3: a senha possui 5 letras.");
         } else if (hintsUsed == 3) {
-            txtLogPassword.append("\n> Dica 4: O R I O N.");
+            txtLogPassword.append("\n> Pista 4: começa com O e termina com N.");
+        } else if (hintsUsed == 4) {
+            txtLogPassword.append("\n> Pista final: O R I O N.");
         } else {
-            txtLogPassword.append("\n> Sem mais dicas. Agora é contigo, operador.");
+            txtLogPassword.append("\n> Sem mais pistas. O sistema praticamente resolveu isso pra você.");
         }
 
         updateStats();
     }
 
     private void completeMission() {
-
         txtStatusPassword.setText("STATUS: ACESSO LIBERADO");
 
         txtLogPassword.append("\n> Senha correta: ORION");
@@ -180,24 +198,22 @@ public class PasswordMissionActivity extends AppCompatActivity {
 
         int xpReward = calculateXpReward();
 
-        int currentXp = preferences.getInt("xp_total", 0);
-        int newXp = currentXp + xpReward;
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("xp_total", newXp);
-        editor.putBoolean("mission2_completed", true);
-        editor.apply();
+        playerPrefs.addXp(xpReward);
+        playerPrefs.setMission2Completed(true);
 
         txtLogPassword.append("\n> XP recebido: +" + xpReward);
         txtLogPassword.append("\n> Rank da missão: " + getRank(xpReward));
 
         disableAll();
 
-        Toast.makeText(this, "Missão 2 concluída! +" + xpReward + " XP", Toast.LENGTH_LONG).show();
+        Toast.makeText(
+                this,
+                "Missão 2 concluída! +" + xpReward + " XP",
+                Toast.LENGTH_LONG
+        ).show();
     }
 
     private int calculateXpReward() {
-
         if (attempts == 4 && hintsUsed == 0) {
             return 250;
         }
@@ -214,7 +230,6 @@ public class PasswordMissionActivity extends AppCompatActivity {
     }
 
     private String getRank(int xpReward) {
-
         if (xpReward == 250) {
             return "S+";
         }
@@ -231,7 +246,6 @@ public class PasswordMissionActivity extends AppCompatActivity {
     }
 
     private void gameOver() {
-
         txtStatusPassword.setText("STATUS: MISSÃO FALHOU");
         txtLogPassword.append("\n> Muitas tentativas incorretas.");
         txtLogPassword.append("\n> Sistema bloqueado temporariamente.");
@@ -239,12 +253,15 @@ public class PasswordMissionActivity extends AppCompatActivity {
 
         disableKeyboardOnly();
 
-        Toast.makeText(this, "Missão falhou. Reinicie para tentar novamente.", Toast.LENGTH_LONG).show();
+        Toast.makeText(
+                this,
+                "Missão falhou. Reinicie para tentar novamente.",
+                Toast.LENGTH_LONG
+        ).show();
     }
 
     private void resetMission() {
-
-        if (preferences.getBoolean("mission2_completed", false)) {
+        if (playerPrefs.isMission2Completed()) {
             Toast.makeText(this, "Missão já concluída.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -257,7 +274,7 @@ public class PasswordMissionActivity extends AppCompatActivity {
 
         txtLogPassword.setText(
                 "> Arquivo criptografado encontrado." +
-                        "\n> Dica 1: nome do projeto mencionado na missão 1."
+                        "\n> Pista 1: o arquivo roubado na Missão 1 se chamava Projeto Orion."
         );
 
         updatePasswordDisplay();
@@ -276,7 +293,6 @@ public class PasswordMissionActivity extends AppCompatActivity {
     }
 
     private void showCompletedMission() {
-
         txtStatusPassword.setText("STATUS: MISSÃO JÁ CONCLUÍDA");
         txtStatsPassword.setText("Recompensa já recebida.");
 
