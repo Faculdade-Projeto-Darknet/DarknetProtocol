@@ -52,7 +52,7 @@ public class MissionsActivity extends AppCompatActivity {
         mission1.setOnClickListener(v -> {
             Intent intent = new Intent(
                     MissionsActivity.this,
-                    MissionDetailActivity.class
+                    Mission1BriefingActivity.class
             );
 
             startActivity(intent);
@@ -66,7 +66,7 @@ public class MissionsActivity extends AppCompatActivity {
         mission2.setOnClickListener(v -> {
             Intent intent = new Intent(
                     MissionsActivity.this,
-                    PasswordMissionActivity.class
+                    Mission2BriefingActivity.class
             );
 
             startActivity(intent);
@@ -83,6 +83,17 @@ public class MissionsActivity extends AppCompatActivity {
         setupBottomNavigation();
 
         showAvailable();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (bottomNavigation != null) {
+            bottomNavigation.setSelectedItemId(R.id.nav_missions);
+        }
+
+        updateAvailableMissions();
     }
 
     private void setupBottomNavigation() {
@@ -145,6 +156,8 @@ public class MissionsActivity extends AppCompatActivity {
         btnCompleted.setBackgroundTintList(
                 android.content.res.ColorStateList.valueOf(0xFF101010)
         );
+
+        updateAvailableMissions();
     }
 
     private void showCompleted() {
@@ -162,6 +175,31 @@ public class MissionsActivity extends AppCompatActivity {
                 android.content.res.ColorStateList.valueOf(0xFF087A35)
         );
 
+        updateCompletedMissions();
+    }
+
+    private void updateAvailableMissions() {
+        boolean mission1Completed = playerPrefs.isMission1Completed();
+        boolean mission2Completed = playerPrefs.isMission2Completed();
+
+        if (mission1Completed) {
+            mission1.setVisibility(View.GONE);
+        } else {
+            mission1.setVisibility(View.VISIBLE);
+        }
+
+        if (mission2Completed) {
+            mission2.setVisibility(View.GONE);
+        } else {
+            mission2.setVisibility(View.VISIBLE);
+        }
+
+        if (mission1Completed && mission2Completed) {
+            txtCompletedList.setText("Todas as missões foram concluídas.");
+        }
+    }
+
+    private void updateCompletedMissions() {
         boolean mission1Completed = playerPrefs.isMission1Completed();
         boolean mission2Completed = playerPrefs.isMission2Completed();
 

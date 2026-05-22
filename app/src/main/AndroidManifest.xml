@@ -12,8 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DarknetProtocol">
         <activity
+            android:name=".activities.Mission1BriefingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Mission2BriefingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ProfileActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activities.PasswordMissionActivity"
             android:exported="false" />

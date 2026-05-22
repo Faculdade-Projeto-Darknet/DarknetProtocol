@@ -223,7 +223,7 @@ public class ProfileActivity extends AppCompatActivity {
             } catch (Exception e) {
 
                 imgProfile.setImageResource(
-                        R.mipmap.ic_launcher
+                        R.drawable.default_avatar
                 );
 
             }
@@ -231,7 +231,7 @@ public class ProfileActivity extends AppCompatActivity {
         } else {
 
             imgProfile.setImageResource(
-                    R.mipmap.ic_launcher
+                    R.drawable.default_avatar
             );
 
         }
@@ -373,5 +373,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (bottomNavigation != null) {
+            bottomNavigation.setSelectedItemId(R.id.nav_profile);
+        }
     }
 }
