@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
+import com.darknetprotocol.SoundManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 
 public class DecryptMissionActivity extends AppCompatActivity {
@@ -64,6 +65,9 @@ public class DecryptMissionActivity extends AppCompatActivity {
             return;
         }
 
+        // 🔊 SOM DE CLIQUE: Submissão do Input de Texto
+        SoundManager.playSound(this, R.raw.cyber_click);
+
         String answer = edtDecryptAnswer.getText().toString().trim().toUpperCase();
 
         if (answer.isEmpty()) {
@@ -74,8 +78,10 @@ public class DecryptMissionActivity extends AppCompatActivity {
         if (answer.equals(correctAnswer)) {
             completeMission();
         } else {
-            attempts--;
+            // 🔊 SOM DE ERRO: Chave rejeitada pelo decipher
+            SoundManager.playSound(this, R.raw.cyber_error);
 
+            attempts--;
             txtDecryptStatus.setText("STATUS: FALHA NA DESCRIPTOGRAFIA");
             txtDecryptLog.append("\n> Resposta inválida: " + answer);
             txtDecryptLog.append("\n> Chave rejeitada.");
@@ -97,8 +103,10 @@ public class DecryptMissionActivity extends AppCompatActivity {
             return;
         }
 
-        hintsUsed++;
+        // 🔊 SOM DE CLIQUE: Requisição de dica
+        SoundManager.playSound(this, R.raw.cyber_click);
 
+        hintsUsed++;
         if (hintsUsed == 1) {
             txtDecryptLog.append("\n> Dica 2: cada letra foi deslocada 3 posições para frente.");
         } else if (hintsUsed == 2) {
@@ -113,15 +121,13 @@ public class DecryptMissionActivity extends AppCompatActivity {
     }
 
     private void completeMission() {
-        txtDecryptStatus.setText("STATUS: ARQUIVO DESCRIPTOGRAFADO");
+        // 🔊 SOM DE SUCESSO: Cifra quebrada com perfeição
+        SoundManager.playSound(this, R.raw.cyber_success);
 
-        txtDecryptLog.append("\n> Palavra correta: ORION");
-        txtDecryptLog.append("\n> Arquivo ghost_file.enc aberto.");
-        txtDecryptLog.append("\n> Dados do Projeto Orion recuperados.");
-        txtDecryptLog.append("\n> MISSÃO CONCLUÍDA.");
+        txtDecryptStatus.setText("STATUS: ARQUIVO DESCRIPTOGRAFADO");
+        txtDecryptLog.append("\n> Palavra correta: ORION\n> Arquivo ghost_file.enc aberto.\n> Dados do Projeto Orion recuperados.\n> MISSÃO CONCLUÍDA.");
 
         int xpReward = calculateXpReward();
-
         playerPrefs.addXp(xpReward);
         playerPrefs.setMission3Completed(true);
 
@@ -129,51 +135,29 @@ public class DecryptMissionActivity extends AppCompatActivity {
         txtDecryptLog.append("\n> Rank da missão: " + getRank(xpReward));
 
         disableAll();
-
         Toast.makeText(this, "Missão 3 concluída! +" + xpReward + " XP", Toast.LENGTH_LONG).show();
     }
 
     private int calculateXpReward() {
-        if (attempts == 3 && hintsUsed == 0) {
-            return 300;
-        }
-
-        if (attempts >= 2 && hintsUsed <= 1) {
-            return 250;
-        }
-
-        if (attempts >= 1) {
-            return 180;
-        }
-
+        if (attempts == 3 && hintsUsed == 0) return 300;
+        if (attempts >= 2 && hintsUsed <= 1) return 250;
+        if (attempts >= 1) return 180;
         return 100;
     }
 
     private String getRank(int xpReward) {
-        if (xpReward == 300) {
-            return "S+";
-        }
-
-        if (xpReward == 250) {
-            return "A";
-        }
-
-        if (xpReward == 180) {
-            return "B";
-        }
-
+        if (xpReward == 300) return "S+";
+        if (xpReward == 250) return "A";
+        if (xpReward == 180) return "B";
         return "C";
     }
 
     private void gameOver() {
         txtDecryptStatus.setText("STATUS: MISSÃO FALHOU");
-        txtDecryptLog.append("\n> Muitas tentativas inválidas.");
-        txtDecryptLog.append("\n> Arquivo bloqueado temporariamente.");
-        txtDecryptLog.append("\n> Use REINICIAR MISSÃO para tentar novamente.");
+        txtDecryptLog.append("\n> Muitas tentativas inválidas.\n> Arquivo bloqueado temporariamente.\n> Use REINICIAR MISSÃO para tentar novamente.");
 
         btnCheckDecrypt.setEnabled(false);
         btnDecryptHint.setEnabled(false);
-
         btnCheckDecrypt.setAlpha(0.5f);
         btnDecryptHint.setAlpha(0.5f);
 
@@ -186,60 +170,42 @@ public class DecryptMissionActivity extends AppCompatActivity {
             return;
         }
 
+        // 🔊 SOM DE ERRO: Reinicialização forçada do cipher
+        SoundManager.playSound(this, R.raw.cyber_error);
+
         attempts = 3;
         hintsUsed = 0;
-
         edtDecryptAnswer.setText("");
 
         txtDecryptStatus.setText("STATUS: ARQUIVO CRIPTOGRAFADO");
-
-        txtDecryptLog.setText(
-                "> Arquivo encontrado: ghost_file.enc" +
-                        "\n> Conteúdo criptografado: RULRQ" +
-                        "\n> Dica: Cifra de César -3"
-        );
+        txtDecryptLog.setText("> Arquivo encontrado: ghost_file.enc\n> Conteúdo criptografado: RULRQ\n> Dica: Cifra de César -3");
 
         btnCheckDecrypt.setEnabled(true);
         btnDecryptHint.setEnabled(true);
-
         btnCheckDecrypt.setAlpha(1f);
         btnDecryptHint.setAlpha(1f);
 
         updateStats();
-
         Toast.makeText(this, "Missão reiniciada.", Toast.LENGTH_SHORT).show();
     }
 
     private void updateStats() {
-        txtDecryptStats.setText(
-                "Tentativas: " + attempts +
-                        " | Dicas usadas: " + hintsUsed +
-                        " | XP: até +300"
-        );
+        txtDecryptStats.setText("Tentativas: " + attempts + " | Dicas usadas: " + hintsUsed + " | XP: até +300");
     }
 
     private void showCompletedMission() {
         txtDecryptStatus.setText("STATUS: MISSÃO JÁ CONCLUÍDA");
         txtDecryptStats.setText("Recompensa já recebida.");
-
-        txtDecryptLog.setText(
-                "> Missão já finalizada." +
-                        "\n> Arquivo ghost_file.enc descriptografado." +
-                        "\n> Palavra encontrada: ORION." +
-                        "\n> XP já foi adicionado ao perfil."
-        );
-
+        txtDecryptLog.setText("> Missão já finalizada.\n> Arquivo ghost_file.enc descriptografado.\n> Palavra encontrada: ORION.\n> XP já foi adicionado ao perfil.");
         edtDecryptAnswer.setText("ORION");
         disableAll();
     }
 
     private void disableAll() {
         edtDecryptAnswer.setEnabled(false);
-
         btnCheckDecrypt.setEnabled(false);
         btnDecryptHint.setEnabled(false);
         btnResetDecrypt.setEnabled(false);
-
         btnCheckDecrypt.setAlpha(0.5f);
         btnDecryptHint.setAlpha(0.5f);
         btnResetDecrypt.setAlpha(0.5f);

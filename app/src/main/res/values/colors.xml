@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="cyber_bg_dark">#0A0E14</color>
+    <color name="cyber_bg_terminal">#020406</color>
+    <color name="cyber_green">#00FF66</color>
+    <color name="cyber_green_glow">#3300FF66</color>
+    <color name="cyber_gray_card">#161B22</color>
+    <color name="cyber_text_secondary">#8B949E</color>
+    <color name="white">#FFFFFF</color>
 </resources>

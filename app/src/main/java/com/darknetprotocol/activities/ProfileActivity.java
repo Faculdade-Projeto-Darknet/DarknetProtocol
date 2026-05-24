@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
+import com.darknetprotocol.SoundManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,15 +29,11 @@ public class ProfileActivity extends AppCompatActivity {
     TextView txtAchievements;
 
     ProgressBar progressXp;
-
     CircleImageView imgProfile;
-
     TextView btnResetProfile;
-
     BottomNavigationView bottomNavigation;
 
     PlayerPrefs playerPrefs;
-
     ActivityResultLauncher<String[]> pickImageLauncher;
 
     @Override
@@ -53,11 +50,8 @@ public class ProfileActivity extends AppCompatActivity {
         txtAchievements = findViewById(R.id.txtAchievements);
 
         progressXp = findViewById(R.id.progressXp);
-
         imgProfile = findViewById(R.id.imgProfile);
-
         btnResetProfile = findViewById(R.id.btnResetProfile);
-
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
         setupImagePicker();
@@ -65,333 +59,165 @@ public class ProfileActivity extends AppCompatActivity {
         loadProfile();
 
         imgProfile.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
             pickImageLauncher.launch(new String[]{"image/*"});
         });
 
         txtNickname.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
             showNickDialog();
         });
 
         btnResetProfile.setOnClickListener(v -> {
+            // 🔊 EFEITO SONORO: Alerta/Erro indicando perda/limpeza total de dados
+            SoundManager.playSound(this, R.raw.cyber_error);
 
             playerPrefs.clearAll();
-
             loadProfile();
 
-            Toast.makeText(
-                    this,
-                    "Perfil resetado.",
-                    Toast.LENGTH_SHORT
-            ).show();
-
+            Toast.makeText(this, "Perfil resetado.", Toast.LENGTH_SHORT).show();
         });
     }
 
     private void setupImagePicker() {
-
         pickImageLauncher = registerForActivityResult(
                 new ActivityResultContracts.OpenDocument(),
                 uri -> {
-
                     if (uri != null) {
-
                         try {
-
                             getContentResolver().takePersistableUriPermission(
                                     uri,
                                     Intent.FLAG_GRANT_READ_URI_PERMISSION
                             );
-
                             imgProfile.setImageURI(uri);
-
-                            playerPrefs.setProfileImage(
-                                    uri.toString()
-                            );
-
+                            playerPrefs.setProfileImage(uri.toString());
+                            SoundManager.playSound(this, R.raw.cyber_success);
                         } catch (Exception e) {
-
-                            imgProfile.setImageResource(
-                                    R.mipmap.ic_launcher
-                            );
-
-                            Toast.makeText(
-                                    this,
-                                    "Não foi possível salvar a imagem.",
-                                    Toast.LENGTH_SHORT
-                            ).show();
-
+                            imgProfile.setImageResource(R.mipmap.ic_launcher);
+                            SoundManager.playSound(this, R.raw.cyber_error);
+                            Toast.makeText(this, "Não foi possível salvar a imagem.", Toast.LENGTH_SHORT).show();
                         }
-
                     }
-
                 }
         );
-
     }
 
     private void showNickDialog() {
-
         EditText editText = new EditText(this);
-
         editText.setHint("Novo nickname");
-
-        editText.setText(
-                txtNickname.getText().toString()
-        );
+        editText.setText(txtNickname.getText().toString());
 
         new AlertDialog.Builder(this)
-
                 .setTitle("Alterar nickname")
-
                 .setView(editText)
-
                 .setPositiveButton("Salvar", (dialog, which) -> {
-
-                    String newNick = editText
-                            .getText()
-                            .toString()
-                            .trim();
-
+                    SoundManager.playSound(this, R.raw.cyber_success);
+                    String newNick = editText.getText().toString().trim();
                     if (!newNick.isEmpty()) {
-
                         playerPrefs.setNickname(newNick);
-
                         txtNickname.setText(newNick);
-
                     }
-
                 })
-
-                .setNegativeButton("Cancelar", null)
-
+                .setNegativeButton("Cancelar", (dialog, which) -> {
+                    SoundManager.playSound(this, R.raw.cyber_click);
+                })
                 .show();
-
     }
 
     private void loadProfile() {
-
         int xp = playerPrefs.getXp();
-
-        boolean mission1 =
-                playerPrefs.isMission1Completed();
-
-        boolean mission2 =
-                playerPrefs.isMission2Completed();
-
-        int completedMissions =
-                playerPrefs.getCompletedMissionsCount();
-
-        String nickname =
-                playerPrefs.getNickname();
-
-        String imageUri =
-                playerPrefs.getProfileImage();
+        boolean mission1 = playerPrefs.isMission1Completed();
+        boolean mission2 = playerPrefs.isMission2Completed();
+        int completedMissions = playerPrefs.getCompletedMissionsCount();
+        String nickname = playerPrefs.getNickname();
+        String imageUri = playerPrefs.getProfileImage();
 
         txtNickname.setText(nickname);
-
-        txtXp.setText(
-                "XP Total: " + xp
-        );
-
-        txtMissions.setText(
-                completedMissions + "/2"
-        );
+        txtXp.setText("XP Total: " + xp);
+        txtMissions.setText(completedMissions + "/4"); // Ajustado para /4 baseado nas 4 missões existentes
 
         progressXp.setProgress(xp);
-
-        txtRank.setText(
-                "Rank: " + getRank(xp)
-        );
-
-        txtAchievements.setText(
-                getAchievements(
-                        mission1,
-                        mission2,
-                        completedMissions,
-                        xp
-                )
-        );
+        txtRank.setText("Rank: " + getRank(xp));
+        txtAchievements.setText(getAchievements(mission1, mission2, completedMissions, xp));
 
         if (imageUri != null) {
-
             try {
-
-                imgProfile.setImageURI(
-                        Uri.parse(imageUri)
-                );
-
+                imgProfile.setImageURI(Uri.parse(imageUri));
             } catch (Exception e) {
-
-                imgProfile.setImageResource(
-                        R.drawable.default_avatar
-                );
-
+                imgProfile.setImageResource(R.drawable.default_avatar);
             }
-
         } else {
-
-            imgProfile.setImageResource(
-                    R.drawable.default_avatar
-            );
-
+            imgProfile.setImageResource(R.drawable.default_avatar);
         }
-
     }
 
     private String getRank(int xp) {
-
-        if (xp >= 400) {
-            return "Operador Elite";
-        }
-
-        if (xp >= 250) {
-            return "Infiltrador Avançado";
-        }
-
-        if (xp >= 150) {
-            return "Agente de Rede";
-        }
-
+        if (xp >= 400) return "Operador Elite";
+        if (xp >= 250) return "Infiltrador Avançado";
+        if (xp >= 150) return "Agente de Rede";
         return "Operador Iniciante";
     }
 
-    private String getAchievements(
-            boolean mission1,
-            boolean mission2,
-            int completedMissions,
-            int xp
-    ) {
-
-        StringBuilder achievements =
-                new StringBuilder();
-
+    private String getAchievements(boolean mission1, boolean mission2, int completedMissions, int xp) {
+        StringBuilder achievements = new StringBuilder();
         achievements.append("CONQUISTAS\n\n");
 
         if (!mission1 && !mission2) {
-
-            achievements.append(
-                    "Nenhuma conquista desbloqueada ainda."
-            );
-
+            achievements.append("Nenhuma conquista desbloqueada ainda.");
             return achievements.toString();
-
         }
 
         if (mission1) {
-
-            achievements.append(
-                    "✓ Primeiro Acesso\n"
-            );
-
-            achievements.append(
-                    "✓ Firewall Manipulado\n"
-            );
-
+            achievements.append("✓ Primeiro Acesso\n");
+            achievements.append("✓ Firewall Manipulado\n");
         }
-
         if (mission2) {
-
-            achievements.append(
-                    "✓ Senha Decifrada\n"
-            );
-
-            achievements.append(
-                    "✓ Cofre Digital Aberto\n"
-            );
-
+            achievements.append("✓ Senha Decifrada\n");
+            achievements.append("✓ Cofre Digital Aberto\n");
         }
-
-        if (completedMissions == 2) {
-
-            achievements.append(
-                    "✓ Protocolo Darknet Concluído\n"
-            );
-
+        if (completedMissions >= 2) {
+            achievements.append("✓ Protocolo Darknet Concluído\n");
         }
-
         if (xp >= 400) {
-
-            achievements.append(
-                    "✓ Operador Elite\n"
-            );
-
+            achievements.append("✓ Operador Elite\n");
         }
 
         return achievements.toString();
-
     }
 
     private void setupBottomNavigation() {
-
-        bottomNavigation.setSelectedItemId(
-                R.id.nav_profile
-        );
-
+        bottomNavigation.setSelectedItemId(R.id.nav_profile);
         bottomNavigation.setOnItemSelectedListener(item -> {
-
             int id = item.getItemId();
+            if (id == R.id.nav_profile) return true;
 
-            if (id == R.id.nav_profile) {
-                return true;
-            }
+            SoundManager.playSound(this, R.raw.cyber_click);
 
             if (id == R.id.nav_missions) {
-
-                Intent intent = new Intent(
-                        ProfileActivity.this,
-                        MissionsActivity.class
-                );
-
-                intent.addFlags(
-                        Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                );
-
+                Intent intent = new Intent(ProfileActivity.this, MissionsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
-
-                overridePendingTransition(
-                        R.anim.slide_in_left,
-                        R.anim.slide_out_right
-                );
-
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 return true;
             }
 
             if (id == R.id.nav_terminal) {
-
-                Intent intent = new Intent(
-                        ProfileActivity.this,
-                        TerminalActivity.class
-                );
-
-                intent.addFlags(
-                        Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                );
-
+                Intent intent = new Intent(ProfileActivity.this, TerminalActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
-
-                overridePendingTransition(
-                        R.anim.slide_in_left,
-                        R.anim.slide_out_right
-                );
-
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 return true;
             }
-
             return false;
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-
         loadProfile();
-
         if (bottomNavigation != null) {
-
-            bottomNavigation.setSelectedItemId(
-                    R.id.nav_profile
-            );
-
+            bottomNavigation.setSelectedItemId(R.id.nav_profile);
         }
     }
 }

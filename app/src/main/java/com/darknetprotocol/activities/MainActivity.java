@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
+import com.darknetprotocol.SoundManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startProtocol() {
+        // 🔊 EFEITO SONORO: Clique inicial para disparar o protocolo
+        SoundManager.playSound(this, R.raw.cyber_click);
+
         btnStart.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
 
@@ -40,16 +44,22 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setProgress(25);
 
         handler.postDelayed(() -> {
+            // 🔊 EFEITO SONORO: Clique de processamento
+            SoundManager.playSound(this, R.raw.cyber_click);
             txtStatus.setText("ACESSANDO SERVIDOR...");
             progressBar.setProgress(50);
         }, 1000);
 
         handler.postDelayed(() -> {
+            // 🔊 EFEITO SONORO: Clique de processamento
+            SoundManager.playSound(this, R.raw.cyber_click);
             txtStatus.setText("VALIDANDO CRIPTOGRAFIA...");
             progressBar.setProgress(75);
         }, 2000);
 
         handler.postDelayed(() -> {
+            // 🔊 EFEITO SONORO: Sucesso na liberação do túnel seguro
+            SoundManager.playSound(this, R.raw.cyber_success);
             txtStatus.setText("ACESSO LIBERADO");
             progressBar.setProgress(100);
         }, 3000);

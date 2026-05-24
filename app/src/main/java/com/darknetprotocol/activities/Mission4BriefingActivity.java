@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
+import com.darknetprotocol.SoundManager;
 
 public class Mission4BriefingActivity extends AppCompatActivity {
 
@@ -20,6 +21,9 @@ public class Mission4BriefingActivity extends AppCompatActivity {
         btnStartMission4 = findViewById(R.id.btnStartMission4);
 
         btnStartMission4.setOnClickListener(v -> {
+            // 🔊 EFEITO SONORO: Clique ao iniciar a missão
+            SoundManager.playSound(Mission4BriefingActivity.this, R.raw.cyber_click);
+
             Intent intent = new Intent(
                     Mission4BriefingActivity.this,
                     IpMissionActivity.class

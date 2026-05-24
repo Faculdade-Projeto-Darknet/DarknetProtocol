@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505">
+    android:background="@color/cyber_bg_dark">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigation">
+        android:layout_above="@id/bottomNavigation"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,25 +21,29 @@
 
             <TextView
                 android:text="PERFIL DO OPERADOR"
-                android:textColor="#00FF66"
-                android:textSize="26sp"
+                android:textColor="@color/cyber_green"
+                android:textSize="24sp"
                 android:textStyle="bold"
+                android:fontFamily="monospace"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/cyber_green"
+                android:shadowRadius="10"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgProfile"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="28dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="24dp"
                 android:src="@mipmap/ic_launcher"
-                app:civ_border_width="3dp"
-                app:civ_border_color="#00FF66"/>
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/cyber_green"/>
 
             <TextView
                 android:text="TOQUE NA FOTO PARA ALTERAR"
-                android:textColor="#777777"
-                android:textSize="11sp"
+                android:textColor="@color/cyber_text_secondary"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -47,17 +51,19 @@
             <TextView
                 android:id="@+id/txtNickname"
                 android:text="Ghost_404"
-                android:textColor="#FFFFFF"
-                android:textSize="32sp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_marginTop="24dp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
                 android:text="TOQUE NO NICK PARA EDITAR"
-                android:textColor="#777777"
-                android:textSize="11sp"
+                android:textColor="@color/cyber_text_secondary"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
                 android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -65,25 +71,29 @@
             <TextView
                 android:id="@+id/txtRank"
                 android:text="Rank: Operador Iniciante"
-                android:textColor="#00FF66"
-                android:textSize="18sp"
-                android:layout_marginTop="14dp"
+                android:textColor="@color/cyber_green"
+                android:textSize="16sp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="12dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/cyber_green"
+                android:shadowRadius="4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#101010"
-                android:padding="20dp"
-                android:layout_marginTop="28dp">
+                android:background="@drawable/bg_cyber_card"
+                android:padding="18dp"
+                android:layout_marginTop="24dp">
 
                 <TextView
                     android:id="@+id/txtXp"
                     android:text="XP Total: 0"
-                    android:textColor="#CCCCCC"
-                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:fontFamily="monospace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -92,7 +102,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:progress="0"
                     android:max="450"
-                    android:progressTint="#00FF66"
+                    android:progressTint="@color/cyber_green"
                     android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -101,9 +111,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="100dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="18dp">
+                android:layout_marginTop="14dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -111,22 +121,24 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:background="#101010">
+                    android:background="@drawable/bg_cyber_card">
 
                     <TextView
                         android:text="MISSÕES"
-                        android:textColor="#777777"
-                        android:textSize="12sp"
+                        android:textColor="@color/cyber_text_secondary"
+                        android:textSize="11sp"
+                        android:fontFamily="monospace"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/txtMissions"
                         android:text="0/2"
-                        android:textColor="#00FF66"
-                        android:textSize="28sp"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="26sp"
                         android:textStyle="bold"
-                        android:layout_marginTop="8dp"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -142,23 +154,27 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:background="#101010">
+                    android:background="@drawable/bg_cyber_card">
 
                     <TextView
                         android:text="STATUS"
-                        android:textColor="#777777"
-                        android:textSize="12sp"
+                        android:textColor="@color/cyber_text_secondary"
+                        android:textSize="11sp"
+                        android:fontFamily="monospace"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
                         android:text="ONLINE"
-                        android:textColor="#00FF66"
-                        android:textSize="24sp"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="22sp"
                         android:textStyle="bold"
-                        android:layout_marginTop="8dp"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:shadowColor="@color/cyber_green"
+                        android:shadowRadius="4"/>
 
                 </LinearLayout>
 
@@ -167,23 +183,27 @@
             <TextView
                 android:id="@+id/txtAchievements"
                 android:text="CONQUISTAS\n\nNenhuma conquista desbloqueada ainda."
-                android:textColor="#00FF66"
-                android:textSize="15sp"
+                android:textColor="@color/cyber_green"
+                android:textSize="14sp"
                 android:fontFamily="monospace"
-                android:background="#101010"
+                android:background="@drawable/bg_cyber_card"
                 android:padding="18dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnResetProfile"
                 android:text="RESETAR PROGRESSO"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#333333"
+                android:textColor="#FF4444"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:background="@drawable/bg_cyber_button"
+                android:backgroundTint="#251010"
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"/>
+                android:layout_height="50dp"
+                android:textSize="13sp"/>
 
         </LinearLayout>
 
@@ -194,9 +214,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#101010"
-        app:itemIconTint="#00FF66"
-        app:itemTextColor="#00FF66"
+        android:background="@color/cyber_bg_terminal"
+        app:itemIconTint="@color/cyber_green"
+        app:itemTextColor="@color/cyber_green"
         app:menu="@menu/bottom_menu"/>
 
 </RelativeLayout>

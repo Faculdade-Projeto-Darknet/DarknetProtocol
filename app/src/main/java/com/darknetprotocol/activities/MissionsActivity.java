@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
+import com.darknetprotocol.SoundManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -45,13 +46,31 @@ public class MissionsActivity extends AppCompatActivity {
         txtCompletedList = findViewById(R.id.txtCompletedList);
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        mission1.setOnClickListener(v -> openActivity(Mission1BriefingActivity.class));
-        mission2.setOnClickListener(v -> openActivity(Mission2BriefingActivity.class));
-        mission3.setOnClickListener(v -> openActivity(Mission3BriefingActivity.class));
-        mission4.setOnClickListener(v -> openActivity(Mission4BriefingActivity.class));
+        mission1.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
+            openActivity(Mission1BriefingActivity.class);
+        });
+        mission2.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
+            openActivity(Mission2BriefingActivity.class);
+        });
+        mission3.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
+            openActivity(Mission3BriefingActivity.class);
+        });
+        mission4.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
+            openActivity(Mission4BriefingActivity.class);
+        });
 
-        btnAvailable.setOnClickListener(v -> showAvailable());
-        btnCompleted.setOnClickListener(v -> showCompleted());
+        btnAvailable.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
+            showAvailable();
+        });
+        btnCompleted.setOnClickListener(v -> {
+            SoundManager.playSound(this, R.raw.cyber_click);
+            showCompleted();
+        });
 
         setupBottomNavigation();
         showAvailable();
@@ -60,37 +79,29 @@ public class MissionsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_missions);
         }
-
         updateAvailableMissions();
     }
 
     private void openActivity(Class<?> activityClass) {
-        Intent intent = new Intent(
-                MissionsActivity.this,
-                activityClass
-        );
-
+        Intent intent = new Intent(MissionsActivity.this, activityClass);
         startActivity(intent);
-
-        overridePendingTransition(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left
-        );
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void setupBottomNavigation() {
         bottomNavigation.setSelectedItemId(R.id.nav_missions);
-
         bottomNavigation.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_missions) {
                 return true;
             }
+
+            // 🔊 EFEITO SONORO: Navegação entre abas principais
+            SoundManager.playSound(this, R.raw.cyber_click);
 
             if (id == R.id.nav_terminal) {
                 openActivity(TerminalActivity.class);
@@ -113,13 +124,8 @@ public class MissionsActivity extends AppCompatActivity {
         btnAvailable.setTextColor(0xFFFFFFFF);
         btnCompleted.setTextColor(0xFFAAAAAA);
 
-        btnAvailable.setBackgroundTintList(
-                android.content.res.ColorStateList.valueOf(0xFF087A35)
-        );
-
-        btnCompleted.setBackgroundTintList(
-                android.content.res.ColorStateList.valueOf(0xFF101010)
-        );
+        btnAvailable.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF087A35));
+        btnCompleted.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF101010));
 
         updateAvailableMissions();
     }
@@ -131,13 +137,8 @@ public class MissionsActivity extends AppCompatActivity {
         btnAvailable.setTextColor(0xFFAAAAAA);
         btnCompleted.setTextColor(0xFFFFFFFF);
 
-        btnAvailable.setBackgroundTintList(
-                android.content.res.ColorStateList.valueOf(0xFF101010)
-        );
-
-        btnCompleted.setBackgroundTintList(
-                android.content.res.ColorStateList.valueOf(0xFF087A35)
-        );
+        btnAvailable.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF101010));
+        btnCompleted.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF087A35));
 
         updateCompletedMissions();
     }
@@ -157,27 +158,12 @@ public class MissionsActivity extends AppCompatActivity {
 
         StringBuilder completed = new StringBuilder();
 
-        if (mission1Completed) {
-            completed.append("✓ 01 - INVASÃO À REDE\n");
-        }
+        if (mission1Completed) completed.append("✓ 01 - INVASÃO À REDE\n");
+        if (mission2Completed) completed.append("✓ 02 - QUEBRA DE SENHA\n");
+        if (mission3Completed) completed.append("✓ 03 - ARQUIVO FANTASMA\n");
+        if (mission4Completed) completed.append("✓ 04 - NÓ INVASOR\n");
 
-        if (mission2Completed) {
-            completed.append("✓ 02 - QUEBRA DE SENHA\n");
-        }
-
-        if (mission3Completed) {
-            completed.append("✓ 03 - ARQUIVO FANTASMA\n");
-        }
-
-        if (mission4Completed) {
-            completed.append("✓ 04 - NÓ INVASOR\n");
-        }
-
-        if (!mission1Completed &&
-                !mission2Completed &&
-                !mission3Completed &&
-                !mission4Completed) {
-
+        if (!mission1Completed && !mission2Completed && !mission3Completed && !mission4Completed) {
             completed.append("Nenhuma missão concluída ainda.");
         }
 

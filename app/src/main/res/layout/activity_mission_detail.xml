@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505">
+    android:background="@color/cyber_bg_dark"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,43 +14,49 @@
 
         <TextView
             android:text="MISSÃO 01"
-            android:textColor="#00FF66"
-            android:textSize="15sp"
+            android:textColor="@color/cyber_green"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:text="INVASÃO À REDE"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:layout_marginTop="8dp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:text="Objetivo: acessar o servidor fictício da HexaCryp e extrair os arquivos do Projeto Orion."
-            android:textColor="#CCCCCC"
-            android:textSize="15sp"
-            android:layout_marginTop="18dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/txtStatus"
             android:text="STATUS: AGUARDANDO COMANDO"
-            android:textColor="#00FF66"
+            android:textColor="@color/cyber_green"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:fontFamily="monospace"
+            android:textSize="15sp"
             android:layout_marginTop="24dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/cyber_green"
+            android:shadowRadius="4"/>
 
         <TextView
             android:id="@+id/txtStats"
             android:text="Tentativas: 3 | Detecção: 0% | XP: +150"
-            android:textColor="#AAAAAA"
-            android:textSize="14sp"
+            android:textColor="@color/cyber_text_secondary"
+            android:fontFamily="monospace"
+            android:textSize="13sp"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -59,67 +65,84 @@
             android:id="@+id/progressMission"
             style="?android:attr/progressBarStyleHorizontal"
             android:progress="0"
-            android:progressTint="#00FF66"
+            android:progressTint="@color/cyber_green"
             android:layout_marginTop="14dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/txtLog"
-            android:text="> Sistema pronto.\n> Descubra a sequência correta de infiltração."
-            android:textColor="#00FF66"
-            android:textSize="14sp"
+            android:text="&gt; Sistema pronto.\n&gt; Descubra a sequência correta de infiltração."
+            android:textColor="@color/cyber_green"
+            android:textSize="13sp"
             android:fontFamily="monospace"
-            android:background="#101010"
+            android:background="@drawable/bg_cyber_card"
             android:padding="16dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnScan"
             android:text="SCAN REDE"
-            android:textColor="#00FF66"
-            android:backgroundTint="#101010"
-            android:layout_marginTop="22dp"
+            android:textColor="@color/cyber_green"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:background="@drawable/bg_cyber_button"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"
+            android:textSize="13sp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnProxy"
             android:text="ATIVAR PROXY"
-            android:textColor="#00FF66"
-            android:backgroundTint="#101010"
+            android:textColor="@color/cyber_green"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:background="@drawable/bg_cyber_button"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"
+            android:textSize="13sp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBypass"
             android:text="BYPASS FIREWALL"
-            android:textColor="#00FF66"
-            android:backgroundTint="#101010"
+            android:textColor="@color/cyber_green"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:background="@drawable/bg_cyber_button"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"
+            android:textSize="13sp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnExtract"
             android:text="EXTRAIR DADOS"
-            android:textColor="#00FF66"
-            android:backgroundTint="#101010"
+            android:textColor="@color/cyber_green"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:background="@drawable/bg_cyber_button"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"
+            android:textSize="13sp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnReset"
             android:text="REINICIAR TENTATIVA"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#333333"
-            android:layout_marginTop="18dp"
+            android:textColor="#FF4444"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:background="@drawable/bg_cyber_button"
+            android:backgroundTint="#251010"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"
+            android:textSize="13sp"/>
 
     </LinearLayout>
 

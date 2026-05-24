@@ -1,36 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505">
+    android:background="@color/cyber_bg_dark">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation"
         android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DARKNET: PROTOCOL"
-            android:textColor="#00FF66"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="30dp"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PERFIL_DO_OPERADOR"
+                android:textColor="@color/cyber_green"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="24dp"
+                android:shadowColor="@color/cyber_green"
+                android:shadowRadius="10"/>
+
+            <FrameLayout
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginBottom="8dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_cyber_button" />
+
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:src="@android:drawable/sym_def_app_icon"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TOQUE NA FOTO PARA ALTERAR"
+                android:textColor="@color/cyber_text_secondary"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/txtNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ghost_404"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace" />
+
+            <TextView
+                android:id="@+id/txtRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rank: Operador Iniciante"
+                android:textColor="@color/cyber_green"
+                android:textSize="14sp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="24dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_cyber_card"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XP TOTAL: 0"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/cyber_green"
+                    android:layout_marginTop="8dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_cyber_card"
+                    android:layout_marginEnd="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MISSÕES"
+                        android:textColor="@color/cyber_text_secondary"
+                        android:textSize="11sp"
+                        android:fontFamily="monospace"/>
+                    <TextView
+                        android:id="@+id/txtMissionsCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/2"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="20sp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_cyber_card"
+                    android:layout_marginStart="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STATUS"
+                        android:textColor="@color/cyber_text_secondary"
+                        android:textSize="11sp"
+                        android:fontFamily="monospace"/>
+                    <TextView
+                        android:id="@+id/txtStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ONLINE"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="20sp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"
+                        android:shadowColor="@color/cyber_green"
+                        android:shadowRadius="4"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_cyber_card"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&gt; CONQUISTAS_BLOQUEADAS"
+                    android:textColor="@color/cyber_text_secondary"
+                    android:textSize="13sp"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#101010"
-        app:itemIconTint="#00FF66"
-        app:itemTextColor="#00FF66"
+        android:background="@color/cyber_bg_terminal"
+        app:itemIconTint="@color/cyber_green"
+        app:itemTextColor="@color/cyber_green"
         app:menu="@menu/bottom_menu"/>
 
 </RelativeLayout>

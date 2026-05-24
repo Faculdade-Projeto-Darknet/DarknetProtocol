@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505">
+    android:background="@color/cyber_bg_dark"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,44 +14,50 @@
 
         <TextView
             android:text="BRIEFING - MISSÃO 03"
-            android:textColor="#00FF66"
-            android:textSize="18sp"
+            android:textColor="@color/cyber_green"
+            android:textSize="16sp"
+            android:fontFamily="monospace"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:text="ARQUIVO FANTASMA"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="12dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/cyber_green"
+            android:shadowRadius="8"/>
 
         <TextView
             android:text="Após acessar o Projeto Orion, você encontrou um arquivo criptografado chamado ghost_file.enc. Ele contém informações importantes, mas foi protegido por uma cifra simples."
-            android:textColor="#CCCCCC"
-            android:textSize="16sp"
-            android:layout_marginTop="24dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.2"/>
 
         <TextView
             android:text="OBJETIVO"
-            android:textColor="#00FF66"
-            android:textSize="18sp"
+            android:textColor="@color/cyber_green"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="30dp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="28dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:text="Descriptografe o conteúdo do arquivo usando a pista fornecida.\n\nArquivo: ghost_file.enc\nConteúdo: RULRQ\nCifra: César -3"
-            android:textColor="#CCCCCC"
-            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:fontFamily="monospace"
-            android:background="#101010"
+            android:background="@drawable/bg_cyber_card"
             android:padding="18dp"
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
@@ -59,23 +65,27 @@
 
         <TextView
             android:text="RECOMPENSA: até 300 XP\nTENTATIVAS: 3\nDIFICULDADE: Média"
-            android:textColor="#00FF66"
-            android:textSize="15sp"
+            android:textColor="@color/cyber_green"
+            android:textSize="14sp"
             android:fontFamily="monospace"
-            android:background="#101010"
+            android:background="@drawable/bg_cyber_card"
             android:padding="18dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStartMission3"
             android:text="INICIAR MISSÃO"
-            android:textColor="#00FF66"
-            android:backgroundTint="#101010"
+            android:textColor="@color/cyber_green"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:background="@drawable/bg_cyber_button"
             android:layout_marginTop="32dp"
             android:layout_width="match_parent"
-            android:layout_height="58dp"/>
+            android:layout_height="54dp"
+            android:textSize="14sp"
+            android:letterSpacing="0.05"/>
 
     </LinearLayout>
 

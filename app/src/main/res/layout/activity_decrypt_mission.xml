@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505">
+    android:background="@color/cyber_bg_dark"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,88 +13,108 @@
 
         <TextView
             android:text="MISSÃO 03"
-            android:textColor="#00FF66"
-            android:textSize="16sp"
+            android:textColor="@color/cyber_green"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:text="ARQUIVO FANTASMA"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/txtDecryptStatus"
             android:text="STATUS: ARQUIVO CRIPTOGRAFADO"
-            android:textColor="#00FF66"
+            android:textColor="@color/cyber_green"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:fontFamily="monospace"
+            android:textSize="15sp"
             android:layout_marginTop="24dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/cyber_green"
+            android:shadowRadius="4"/>
 
         <TextView
             android:id="@+id/txtDecryptStats"
             android:text="Tentativas: 3 | XP: até +300"
-            android:textColor="#AAAAAA"
-            android:textSize="14sp"
+            android:textColor="@color/cyber_text_secondary"
+            android:fontFamily="monospace"
+            android:textSize="13sp"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/txtDecryptLog"
-            android:text="> Arquivo encontrado: ghost_file.enc\n> Conteúdo criptografado: RULRQ\n> Dica: Cifra de César -3"
-            android:textColor="#00FF66"
-            android:textSize="15sp"
+            android:text="&gt; Arquivo encontrado: ghost_file.enc\n&gt; Conteúdo criptografado: RULRQ\n&gt; Dica: Cifra de César -3"
+            android:textColor="@color/cyber_green"
+            android:textSize="14sp"
             android:fontFamily="monospace"
-            android:background="#101010"
+            android:background="@drawable/bg_cyber_card"
             android:padding="18dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:minHeight="70dp"/>
 
         <EditText
             android:id="@+id/edtDecryptAnswer"
             android:hint="Digite a palavra descriptografada"
-            android:textColor="#00FF66"
-            android:backgroundTint="#00FF66"
+            android:textColor="@color/cyber_green"
+            android:textColorHint="@color/cyber_text_secondary"
+            android:backgroundTint="@color/cyber_green"
+            android:fontFamily="monospace"
             android:singleLine="true"
             android:layout_marginTop="24dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"
+            android:textSize="15sp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCheckDecrypt"
             android:text="VALIDAR ARQUIVO"
-            android:textColor="#00FF66"
-            android:backgroundTint="#101010"
-            android:layout_marginTop="18dp"
+            android:textColor="@color/cyber_green"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:background="@drawable/bg_cyber_button"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"
+            android:textSize="13sp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDecryptHint"
             android:text="PEDIR DICA"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#333333"
+            android:textColor="@color/white"
+            android:fontFamily="monospace"
+            android:background="@drawable/bg_cyber_button"
+            android:backgroundTint="#151515"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="48dp"
+            android:textSize="13sp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnResetDecrypt"
             android:text="REINICIAR MISSÃO"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#333333"
+            android:textColor="@color/cyber_text_secondary"
+            android:fontFamily="monospace"
+            android:background="?attr/selectableItemBackground"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="48dp"
+            android:textSize="12sp"
+            android:textAllCaps="false"/>
 
     </LinearLayout>
-
 </ScrollView>

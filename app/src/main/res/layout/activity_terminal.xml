@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505">
+    android:background="@color/cyber_bg_dark">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigation">
+        android:layout_above="@id/bottomNavigation"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,23 +21,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TERMINAL ÉTICO"
-                android:textColor="#00FF66"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:text="TERMINAL_ÉTICO"
+                android:textColor="@color/cyber_green"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:shadowColor="@color/cyber_green"
+                android:shadowRadius="10"/>
 
             <TextView
                 android:id="@+id/txtTerminal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="250dp"
-                android:layout_marginTop="18dp"
-                android:background="#101010"
+                android:minHeight="220dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_cyber_card"
                 android:fontFamily="monospace"
                 android:padding="16dp"
                 android:text="&gt; Terminal iniciado.\n&gt; Digite INFO para comandos."
-                android:textColor="#00FF66"
-                android:textSize="14sp"
+                android:textColor="@color/cyber_green"
+                android:textSize="13sp"
                 android:maxLines="999"
                 android:scrollbars="vertical"/>
 
@@ -45,144 +48,140 @@
                 android:id="@+id/txtCommandDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="#101010"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_cyber_card"
                 android:fontFamily="monospace"
                 android:padding="14dp"
                 android:text="&gt;"
-                android:textColor="#00FF66"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-            <!-- LINHA QWERTY -->
+                android:textColor="@color/cyber_green"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:shadowColor="@color/cyber_green"
+                android:shadowRadius="4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="18dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
-                <Button android:id="@+id/keyQ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Q" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyW" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="W" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyE" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="E" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyR" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="R" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyT" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="T" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyY" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Y" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyU" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="U" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyI" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="I" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyO" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="O" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyP" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="P" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyQ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Q" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyW" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="W" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyE" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="E" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyR" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="R" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyT" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="T" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyY" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Y" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyU" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="U" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyI" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="I" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyO" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="O" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyP" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="P" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
 
             </LinearLayout>
 
-            <!-- LINHA ASDF -->
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp">
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
 
-                <Button android:id="@+id/keyA" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="A" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyS" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="S" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyD" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="D" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyF" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="F" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyG" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="G" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyH" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="H" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyJ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="J" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyK" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="K" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyL" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="L" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyA" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="A" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyS" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="S" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyD" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="D" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyF" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="F" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyG" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="G" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyH" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="H" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyJ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="J" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyK" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="K" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyL" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="L" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
 
             </LinearLayout>
 
-            <!-- LINHA ZXCV -->
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp">
+                android:paddingStart="36dp"
+                android:paddingEnd="36dp">
 
-                <Button android:id="@+id/keyZ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Z" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyX" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="X" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyC" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="C" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyV" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="V" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyB" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="B" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyN" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="N" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
-                <Button android:id="@+id/keyM" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="M" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyZ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Z" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyX" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="X" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyC" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="C" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyV" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="V" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyB" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="B" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyN" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="N" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/keyM" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="M" android:textSize="12sp" android:fontFamily="monospace" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="@color/cyber_green" android:background="@drawable/bg_cyber_button"/>
 
             </LinearLayout>
 
-            <!-- CONTROLES -->
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="14dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDelete"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="6dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#333333"
+                    android:background="@drawable/bg_cyber_button"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:padding="0dp"
                     android:text="APAGAR"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
+                    android:textColor="#FF4444"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:textSize="12sp"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSpace"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="2"
-                    android:backgroundTint="#101010"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1.8"
+                    android:background="@drawable/bg_cyber_button"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:padding="0dp"
                     android:text="ESPAÇO"
-                    android:textColor="#00FF66"
-                    android:textSize="14sp"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/cyber_green"
+                    android:fontFamily="monospace"
+                    android:textSize="13sp"/>
 
                 <Button
                     android:id="@+id/btnExecute"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="6dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#101010"
+                    android:layout_weight="1.2"
+                    android:backgroundTint="@color/cyber_green"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:padding="0dp"
                     android:text="ENVIAR"
-                    android:textColor="#00FF66"
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/cyber_bg_dark"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:textSize="13sp"/>
 
             </LinearLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnClearTerminal"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="12dp"
-                android:backgroundTint="#333333"
-                android:text="LIMPAR TERMINAL"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:background="@drawable/bg_cyber_button"
+                android:text="LIMPAR HISTÓRICO"
+                android:textColor="@color/cyber_text_secondary"
+                android:fontFamily="monospace"
+                android:textSize="13sp"/>
 
         </LinearLayout>
 
@@ -193,9 +192,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#101010"
-        app:itemIconTint="#00FF66"
-        app:itemTextColor="#00FF66"
+        android:background="@color/cyber_bg_terminal"
+        app:itemIconTint="@color/cyber_green"
+        app:itemTextColor="@color/cyber_green"
         app:menu="@menu/bottom_menu"/>
 
 </RelativeLayout>

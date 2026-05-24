@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505">
+    android:background="@color/cyber_bg_dark">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,18 +21,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MISSÕES"
-                android:textColor="#00FF66"
-                android:textSize="28sp"
+                android:text="SISTEMA_DE_MISSÕES"
+                android:textColor="@color/cyber_green"
+                android:textSize="26sp"
                 android:textStyle="bold"
+                android:fontFamily="monospace"
                 android:gravity="center"
-                android:layout_marginBottom="24dp"/>
-
-            <!-- BOTÕES -->
+                android:layout_marginBottom="24dp"
+                android:shadowColor="@color/cyber_green"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="10"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="48dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="24dp">
 
@@ -42,8 +45,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="DISPONÍVEIS"
-                    android:textColor="#FFFFFF"
-                    android:backgroundTint="#087A35"/>
+                    android:textColor="@color/cyber_bg_dark"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/cyber_green"
+                    android:layout_marginEnd="4dp"/>
 
                 <Button
                     android:id="@+id/btnCompleted"
@@ -51,11 +57,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="CONCLUÍDAS"
-                    android:textColor="#AAAAAA"
-                    android:backgroundTint="#101010"/>
+                    android:textColor="@color/cyber_green"
+                    android:fontFamily="monospace"
+                    android:background="@drawable/bg_cyber_button"
+                    android:backgroundTint="@android:color/transparent"
+                    android:layout_marginStart="4dp"/>
             </LinearLayout>
-
-            <!-- MISSÕES DISPONÍVEIS -->
 
             <LinearLayout
                 android:id="@+id/layoutAvailableMissions"
@@ -63,233 +70,251 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- MISSÃO 1 -->
-
                 <LinearLayout
                     android:id="@+id/mission1"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:orientation="horizontal"
-                    android:padding="18dp"
-                    android:background="#101010"
-                    android:layout_marginBottom="16dp">
+                    android:padding="16dp"
+                    android:background="@drawable/bg_cyber_card"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="01"
-                        android:textColor="#00FF66"
-                        android:textSize="34sp"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="32sp"
                         android:textStyle="bold"
-                        android:gravity="center"/>
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:shadowColor="@color/cyber_green"
+                        android:shadowRadius="6"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="INVASÃO À REDE"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Invada a rede da Corp. HexaCryp"
-                            android:textColor="#BBBBBB"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"/>
+                            android:textColor="@color/cyber_text_secondary"
+                            android:textSize="13sp"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="4dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RECOMPENSA: ATÉ 200 XP"
-                            android:textColor="#00FF66"
-                            android:textSize="13sp"
+                            android:text="[REWARD: +200 XP]"
+                            android:textColor="@color/cyber_green"
+                            android:textSize="12sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp"/>
-
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="6dp"/>
                     </LinearLayout>
-
                 </LinearLayout>
-
-                <!-- MISSÃO 2 -->
 
                 <LinearLayout
                     android:id="@+id/mission2"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:orientation="horizontal"
-                    android:padding="18dp"
-                    android:background="#101010"
-                    android:layout_marginBottom="16dp">
+                    android:padding="16dp"
+                    android:background="@drawable/bg_cyber_card"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="02"
-                        android:textColor="#00FF66"
-                        android:textSize="34sp"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="32sp"
                         android:textStyle="bold"
-                        android:gravity="center"/>
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:shadowColor="@color/cyber_green"
+                        android:shadowRadius="6"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="QUEBRA DE SENHA"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Descubra a senha do servidor central"
-                            android:textColor="#BBBBBB"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"/>
+                            android:textColor="@color/cyber_text_secondary"
+                            android:textSize="13sp"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="4dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RECOMPENSA: ATÉ 250 XP"
-                            android:textColor="#00FF66"
-                            android:textSize="13sp"
+                            android:text="[REWARD: +250 XP]"
+                            android:textColor="@color/cyber_green"
+                            android:textSize="12sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp"/>
-
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="6dp"/>
                     </LinearLayout>
-
                 </LinearLayout>
-
-                <!-- MISSÃO 3 -->
 
                 <LinearLayout
                     android:id="@+id/mission3"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:orientation="horizontal"
-                    android:padding="18dp"
-                    android:background="#101010"
-                    android:layout_marginBottom="16dp">
+                    android:padding="16dp"
+                    android:background="@drawable/bg_cyber_card"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="03"
-                        android:textColor="#00FF66"
-                        android:textSize="34sp"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="32sp"
                         android:textStyle="bold"
-                        android:gravity="center"/>
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:shadowColor="@color/cyber_green"
+                        android:shadowRadius="6"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ARQUIVO FANTASMA"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Descriptografe os dados do Projeto Orion"
-                            android:textColor="#BBBBBB"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"/>
+                            android:textColor="@color/cyber_text_secondary"
+                            android:textSize="13sp"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="4dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RECOMPENSA: ATÉ 300 XP"
-                            android:textColor="#00FF66"
-                            android:textSize="13sp"
+                            android:text="[REWARD: +300 XP]"
+                            android:textColor="@color/cyber_green"
+                            android:textSize="12sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp"/>
-
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="6dp"/>
                     </LinearLayout>
-
                 </LinearLayout>
-
-                <!-- MISSÃO 4 -->
 
                 <LinearLayout
                     android:id="@+id/mission4"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:orientation="horizontal"
-                    android:padding="18dp"
-                    android:background="#101010"
-                    android:layout_marginBottom="16dp">
+                    android:padding="16dp"
+                    android:background="@drawable/bg_cyber_card"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="04"
-                        android:textColor="#00FF66"
-                        android:textSize="34sp"
+                        android:textColor="@color/cyber_green"
+                        android:textSize="32sp"
                         android:textStyle="bold"
-                        android:gravity="center"/>
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:shadowColor="@color/cyber_green"
+                        android:shadowRadius="6"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="NÓ INVASOR"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Identifique o IP suspeito nos logs"
-                            android:textColor="#BBBBBB"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"/>
+                            android:textColor="@color/cyber_text_secondary"
+                            android:textSize="13sp"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="4dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RECOMPENSA: ATÉ 350 XP"
-                            android:textColor="#00FF66"
-                            android:textSize="13sp"
+                            android:text="[REWARD: +350 XP]"
+                            android:textColor="@color/cyber_green"
+                            android:textSize="12sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp"/>
-
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="6dp"/>
                     </LinearLayout>
-
                 </LinearLayout>
 
             </LinearLayout>
-
-            <!-- MISSÕES CONCLUÍDAS -->
 
             <LinearLayout
                 android:id="@+id/layoutCompletedMissions"
@@ -302,29 +327,25 @@
                     android:id="@+id/txtCompletedList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nenhuma missão concluída ainda."
-                    android:textColor="#00FF66"
-                    android:textSize="16sp"
+                    android:text="&gt; Nenhuma missão concluída no banco de dados."
+                    android:textColor="@color/cyber_green"
+                    android:textSize="14sp"
                     android:fontFamily="monospace"
-                    android:background="#101010"
+                    android:background="@drawable/bg_cyber_card"
                     android:padding="18dp"/>
-
             </LinearLayout>
 
         </LinearLayout>
-
     </ScrollView>
-
-    <!-- MENU INFERIOR -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#101010"
-        app:itemIconTint="#00FF66"
-        app:itemTextColor="#00FF66"
+        android:background="@color/cyber_bg_terminal"
+        app:itemIconTint="@color/cyber_green"
+        app:itemTextColor="@color/cyber_green"
         app:menu="@menu/bottom_menu"/>
 
 </RelativeLayout>

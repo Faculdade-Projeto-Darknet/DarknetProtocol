@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
+import com.darknetprotocol.SoundManager;
 
 public class Mission2BriefingActivity extends AppCompatActivity {
 
@@ -20,6 +21,9 @@ public class Mission2BriefingActivity extends AppCompatActivity {
         btnStartMission2 = findViewById(R.id.btnStartMission2);
 
         btnStartMission2.setOnClickListener(v -> {
+            // 🔊 EFEITO SONORO: Clique ao iniciar a missão
+            SoundManager.playSound(Mission2BriefingActivity.this, R.raw.cyber_click);
+
             Intent intent = new Intent(
                     Mission2BriefingActivity.this,
                     PasswordMissionActivity.class
