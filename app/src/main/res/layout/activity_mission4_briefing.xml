@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:text="BRIEFING - MISSÃO 04"
+            android:textColor="#00FF66"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="NÓ INVASOR"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Após descriptografar os arquivos do Projeto Orion, um acesso suspeito foi detectado nos logs da HexaCryp. Sua missão é identificar qual IP está fora da rede local."
+            android:textColor="#CCCCCC"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="OBJETIVO"
+            android:textColor="#00FF66"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Analise os IPs disponíveis e escolha o endereço suspeito.\n\nDica: redes locais geralmente começam com 192.168, 10. ou 172.16."
+            android:textColor="#CCCCCC"
+            android:textSize="16sp"
+            android:fontFamily="monospace"
+            android:background="#101010"
+            android:padding="18dp"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="RECOMPENSA: até 350 XP\nTENTATIVAS: 3\nDIFICULDADE: Média"
+            android:textColor="#00FF66"
+            android:textSize="15sp"
+            android:fontFamily="monospace"
+            android:background="#101010"
+            android:padding="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnStartMission4"
+            android:text="INICIAR MISSÃO"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

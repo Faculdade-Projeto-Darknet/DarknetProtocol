@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:text="MISSÃO 04"
+            android:textColor="#00FF66"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="NÓ INVASOR"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtIpStatus"
+            android:text="STATUS: ANALISANDO LOGS"
+            android:textColor="#00FF66"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtIpStats"
+            android:text="Tentativas: 3 | Detecção: 0% | XP: até +350"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtIpLog"
+            android:text="> Conexão suspeita detectada.\n> Origem fora da rede local.\n> Escolha o IP invasor."
+            android:textColor="#00FF66"
+            android:textSize="15sp"
+            android:fontFamily="monospace"
+            android:background="#101010"
+            android:padding="18dp"
+            android:layout_marginTop="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnIp1"
+            android:text="192.168.0.12"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <Button
+            android:id="@+id/btnIp2"
+            android:text="10.0.0.45"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <Button
+            android:id="@+id/btnIp3"
+            android:text="172.16.4.91"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <Button
+            android:id="@+id/btnIp4"
+            android:text="185.221.77.13"
+            android:textColor="#00FF66"
+            android:backgroundTint="#101010"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <Button
+            android:id="@+id/btnResetIpMission"
+            android:text="REINICIAR MISSÃO"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#333333"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

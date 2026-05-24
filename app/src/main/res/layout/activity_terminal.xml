@@ -19,24 +19,27 @@
             android:padding="18dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="TERMINAL ÉTICO"
                 android:textColor="#00FF66"
                 android:textSize="26sp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/txtTerminal"
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="wrap_content"
+                android:minHeight="250dp"
                 android:layout_marginTop="18dp"
                 android:background="#101010"
                 android:fontFamily="monospace"
                 android:padding="16dp"
-                android:text="> Terminal iniciado.\n> Digite INFO para comandos."
+                android:text="&gt; Terminal iniciado.\n&gt; Digite INFO para comandos."
                 android:textColor="#00FF66"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:maxLines="999"
+                android:scrollbars="vertical"/>
 
             <TextView
                 android:id="@+id/txtCommandDisplay"
@@ -46,115 +49,140 @@
                 android:background="#101010"
                 android:fontFamily="monospace"
                 android:padding="14dp"
-                android:text=">"
+                android:text="&gt;"
                 android:textColor="#00FF66"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
-            <!-- LINHA 1 -->
+            <!-- LINHA QWERTY -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="18dp">
+                android:layout_height="52dp"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal">
 
-                <Button android:id="@+id/keyQ" style="@style/KeyboardButton" android:text="Q"/>
-                <Button android:id="@+id/keyW" style="@style/KeyboardButton" android:text="W"/>
-                <Button android:id="@+id/keyE" style="@style/KeyboardButton" android:text="E"/>
-                <Button android:id="@+id/keyR" style="@style/KeyboardButton" android:text="R"/>
-                <Button android:id="@+id/keyT" style="@style/KeyboardButton" android:text="T"/>
-                <Button android:id="@+id/keyY" style="@style/KeyboardButton" android:text="Y"/>
-                <Button android:id="@+id/keyU" style="@style/KeyboardButton" android:text="U"/>
-                <Button android:id="@+id/keyI" style="@style/KeyboardButton" android:text="I"/>
-                <Button android:id="@+id/keyO" style="@style/KeyboardButton" android:text="O"/>
-                <Button android:id="@+id/keyP" style="@style/KeyboardButton" android:text="P"/>
+                <Button android:id="@+id/keyQ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Q" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyW" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="W" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyE" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="E" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyR" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="R" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyT" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="T" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyY" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Y" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyU" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="U" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyI" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="I" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyO" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="O" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyP" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="P" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
 
             </LinearLayout>
 
-            <!-- LINHA 2 -->
+            <!-- LINHA ASDF -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
 
-                <Button android:id="@+id/keyA" style="@style/KeyboardButton" android:text="A"/>
-                <Button android:id="@+id/keyS" style="@style/KeyboardButton" android:text="S"/>
-                <Button android:id="@+id/keyD" style="@style/KeyboardButton" android:text="D"/>
-                <Button android:id="@+id/keyF" style="@style/KeyboardButton" android:text="F"/>
-                <Button android:id="@+id/keyG" style="@style/KeyboardButton" android:text="G"/>
-                <Button android:id="@+id/keyH" style="@style/KeyboardButton" android:text="H"/>
-                <Button android:id="@+id/keyJ" style="@style/KeyboardButton" android:text="J"/>
-                <Button android:id="@+id/keyK" style="@style/KeyboardButton" android:text="K"/>
-                <Button android:id="@+id/keyL" style="@style/KeyboardButton" android:text="L"/>
+                <Button android:id="@+id/keyA" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="A" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyS" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="S" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyD" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="D" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyF" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="F" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyG" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="G" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyH" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="H" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyJ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="J" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyK" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="K" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyL" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="L" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
 
             </LinearLayout>
 
-            <!-- LINHA 3 -->
+            <!-- LINHA ZXCV -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp">
 
-                <Button android:id="@+id/keyZ" style="@style/KeyboardButton" android:text="Z"/>
-                <Button android:id="@+id/keyX" style="@style/KeyboardButton" android:text="X"/>
-                <Button android:id="@+id/keyC" style="@style/KeyboardButton" android:text="C"/>
-                <Button android:id="@+id/keyV" style="@style/KeyboardButton" android:text="V"/>
-                <Button android:id="@+id/keyB" style="@style/KeyboardButton" android:text="B"/>
-                <Button android:id="@+id/keyN" style="@style/KeyboardButton" android:text="N"/>
-                <Button android:id="@+id/keyM" style="@style/KeyboardButton" android:text="M"/>
+                <Button android:id="@+id/keyZ" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="Z" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyX" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="X" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyC" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="C" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyV" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="V" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyB" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="B" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyN" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="N" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
+                <Button android:id="@+id/keyM" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp" android:text="M" android:textSize="12sp" android:minWidth="0dp" android:minHeight="0dp" android:padding="0dp" android:textColor="#00FF66" android:backgroundTint="#101010"/>
 
             </LinearLayout>
 
-            <!-- LINHA 4 -->
+            <!-- CONTROLES -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="12dp">
+                android:layout_height="60dp"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnDelete"
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
                     android:layout_weight="1"
-                    android:layout_height="55dp"
+                    android:backgroundTint="#333333"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
                     android:text="APAGAR"
                     android:textColor="#FFFFFF"
-                    android:backgroundTint="#333333"/>
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
 
                 <Button
                     android:id="@+id/btnSpace"
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:layout_weight="2"
-                    android:layout_height="55dp"
+                    android:backgroundTint="#101010"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
                     android:text="ESPAÇO"
                     android:textColor="#00FF66"
-                    android:backgroundTint="#101010"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
 
                 <Button
                     android:id="@+id/btnExecute"
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="6dp"
                     android:layout_weight="1"
-                    android:layout_height="55dp"
+                    android:backgroundTint="#101010"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
                     android:text="ENVIAR"
                     android:textColor="#00FF66"
-                    android:backgroundTint="#101010"/>
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnClearTerminal"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#333333"
                 android:text="LIMPAR TERMINAL"
                 android:textColor="#FFFFFF"
-                android:backgroundTint="#333333"
-                android:layout_marginTop="10dp"/>
+                android:textSize="14sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 

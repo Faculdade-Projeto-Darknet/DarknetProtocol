@@ -15,114 +15,109 @@ public class TerminalActivity extends AppCompatActivity {
     TextView txtTerminal;
     TextView txtCommandDisplay;
 
-    String currentCommand = "";
-
     BottomNavigationView bottomNavigation;
+
+    StringBuilder currentCommand =
+            new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terminal);
 
-        txtTerminal = findViewById(R.id.txtTerminal);
-        txtCommandDisplay = findViewById(R.id.txtCommandDisplay);
+        txtTerminal =
+                findViewById(R.id.txtTerminal);
 
-        bottomNavigation = findViewById(R.id.bottomNavigation);
+        txtCommandDisplay =
+                findViewById(R.id.txtCommandDisplay);
+
+        bottomNavigation =
+                findViewById(R.id.bottomNavigation);
 
         setupKeyboard();
+        setupControls();
         setupBottomNavigation();
-
-        txtTerminal.setText(
-                "> DARKNET TERMINAL ONLINE\n" +
-                        "> Digite INFO para acessar os comandos.\n"
-        );
     }
 
     private void setupKeyboard() {
 
-        bindKey(R.id.keyQ, "Q");
-        bindKey(R.id.keyW, "W");
-        bindKey(R.id.keyE, "E");
-        bindKey(R.id.keyR, "R");
-        bindKey(R.id.keyT, "T");
-        bindKey(R.id.keyY, "Y");
-        bindKey(R.id.keyU, "U");
-        bindKey(R.id.keyI, "I");
-        bindKey(R.id.keyO, "O");
-        bindKey(R.id.keyP, "P");
+        String keys = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
-        bindKey(R.id.keyA, "A");
-        bindKey(R.id.keyS, "S");
-        bindKey(R.id.keyD, "D");
-        bindKey(R.id.keyF, "F");
-        bindKey(R.id.keyG, "G");
-        bindKey(R.id.keyH, "H");
-        bindKey(R.id.keyJ, "J");
-        bindKey(R.id.keyK, "K");
-        bindKey(R.id.keyL, "L");
+        for (char key : keys.toCharArray()) {
 
-        bindKey(R.id.keyZ, "Z");
-        bindKey(R.id.keyX, "X");
-        bindKey(R.id.keyC, "C");
-        bindKey(R.id.keyV, "V");
-        bindKey(R.id.keyB, "B");
-        bindKey(R.id.keyN, "N");
-        bindKey(R.id.keyM, "M");
-
-        Button btnDelete = findViewById(R.id.btnDelete);
-        Button btnSpace = findViewById(R.id.btnSpace);
-        Button btnExecute = findViewById(R.id.btnExecute);
-        Button btnClearTerminal = findViewById(R.id.btnClearTerminal);
-
-        btnDelete.setOnClickListener(v -> deleteLetter());
-
-        btnSpace.setOnClickListener(v -> addLetter(" "));
-
-        btnExecute.setOnClickListener(v -> executeCommand());
-
-        btnClearTerminal.setOnClickListener(v -> {
-
-            txtTerminal.setText(
-                    "> Terminal limpo.\n" +
-                            "> Digite INFO para ver os comandos."
+            int id = getResources().getIdentifier(
+                    "key" + key,
+                    "id",
+                    getPackageName()
             );
 
-            currentCommand = "";
+            Button button = findViewById(id);
+
+            if (button != null) {
+
+                button.setOnClickListener(v -> {
+
+                    currentCommand.append(key);
+
+                    updateCommandDisplay();
+
+                });
+
+            }
+        }
+    }
+
+    private void setupControls() {
+
+        Button btnDelete =
+                findViewById(R.id.btnDelete);
+
+        Button btnSpace =
+                findViewById(R.id.btnSpace);
+
+        Button btnExecute =
+                findViewById(R.id.btnExecute);
+
+        Button btnClearTerminal =
+                findViewById(R.id.btnClearTerminal);
+
+        btnDelete.setOnClickListener(v -> {
+
+            if (currentCommand.length() > 0) {
+
+                currentCommand.deleteCharAt(
+                        currentCommand.length() - 1
+                );
+
+                updateCommandDisplay();
+            }
+        });
+
+        btnSpace.setOnClickListener(v -> {
+
+            currentCommand.append(" ");
 
             updateCommandDisplay();
 
         });
-    }
 
-    private void bindKey(int buttonId, String letter) {
+        btnExecute.setOnClickListener(v -> {
 
-        Button button = findViewById(buttonId);
-
-        button.setOnClickListener(v -> addLetter(letter));
-
-    }
-
-    private void addLetter(String letter) {
-
-        currentCommand += letter;
-
-        updateCommandDisplay();
-
-    }
-
-    private void deleteLetter() {
-
-        if (currentCommand.length() > 0) {
-
-            currentCommand = currentCommand.substring(
-                    0,
-                    currentCommand.length() - 1
+            executeCommand(
+                    currentCommand.toString()
+                            .trim()
+                            .toUpperCase()
             );
 
-            updateCommandDisplay();
+        });
 
-        }
+        btnClearTerminal.setOnClickListener(v -> {
 
+            txtTerminal.setText(
+                    "> Terminal limpo."
+            );
+
+        });
     }
 
     private void updateCommandDisplay() {
@@ -133,148 +128,268 @@ public class TerminalActivity extends AppCompatActivity {
 
     }
 
-    private void executeCommand() {
-
-        String command =
-                currentCommand.trim().toLowerCase();
+    private void executeCommand(String command) {
 
         if (command.isEmpty()) {
-
-            txtTerminal.append(
-                    "\n> Nenhum comando digitado."
-            );
-
             return;
-
         }
 
-        txtTerminal.append(
-                "\n\n> " + command.toUpperCase()
-        );
+        terminalOutput("> " + command);
 
         switch (command) {
 
-            case "info":
+            case "INFO":
 
-                txtTerminal.append(
-                        "\n\nCOMANDOS DISPONÍVEIS" +
-
-                                "\n\nINFO" +
-                                "\nMostra todos os comandos." +
-
-                                "\n\nHELP" +
-                                "\nAjuda rápida do terminal." +
-
-                                "\n\nETHICS" +
-                                "\nExplica o conceito white hat." +
-
-                                "\n\nSCAN" +
-                                "\nExecuta escaneamento fictício." +
-
-                                "\n\nANALYZE" +
-                                "\nAnalisa vulnerabilidade simulada." +
-
-                                "\n\nREPORT" +
-                                "\nGera relatório ético." +
-
-                                "\n\nCLEAR" +
-                                "\nLimpa o terminal." +
-
-                                "\n\nMATRIX" +
-                                "\n???"
+                terminalOutput(
+                        "> DARKNET TERMINAL v2.1\n" +
+                                "> Simulador educacional de cibersegurança.\n" +
+                                "> Objetivo: conscientização e treinamento ético.\n" +
+                                "> Digite HELP para listar os comandos."
                 );
 
                 break;
 
-            case "help":
+            case "HELP":
 
-                txtTerminal.append(
-                        "\n\nUse INFO para visualizar todos os comandos." +
-                                "\nEste terminal é apenas uma simulação educacional."
+                terminalOutput(
+                        "> COMANDOS DISPONÍVEIS:\n\n" +
+                                "INFO\n" +
+                                "HELP\n" +
+                                "ETHICS\n" +
+                                "PHISHING\n" +
+                                "PASSWORD\n" +
+                                "PRIVACY\n" +
+                                "MALWARE\n" +
+                                "SOCIAL\n" +
+                                "LEAK\n" +
+                                "VPN\n" +
+                                "2FA\n" +
+                                "WI-FI\n" +
+                                "SCAN\n" +
+                                "ANALYZE\n" +
+                                "REPORT\n" +
+                                "MATRIX\n" +
+                                "CLEAR"
                 );
 
                 break;
 
-            case "ethics":
+            case "ETHICS":
 
-                txtTerminal.append(
-                        "\n\nWhite hat hackers atuam com autorização." +
-                                "\nObjetivo: encontrar falhas e proteger sistemas." +
-                                "\nSegurança ofensiva responsável salva empresas" +
-                                "\nde perder dados por causa de senha123."
+                terminalOutput(
+                        "> HACKING ÉTICO ATIVADO\n" +
+                                "> Conhecimento sem responsabilidade vira ameaça.\n" +
+                                "> Segurança digital protege pessoas reais.\n" +
+                                "> Use suas habilidades para defesa.\n" +
+                                "> RESPEITE PRIVACIDADE."
                 );
 
                 break;
 
-            case "scan":
+            case "PHISHING":
 
-                txtTerminal.append(
-                        "\n\nIniciando escaneamento..." +
-                                "\nPorta 443: OPEN" +
-                                "\nPorta 8080: FILTERED" +
-                                "\nNenhum alvo real afetado." +
-                                "\nAmbiente fictício seguro."
+                terminalOutput(
+                        "> ALERTA EDUCACIONAL\n" +
+                                "> Nunca clique em links suspeitos.\n" +
+                                "> Verifique remetentes.\n" +
+                                "> Use autenticação em 2 fatores.\n" +
+                                "> Golpes digitais exploram confiança humana."
                 );
 
                 break;
 
-            case "analyze":
+            case "PASSWORD":
 
-                txtTerminal.append(
-                        "\n\nAnalisando vulnerabilidades..." +
-                                "\nRisco encontrado: baixo." +
-                                "\nRecomendação:" +
-                                "\n- Atualizar senhas" +
-                                "\n- Ativar autenticação 2FA" +
-                                "\n- Não clicar em e-mail escrito" +
-                                "\npor um príncipe bilionário."
+                terminalOutput(
+                        "> SEGURANÇA DE SENHAS\n" +
+                                "> Não reutilize senhas.\n" +
+                                "> Use combinações fortes.\n" +
+                                "> Prefira gerenciadores de senha.\n" +
+                                "> 123456 ainda existe. A humanidade falhou."
                 );
 
                 break;
 
-            case "report":
+            case "PRIVACY":
 
-                txtTerminal.append(
-                        "\n\nRELATÓRIO GERADO" +
-                                "\n- Vulnerabilidade fictícia documentada" +
-                                "\n- Nenhum sistema real afetado" +
-                                "\n- Conduta ética mantida" +
-                                "\n- Operador autorizado"
+                terminalOutput(
+                        "> PRIVACIDADE DIGITAL\n" +
+                                "> Seus dados possuem valor.\n" +
+                                "> Aplicativos coletam comportamento.\n" +
+                                "> Revise permissões regularmente.\n" +
+                                "> Segurança começa nos pequenos hábitos."
                 );
 
                 break;
 
-            case "matrix":
+            case "MALWARE":
 
-                txtTerminal.append(
-                        "\n\nWake up, operator..." +
-                                "\nThe protocol has you."
+                terminalOutput(
+                        "> MALWARE DETECTADO\n" +
+                                "> Vírus modernos roubam dados silenciosamente.\n" +
+                                "> Nunca instale APKs desconhecidos.\n" +
+                                "> Atualizações corrigem falhas críticas.\n" +
+                                "> Pirataria pode custar seus dados."
                 );
 
                 break;
 
-            case "clear":
+            case "SOCIAL":
+
+                terminalOutput(
+                        "> ENGENHARIA SOCIAL\n" +
+                                "> O elo mais fraco quase sempre é humano.\n" +
+                                "> Golpistas manipulam confiança.\n" +
+                                "> Não compartilhe códigos ou senhas.\n" +
+                                "> Desconfiança saudável salva contas."
+                );
+
+                break;
+
+            case "LEAK":
+
+                terminalOutput(
+                        "> VAZAMENTO DE DADOS\n" +
+                                "> Empresas sofrem ataques diariamente.\n" +
+                                "> Emails e senhas vazados circulam online.\n" +
+                                "> Monitore suas contas.\n" +
+                                "> Segurança não é paranoia."
+                );
+
+                break;
+
+            case "VPN":
+
+                terminalOutput(
+                        "> VPN INFO\n" +
+                                "> VPN protege tráfego em redes públicas.\n" +
+                                "> Cafeterias e aeroportos são arriscados.\n" +
+                                "> Criptografia reduz exposição.\n" +
+                                "> Segurança pública raramente é segura."
+                );
+
+                break;
+
+            case "2FA":
+
+                terminalOutput(
+                        "> AUTENTICAÇÃO EM 2 FATORES\n" +
+                                "> Uma senha sozinha não basta.\n" +
+                                "> Ative 2FA sempre que possível.\n" +
+                                "> Apps autenticadores são mais seguros.\n" +
+                                "> SMS ainda é melhor que nada."
+                );
+
+                break;
+
+            case "WI-FI":
+
+                terminalOutput(
+                        "> SEGURANÇA WI-FI\n" +
+                                "> Redes abertas podem ser monitoradas.\n" +
+                                "> Evite acessar bancos em Wi-Fi público.\n" +
+                                "> Use WPA2 ou WPA3.\n" +
+                                "> Troque senhas padrão do roteador."
+                );
+
+                break;
+
+            case "SCAN":
+
+                terminalOutput(
+                        "> Escaneando portas...\n" +
+                                "> Nenhuma ameaça encontrada.\n" +
+                                "> Firewall ativo."
+                );
+
+                break;
+
+            case "ANALYZE":
+
+                terminalOutput(
+                        "> Analisando tráfego de rede...\n" +
+                                "> Pacotes criptografados detectados.\n" +
+                                "> Nenhuma anomalia crítica."
+                );
+
+                break;
+
+            case "REPORT":
+
+                terminalOutput(
+                        "> GERANDO RELATÓRIO...\n" +
+                                "> Sistema estável.\n" +
+                                "> Nenhum ataque detectado.\n" +
+                                "> Logs salvos."
+                );
+
+                break;
+
+            case "MATRIX":
+
+                terminalOutput(
+                        "> 010101010101010101\n" +
+                                "> rastreando pacotes...\n" +
+                                "> acesso negado.\n" +
+                                "> brincadeira.\n" +
+                                "> você não é o Neo."
+                );
+
+                break;
+
+            case "CLEAR":
 
                 txtTerminal.setText(
-                        "> Terminal limpo.\n" +
-                                "> Digite INFO para ver os comandos."
+                        "> Terminal limpo."
                 );
 
                 break;
 
             default:
 
-                txtTerminal.append(
-                        "\n\nComando não reconhecido." +
-                                "\nDigite INFO para acessar os comandos."
+                terminalOutput(
+                        "> COMANDO NÃO RECONHECIDO\n" +
+                                "> Digite HELP."
                 );
 
                 break;
         }
 
-        currentCommand = "";
+        currentCommand.setLength(0);
 
         updateCommandDisplay();
+    }
+
+    private void terminalOutput(String text) {
+
+        txtTerminal.append(
+                "\n\n" + text
+        );
+
+        txtTerminal.post(() -> {
+
+            int scrollAmount =
+                    txtTerminal.getLayout().getLineTop(
+                            txtTerminal.getLineCount()
+                    ) - txtTerminal.getHeight();
+
+            if (scrollAmount > 0) {
+
+                txtTerminal.scrollTo(
+                        0,
+                        scrollAmount
+                );
+
+            } else {
+
+                txtTerminal.scrollTo(
+                        0,
+                        0
+                );
+
+            }
+
+        });
 
     }
 
@@ -288,35 +403,35 @@ public class TerminalActivity extends AppCompatActivity {
 
             int id = item.getItemId();
 
-            if (id == R.id.nav_missions) {
-
-                Intent intent = new Intent(
-                        TerminalActivity.this,
-                        MissionsActivity.class
-                );
-
-                startActivity(intent);
-
-                overridePendingTransition(
-                        R.anim.slide_in_right,
-                        R.anim.slide_out_left
-                );
-
+            if (id == R.id.nav_terminal) {
                 return true;
             }
 
-            if (id == R.id.nav_terminal) {
+            if (id == R.id.nav_missions) {
+
+                startActivity(
+                        new Intent(
+                                TerminalActivity.this,
+                                MissionsActivity.class
+                        )
+                );
+
+                overridePendingTransition(
+                        R.anim.slide_in_left,
+                        R.anim.slide_out_right
+                );
+
                 return true;
             }
 
             if (id == R.id.nav_profile) {
 
-                Intent intent = new Intent(
-                        TerminalActivity.this,
-                        ProfileActivity.class
+                startActivity(
+                        new Intent(
+                                TerminalActivity.this,
+                                ProfileActivity.class
+                        )
                 );
-
-                startActivity(intent);
 
                 overridePendingTransition(
                         R.anim.slide_in_right,
@@ -327,16 +442,6 @@ public class TerminalActivity extends AppCompatActivity {
             }
 
             return false;
-
         });
-
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (bottomNavigation != null) {
-            bottomNavigation.setSelectedItemId(R.id.nav_terminal);
-        }
     }
 }

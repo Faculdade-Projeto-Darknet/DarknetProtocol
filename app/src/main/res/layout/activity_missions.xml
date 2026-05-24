@@ -28,6 +28,8 @@
                 android:gravity="center"
                 android:layout_marginBottom="24dp"/>
 
+            <!-- BOTÕES -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -53,11 +55,15 @@
                     android:backgroundTint="#101010"/>
             </LinearLayout>
 
+            <!-- MISSÕES DISPONÍVEIS -->
+
             <LinearLayout
                 android:id="@+id/layoutAvailableMissions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <!-- MISSÃO 1 -->
 
                 <LinearLayout
                     android:id="@+id/mission1"
@@ -108,8 +114,12 @@
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="8dp"/>
+
                     </LinearLayout>
+
                 </LinearLayout>
+
+                <!-- MISSÃO 2 -->
 
                 <LinearLayout
                     android:id="@+id/mission2"
@@ -160,10 +170,126 @@
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="8dp"/>
+
                     </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- MISSÃO 3 -->
+
+                <LinearLayout
+                    android:id="@+id/mission3"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="horizontal"
+                    android:padding="18dp"
+                    android:background="#101010"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:text="03"
+                        android:textColor="#00FF66"
+                        android:textSize="34sp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ARQUIVO FANTASMA"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Descriptografe os dados do Projeto Orion"
+                            android:textColor="#BBBBBB"
+                            android:textSize="14sp"
+                            android:layout_marginTop="6dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RECOMPENSA: ATÉ 300 XP"
+                            android:textColor="#00FF66"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="8dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- MISSÃO 4 -->
+
+                <LinearLayout
+                    android:id="@+id/mission4"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="horizontal"
+                    android:padding="18dp"
+                    android:background="#101010"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:text="04"
+                        android:textColor="#00FF66"
+                        android:textSize="34sp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NÓ INVASOR"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Identifique o IP suspeito nos logs"
+                            android:textColor="#BBBBBB"
+                            android:textSize="14sp"
+                            android:layout_marginTop="6dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RECOMPENSA: ATÉ 350 XP"
+                            android:textColor="#00FF66"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="8dp"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
+
+            <!-- MISSÕES CONCLUÍDAS -->
 
             <LinearLayout
                 android:id="@+id/layoutCompletedMissions"
@@ -182,11 +308,14 @@
                     android:fontFamily="monospace"
                     android:background="#101010"
                     android:padding="18dp"/>
+
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- MENU INFERIOR -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

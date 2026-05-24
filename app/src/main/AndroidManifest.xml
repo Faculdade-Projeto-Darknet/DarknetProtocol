@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DarknetProtocol">
         <activity
+            android:name=".activities.IpMissionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Mission4BriefingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Mission3BriefingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DecryptMissionActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.Mission1BriefingActivity"
             android:exported="false" />
         <activity

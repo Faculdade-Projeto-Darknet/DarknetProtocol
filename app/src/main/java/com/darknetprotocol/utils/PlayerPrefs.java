@@ -5,6 +5,26 @@ import android.content.SharedPreferences;
 
 public class PlayerPrefs {
 
+    private static final String KEY_MISSION_4 = "mission4_completed";
+
+    public boolean isMission4Completed() {
+        return preferences.getBoolean(KEY_MISSION_4, false);
+    }
+
+    public void setMission4Completed(boolean completed) {
+        preferences.edit().putBoolean(KEY_MISSION_4, completed).apply();
+    }
+
+    private static final String KEY_MISSION_3 = "mission3_completed";
+
+    public boolean isMission3Completed() {
+        return preferences.getBoolean(KEY_MISSION_3, false);
+    }
+
+    public void setMission3Completed(boolean completed) {
+        preferences.edit().putBoolean(KEY_MISSION_3, completed).apply();
+    }
+
     private static final String PREF_NAME = "player_data";
 
     private static final String KEY_XP = "xp_total";
@@ -49,6 +69,7 @@ public class PlayerPrefs {
     }
 
     public int getCompletedMissionsCount() {
+
         int count = 0;
 
         if (isMission1Completed()) {
@@ -56,6 +77,14 @@ public class PlayerPrefs {
         }
 
         if (isMission2Completed()) {
+            count++;
+        }
+
+        if (isMission3Completed()) {
+            count++;
+        }
+
+        if (isMission4Completed()) {
             count++;
         }
 

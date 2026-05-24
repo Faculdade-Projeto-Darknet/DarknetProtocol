@@ -15,19 +15,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MissionsActivity extends AppCompatActivity {
 
-    LinearLayout mission1;
-    LinearLayout mission2;
+    LinearLayout mission1, mission2, mission3, mission4;
+    LinearLayout layoutAvailableMissions, layoutCompletedMissions;
 
-    LinearLayout layoutAvailableMissions;
-    LinearLayout layoutCompletedMissions;
-
-    Button btnAvailable;
-    Button btnCompleted;
-
+    Button btnAvailable, btnCompleted;
     TextView txtCompletedList;
 
     BottomNavigationView bottomNavigation;
-
     PlayerPrefs playerPrefs;
 
     @Override
@@ -39,6 +33,8 @@ public class MissionsActivity extends AppCompatActivity {
 
         mission1 = findViewById(R.id.mission1);
         mission2 = findViewById(R.id.mission2);
+        mission3 = findViewById(R.id.mission3);
+        mission4 = findViewById(R.id.mission4);
 
         layoutAvailableMissions = findViewById(R.id.layoutAvailableMissions);
         layoutCompletedMissions = findViewById(R.id.layoutCompletedMissions);
@@ -49,39 +45,15 @@ public class MissionsActivity extends AppCompatActivity {
         txtCompletedList = findViewById(R.id.txtCompletedList);
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        mission1.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    MissionsActivity.this,
-                    Mission1BriefingActivity.class
-            );
-
-            startActivity(intent);
-
-            overridePendingTransition(
-                    R.anim.slide_in_right,
-                    R.anim.slide_out_left
-            );
-        });
-
-        mission2.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    MissionsActivity.this,
-                    Mission2BriefingActivity.class
-            );
-
-            startActivity(intent);
-
-            overridePendingTransition(
-                    R.anim.slide_in_right,
-                    R.anim.slide_out_left
-            );
-        });
+        mission1.setOnClickListener(v -> openActivity(Mission1BriefingActivity.class));
+        mission2.setOnClickListener(v -> openActivity(Mission2BriefingActivity.class));
+        mission3.setOnClickListener(v -> openActivity(Mission3BriefingActivity.class));
+        mission4.setOnClickListener(v -> openActivity(Mission4BriefingActivity.class));
 
         btnAvailable.setOnClickListener(v -> showAvailable());
         btnCompleted.setOnClickListener(v -> showCompleted());
 
         setupBottomNavigation();
-
         showAvailable();
     }
 
@@ -96,6 +68,20 @@ public class MissionsActivity extends AppCompatActivity {
         updateAvailableMissions();
     }
 
+    private void openActivity(Class<?> activityClass) {
+        Intent intent = new Intent(
+                MissionsActivity.this,
+                activityClass
+        );
+
+        startActivity(intent);
+
+        overridePendingTransition(
+                R.anim.slide_in_right,
+                R.anim.slide_out_left
+        );
+    }
+
     private void setupBottomNavigation() {
         bottomNavigation.setSelectedItemId(R.id.nav_missions);
 
@@ -107,34 +93,12 @@ public class MissionsActivity extends AppCompatActivity {
             }
 
             if (id == R.id.nav_terminal) {
-                Intent intent = new Intent(
-                        MissionsActivity.this,
-                        TerminalActivity.class
-                );
-
-                startActivity(intent);
-
-                overridePendingTransition(
-                        R.anim.slide_in_right,
-                        R.anim.slide_out_left
-                );
-
+                openActivity(TerminalActivity.class);
                 return true;
             }
 
             if (id == R.id.nav_profile) {
-                Intent intent = new Intent(
-                        MissionsActivity.this,
-                        ProfileActivity.class
-                );
-
-                startActivity(intent);
-
-                overridePendingTransition(
-                        R.anim.slide_in_right,
-                        R.anim.slide_out_left
-                );
-
+                openActivity(ProfileActivity.class);
                 return true;
             }
 
@@ -179,29 +143,17 @@ public class MissionsActivity extends AppCompatActivity {
     }
 
     private void updateAvailableMissions() {
-        boolean mission1Completed = playerPrefs.isMission1Completed();
-        boolean mission2Completed = playerPrefs.isMission2Completed();
-
-        if (mission1Completed) {
-            mission1.setVisibility(View.GONE);
-        } else {
-            mission1.setVisibility(View.VISIBLE);
-        }
-
-        if (mission2Completed) {
-            mission2.setVisibility(View.GONE);
-        } else {
-            mission2.setVisibility(View.VISIBLE);
-        }
-
-        if (mission1Completed && mission2Completed) {
-            txtCompletedList.setText("Todas as missões foram concluídas.");
-        }
+        mission1.setVisibility(playerPrefs.isMission1Completed() ? View.GONE : View.VISIBLE);
+        mission2.setVisibility(playerPrefs.isMission2Completed() ? View.GONE : View.VISIBLE);
+        mission3.setVisibility(playerPrefs.isMission3Completed() ? View.GONE : View.VISIBLE);
+        mission4.setVisibility(playerPrefs.isMission4Completed() ? View.GONE : View.VISIBLE);
     }
 
     private void updateCompletedMissions() {
         boolean mission1Completed = playerPrefs.isMission1Completed();
         boolean mission2Completed = playerPrefs.isMission2Completed();
+        boolean mission3Completed = playerPrefs.isMission3Completed();
+        boolean mission4Completed = playerPrefs.isMission4Completed();
 
         StringBuilder completed = new StringBuilder();
 
@@ -213,7 +165,19 @@ public class MissionsActivity extends AppCompatActivity {
             completed.append("✓ 02 - QUEBRA DE SENHA\n");
         }
 
-        if (!mission1Completed && !mission2Completed) {
+        if (mission3Completed) {
+            completed.append("✓ 03 - ARQUIVO FANTASMA\n");
+        }
+
+        if (mission4Completed) {
+            completed.append("✓ 04 - NÓ INVASOR\n");
+        }
+
+        if (!mission1Completed &&
+                !mission2Completed &&
+                !mission3Completed &&
+                !mission4Completed) {
+
             completed.append("Nenhuma missão concluída ainda.");
         }
 
