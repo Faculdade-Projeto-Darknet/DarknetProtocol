@@ -409,12 +409,16 @@ public class TerminalActivity extends AppCompatActivity {
 
             if (id == R.id.nav_missions) {
 
-                startActivity(
-                        new Intent(
-                                TerminalActivity.this,
-                                MissionsActivity.class
-                        )
+                Intent intent = new Intent(
+                        TerminalActivity.this,
+                        MissionsActivity.class
                 );
+
+                intent.addFlags(
+                        Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                );
+
+                startActivity(intent);
 
                 overridePendingTransition(
                         R.anim.slide_in_left,
@@ -426,12 +430,16 @@ public class TerminalActivity extends AppCompatActivity {
 
             if (id == R.id.nav_profile) {
 
-                startActivity(
-                        new Intent(
-                                TerminalActivity.this,
-                                ProfileActivity.class
-                        )
+                Intent intent = new Intent(
+                        TerminalActivity.this,
+                        ProfileActivity.class
                 );
+
+                intent.addFlags(
+                        Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                );
+
+                startActivity(intent);
 
                 overridePendingTransition(
                         R.anim.slide_in_right,
@@ -443,5 +451,17 @@ public class TerminalActivity extends AppCompatActivity {
 
             return false;
         });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (bottomNavigation != null) {
+
+            bottomNavigation.setSelectedItemId(
+                    R.id.nav_terminal
+            );
+
+        }
     }
 }

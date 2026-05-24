@@ -331,6 +331,10 @@ public class ProfileActivity extends AppCompatActivity {
 
             int id = item.getItemId();
 
+            if (id == R.id.nav_profile) {
+                return true;
+            }
+
             if (id == R.id.nav_missions) {
 
                 Intent intent = new Intent(
@@ -338,11 +342,15 @@ public class ProfileActivity extends AppCompatActivity {
                         MissionsActivity.class
                 );
 
+                intent.addFlags(
+                        Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                );
+
                 startActivity(intent);
 
                 overridePendingTransition(
-                        R.anim.slide_in_right,
-                        R.anim.slide_out_left
+                        R.anim.slide_in_left,
+                        R.anim.slide_out_right
                 );
 
                 return true;
@@ -355,31 +363,35 @@ public class ProfileActivity extends AppCompatActivity {
                         TerminalActivity.class
                 );
 
+                intent.addFlags(
+                        Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                );
+
                 startActivity(intent);
 
                 overridePendingTransition(
-                        R.anim.slide_in_right,
-                        R.anim.slide_out_left
+                        R.anim.slide_in_left,
+                        R.anim.slide_out_right
                 );
 
                 return true;
             }
 
-            if (id == R.id.nav_profile) {
-                return true;
-            }
-
             return false;
-
         });
-
     }
     @Override
     protected void onResume() {
         super.onResume();
 
+        loadProfile();
+
         if (bottomNavigation != null) {
-            bottomNavigation.setSelectedItemId(R.id.nav_profile);
+
+            bottomNavigation.setSelectedItemId(
+                    R.id.nav_profile
+            );
+
         }
     }
 }
