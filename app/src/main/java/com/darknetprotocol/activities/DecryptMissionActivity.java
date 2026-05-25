@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
 import com.darknetprotocol.SoundManager;
+import com.darknetprotocol.utils.CloudSaveManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 
 public class DecryptMissionActivity extends AppCompatActivity {
@@ -65,7 +66,6 @@ public class DecryptMissionActivity extends AppCompatActivity {
             return;
         }
 
-        // 🔊 SOM DE CLIQUE: Submissão do Input de Texto
         SoundManager.playSound(this, R.raw.cyber_click);
 
         String answer = edtDecryptAnswer.getText().toString().trim().toUpperCase();
@@ -78,7 +78,6 @@ public class DecryptMissionActivity extends AppCompatActivity {
         if (answer.equals(correctAnswer)) {
             completeMission();
         } else {
-            // 🔊 SOM DE ERRO: Chave rejeitada pelo decipher
             SoundManager.playSound(this, R.raw.cyber_error);
 
             attempts--;
@@ -103,10 +102,10 @@ public class DecryptMissionActivity extends AppCompatActivity {
             return;
         }
 
-        // 🔊 SOM DE CLIQUE: Requisição de dica
         SoundManager.playSound(this, R.raw.cyber_click);
 
         hintsUsed++;
+
         if (hintsUsed == 1) {
             txtDecryptLog.append("\n> Dica 2: cada letra foi deslocada 3 posições para frente.");
         } else if (hintsUsed == 2) {
@@ -121,20 +120,27 @@ public class DecryptMissionActivity extends AppCompatActivity {
     }
 
     private void completeMission() {
-        // 🔊 SOM DE SUCESSO: Cifra quebrada com perfeição
         SoundManager.playSound(this, R.raw.cyber_success);
 
         txtDecryptStatus.setText("STATUS: ARQUIVO DESCRIPTOGRAFADO");
-        txtDecryptLog.append("\n> Palavra correta: ORION\n> Arquivo ghost_file.enc aberto.\n> Dados do Projeto Orion recuperados.\n> MISSÃO CONCLUÍDA.");
+        txtDecryptLog.append("\n> Palavra correta: ORION");
+        txtDecryptLog.append("\n> Arquivo ghost_file.enc aberto.");
+        txtDecryptLog.append("\n> Dados do Projeto Orion recuperados.");
+        txtDecryptLog.append("\n> MISSÃO CONCLUÍDA.");
 
         int xpReward = calculateXpReward();
+
         playerPrefs.addXp(xpReward);
         playerPrefs.setMission3Completed(true);
 
+        new CloudSaveManager(playerPrefs).saveProgress();
+
         txtDecryptLog.append("\n> XP recebido: +" + xpReward);
         txtDecryptLog.append("\n> Rank da missão: " + getRank(xpReward));
+        txtDecryptLog.append("\n> Progresso sincronizado na nuvem.");
 
         disableAll();
+
         Toast.makeText(this, "Missão 3 concluída! +" + xpReward + " XP", Toast.LENGTH_LONG).show();
     }
 
@@ -154,7 +160,9 @@ public class DecryptMissionActivity extends AppCompatActivity {
 
     private void gameOver() {
         txtDecryptStatus.setText("STATUS: MISSÃO FALHOU");
-        txtDecryptLog.append("\n> Muitas tentativas inválidas.\n> Arquivo bloqueado temporariamente.\n> Use REINICIAR MISSÃO para tentar novamente.");
+        txtDecryptLog.append("\n> Muitas tentativas inválidas.");
+        txtDecryptLog.append("\n> Arquivo bloqueado temporariamente.");
+        txtDecryptLog.append("\n> Use REINICIAR MISSÃO para tentar novamente.");
 
         btnCheckDecrypt.setEnabled(false);
         btnDecryptHint.setEnabled(false);
@@ -170,7 +178,6 @@ public class DecryptMissionActivity extends AppCompatActivity {
             return;
         }
 
-        // 🔊 SOM DE ERRO: Reinicialização forçada do cipher
         SoundManager.playSound(this, R.raw.cyber_error);
 
         attempts = 3;
@@ -186,6 +193,7 @@ public class DecryptMissionActivity extends AppCompatActivity {
         btnDecryptHint.setAlpha(1f);
 
         updateStats();
+
         Toast.makeText(this, "Missão reiniciada.", Toast.LENGTH_SHORT).show();
     }
 
@@ -206,6 +214,7 @@ public class DecryptMissionActivity extends AppCompatActivity {
         btnCheckDecrypt.setEnabled(false);
         btnDecryptHint.setEnabled(false);
         btnResetDecrypt.setEnabled(false);
+
         btnCheckDecrypt.setAlpha(0.5f);
         btnDecryptHint.setAlpha(0.5f);
         btnResetDecrypt.setAlpha(0.5f);

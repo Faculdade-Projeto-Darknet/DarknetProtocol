@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
 import com.darknetprotocol.SoundManager;
+import com.darknetprotocol.utils.CloudSaveManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 
 public class MissionDetailActivity extends AppCompatActivity {
@@ -73,12 +74,12 @@ public class MissionDetailActivity extends AppCompatActivity {
     }
 
     private void executeCommand(String command) {
+
         if (playerPrefs.isMission1Completed()) {
             Toast.makeText(this, "Missão já concluída.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 🔊 SOM DE CLIQUE: Disparado ao pressionar qualquer comando de ação
         SoundManager.playSound(this, R.raw.cyber_click);
 
         if (attempts <= 0 || detection >= 100) {
@@ -87,47 +88,58 @@ public class MissionDetailActivity extends AppCompatActivity {
         }
 
         if (command.equals(correctSequence[step])) {
+
             step++;
+
             txtLog.append("\n> " + command + " executado com sucesso.");
+
             updateMissionProgress();
 
             if (step == correctSequence.length) {
                 completeMission();
             }
+
         } else {
+
             failCommand(command);
         }
     }
 
     private void updateMissionProgress() {
+
         if (step == 1) {
             txtStatus.setText("STATUS: REDE MAPEADA");
             progressMission.setProgress(25);
             txtLog.append("\n> Portas fictícias analisadas.");
         }
+
         if (step == 2) {
             txtStatus.setText("STATUS: PROXY ATIVADO");
             progressMission.setProgress(50);
             txtLog.append("\n> Rota segura simulada.");
         }
+
         if (step == 3) {
             txtStatus.setText("STATUS: FIREWALL CONTORNADO");
             progressMission.setProgress(75);
             txtLog.append("\n> Camada de defesa fictícia neutralizada.");
         }
+
         updateStats();
     }
 
     private void failCommand(String command) {
-        // 🔊 SOM DE ERRO: Sequência quebrada
+
         SoundManager.playSound(this, R.raw.cyber_error);
 
         attempts--;
         detection += 35;
         step = 0;
+
         progressMission.setProgress(0);
 
         txtStatus.setText("STATUS: ERRO NA SEQUÊNCIA");
+
         txtLog.append("\n> Comando inválido: " + command);
         txtLog.append("\n> Sequência reiniciada.");
         txtLog.append("\n> Detecção aumentou.");
@@ -135,17 +147,25 @@ public class MissionDetailActivity extends AppCompatActivity {
         updateStats();
 
         if (attempts <= 0 || detection >= 100) {
+
             gameOver();
+
         } else {
-            Toast.makeText(this, "Sequência errada. Tentativas restantes: " + attempts, Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(
+                    this,
+                    "Sequência errada. Tentativas restantes: " + attempts,
+                    Toast.LENGTH_SHORT
+            ).show();
         }
     }
 
     private void completeMission() {
-        // 🔊 SOM DE SUCESSO: Sequência concluída com êxito total
+
         SoundManager.playSound(this, R.raw.cyber_success);
 
         progressMission.setProgress(100);
+
         txtStatus.setText("STATUS: MISSÃO CONCLUÍDA");
 
         txtLog.append("\n> EXTRACT concluído.");
@@ -154,89 +174,180 @@ public class MissionDetailActivity extends AppCompatActivity {
         txtLog.append("\n> MISSÃO FINALIZADA.");
 
         int xpReward = calculateXpReward();
+
         playerPrefs.addXp(xpReward);
         playerPrefs.setMission1Completed(true);
 
+        new CloudSaveManager(playerPrefs)
+                .saveProgress();
+
         String rank = getRank(xpReward);
+
         txtLog.append("\n> XP recebido: +" + xpReward);
         txtLog.append("\n> Rank da missão: " + rank);
+        txtLog.append("\n> Progresso sincronizado na nuvem.");
 
         disableAllButtons();
 
-        Toast.makeText(this, "Missão concluída! +" + xpReward + " XP", Toast.LENGTH_LONG).show();
+        Toast.makeText(
+                this,
+                "Missão concluída! +" + xpReward + " XP",
+                Toast.LENGTH_LONG
+        ).show();
     }
 
     private int calculateXpReward() {
-        if (attempts == 3 && detection == 0) return 200;
-        if (attempts == 2) return 150;
+
+        if (attempts == 3 && detection == 0) {
+            return 200;
+        }
+
+        if (attempts == 2) {
+            return 150;
+        }
+
         return 100;
     }
 
     private String getRank(int xpReward) {
-        if (xpReward == 200) return "S+";
-        if (xpReward == 150) return "A";
+
+        if (xpReward == 200) {
+            return "S+";
+        }
+
+        if (xpReward == 150) {
+            return "A";
+        }
+
         return "B";
     }
 
     private void gameOver() {
+
         txtStatus.setText("STATUS: MISSÃO FALHOU");
+
         txtLog.append("\n> ALERTA MÁXIMO.");
         txtLog.append("\n> Sistema bloqueado.");
         txtLog.append("\n> Use REINICIAR TENTATIVA para tentar novamente.");
 
         disableCommandButtons();
 
-        Toast.makeText(this, "Missão falhou. Reinicie a tentativa.", Toast.LENGTH_LONG).show();
+        Toast.makeText(
+                this,
+                "Missão falhou. Reinicie a tentativa.",
+                Toast.LENGTH_LONG
+        ).show();
     }
 
     private void resetAttempt() {
+
         if (playerPrefs.isMission1Completed()) {
-            Toast.makeText(this, "Missão já concluída.", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(
+                    this,
+                    "Missão já concluída.",
+                    Toast.LENGTH_SHORT
+            ).show();
+
             return;
         }
 
-        // 🔊 SOM DE ERRO/ALERTA: Informando limpeza/reinicialização do sistema
         SoundManager.playSound(this, R.raw.cyber_error);
 
         step = 0;
         attempts = 3;
         detection = 0;
+
         progressMission.setProgress(0);
 
         txtStatus.setText("STATUS: AGUARDANDO COMANDO");
-        txtLog.setText("> Sistema reiniciado.\n> Descubra a sequência correta de infiltração.\n> Dica: mapeie a rede antes de esconder o tráfego.");
+
+        txtLog.setText(
+                "> Sistema reiniciado.\n" +
+                        "> Descubra a sequência correta de infiltração.\n" +
+                        "> Dica: mapeie a rede antes de esconder o tráfego."
+        );
 
         updateStats();
+
         enableCommandButtons();
 
-        Toast.makeText(this, "Tentativa reiniciada.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(
+                this,
+                "Tentativa reiniciada.",
+                Toast.LENGTH_SHORT
+        ).show();
     }
 
     private void updateStats() {
-        txtStats.setText("Tentativas: " + attempts + " | Detecção: " + detection + "%" + " | XP: até +200");
+
+        txtStats.setText(
+                "Tentativas: " + attempts +
+                        " | Detecção: " + detection + "%" +
+                        " | XP: até +200"
+        );
     }
 
     private void showCompletedMission() {
+
         txtStatus.setText("STATUS: MISSÃO JÁ CONCLUÍDA");
+
         txtStats.setText("Recompensa já recebida.");
+
         progressMission.setProgress(100);
-        txtLog.setText("> Missão já finalizada.\n> Arquivos do Projeto Orion recuperados.\n> XP já foi adicionado ao perfil.");
+
+        txtLog.setText(
+                "> Missão já finalizada.\n" +
+                        "> Arquivos do Projeto Orion recuperados.\n" +
+                        "> XP já foi adicionado ao perfil."
+        );
+
         disableAllButtons();
     }
 
     private void disableAllButtons() {
-        btnScan.setEnabled(false); btnProxy.setEnabled(false); btnBypass.setEnabled(false); btnExtract.setEnabled(false); btnReset.setEnabled(false);
-        btnScan.setAlpha(0.5f); btnProxy.setAlpha(0.5f); btnBypass.setAlpha(0.5f); btnExtract.setAlpha(0.5f); btnReset.setAlpha(0.5f);
+
+        btnScan.setEnabled(false);
+        btnProxy.setEnabled(false);
+        btnBypass.setEnabled(false);
+        btnExtract.setEnabled(false);
+        btnReset.setEnabled(false);
+
+        btnScan.setAlpha(0.5f);
+        btnProxy.setAlpha(0.5f);
+        btnBypass.setAlpha(0.5f);
+        btnExtract.setAlpha(0.5f);
+        btnReset.setAlpha(0.5f);
     }
 
     private void disableCommandButtons() {
-        btnScan.setEnabled(false); btnProxy.setEnabled(false); btnBypass.setEnabled(false); btnExtract.setEnabled(false);
-        btnScan.setAlpha(0.5f); btnProxy.setAlpha(0.5f); btnBypass.setAlpha(0.5f); btnExtract.setAlpha(0.5f);
-        btnReset.setEnabled(true); btnReset.setAlpha(1f);
+
+        btnScan.setEnabled(false);
+        btnProxy.setEnabled(false);
+        btnBypass.setEnabled(false);
+        btnExtract.setEnabled(false);
+
+        btnScan.setAlpha(0.5f);
+        btnProxy.setAlpha(0.5f);
+        btnBypass.setAlpha(0.5f);
+        btnExtract.setAlpha(0.5f);
+
+        btnReset.setEnabled(true);
+        btnReset.setAlpha(1f);
     }
 
     private void enableCommandButtons() {
-        btnScan.setEnabled(true); btnProxy.setEnabled(true); btnBypass.setEnabled(true); btnExtract.setEnabled(true); btnReset.setEnabled(true);
-        btnScan.setAlpha(1f); btnProxy.setAlpha(1f); btnBypass.setAlpha(1f); btnExtract.setAlpha(1f); btnReset.setAlpha(1f);
+
+        btnScan.setEnabled(true);
+        btnProxy.setEnabled(true);
+        btnBypass.setEnabled(true);
+        btnExtract.setEnabled(true);
+        btnReset.setEnabled(true);
+
+        btnScan.setAlpha(1f);
+        btnProxy.setAlpha(1f);
+        btnBypass.setAlpha(1f);
+        btnExtract.setAlpha(1f);
+        btnReset.setAlpha(1f);
     }
 }

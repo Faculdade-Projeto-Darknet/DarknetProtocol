@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
 import com.darknetprotocol.SoundManager;
+import com.darknetprotocol.utils.CloudSaveManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 
 public class IpMissionActivity extends AppCompatActivity {
@@ -67,7 +68,6 @@ public class IpMissionActivity extends AppCompatActivity {
             return;
         }
 
-        // 🔊 SOM DE CLIQUE: Varredura de IP iniciada
         SoundManager.playSound(this, R.raw.cyber_click);
 
         if (attempts <= 0 || detection >= 100) {
@@ -80,7 +80,6 @@ public class IpMissionActivity extends AppCompatActivity {
         if (selectedIp.equals(correctIp)) {
             completeMission();
         } else {
-            // 🔊 SOM DE ERRO: Alvo inofensivo interno selecionado
             SoundManager.playSound(this, R.raw.cyber_error);
 
             attempts--;
@@ -101,20 +100,27 @@ public class IpMissionActivity extends AppCompatActivity {
     }
 
     private void completeMission() {
-        // 🔊 SOM DE SUCESSO: Invasor detectado e isolado com sucesso! Juego ganho!
         SoundManager.playSound(this, R.raw.cyber_success);
 
         txtIpStatus.setText("STATUS: NÓ INVASOR IDENTIFICADO");
-        txtIpLog.append("\n> IP suspeito confirmado: 185.221.77.13\n> Origem fora da rede local.\n> Tráfego externo isolado.\n> MISSÃO CONCLUÍDA.");
+        txtIpLog.append("\n> IP suspeito confirmado: 185.221.77.13");
+        txtIpLog.append("\n> Origem fora da rede local.");
+        txtIpLog.append("\n> Tráfego externo isolado.");
+        txtIpLog.append("\n> MISSÃO CONCLUÍDA.");
 
         int xpReward = calculateXpReward();
+
         playerPrefs.addXp(xpReward);
         playerPrefs.setMission4Completed(true);
 
+        new CloudSaveManager(playerPrefs).saveProgress();
+
         txtIpLog.append("\n> XP recebido: +" + xpReward);
         txtIpLog.append("\n> Rank da missão: " + getRank(xpReward));
+        txtIpLog.append("\n> Progresso sincronizado na nuvem.");
 
         disableAll();
+
         Toast.makeText(this, "Missão 4 concluída! +" + xpReward + " XP", Toast.LENGTH_LONG).show();
     }
 
@@ -132,8 +138,12 @@ public class IpMissionActivity extends AppCompatActivity {
 
     private void gameOver() {
         txtIpStatus.setText("STATUS: MISSÃO FALHOU");
-        txtIpLog.append("\n> Muitas escolhas incorretas.\n> Sistema entrou em alerta.\n> Use REINICIAR MISSÃO para tentar novamente.");
+        txtIpLog.append("\n> Muitas escolhas incorretas.");
+        txtIpLog.append("\n> Sistema entrou em alerta.");
+        txtIpLog.append("\n> Use REINICIAR MISSÃO para tentar novamente.");
+
         disableIpButtons();
+
         Toast.makeText(this, "Missão falhou. Reinicie para tentar novamente.", Toast.LENGTH_LONG).show();
     }
 
@@ -143,7 +153,6 @@ public class IpMissionActivity extends AppCompatActivity {
             return;
         }
 
-        // 🔊 SOM DE ERRO: Firewall restaurado para o padrão
         SoundManager.playSound(this, R.raw.cyber_error);
 
         attempts = 3;
@@ -154,11 +163,12 @@ public class IpMissionActivity extends AppCompatActivity {
 
         enableIpButtons();
         updateStats();
+
         Toast.makeText(this, "Missão reiniciada.", Toast.LENGTH_SHORT).show();
     }
 
     private void updateStats() {
-        txtIpStats.setText("Tentativas: " + attempts + " | Detecção: " + detection + "%" + " | XP: até +350");
+        txtIpStats.setText("Tentativas: " + attempts + " | Detecção: " + detection + "% | XP: até +350");
     }
 
     private void showCompletedMission() {
@@ -169,17 +179,32 @@ public class IpMissionActivity extends AppCompatActivity {
     }
 
     private void disableIpButtons() {
-        btnIp1.setEnabled(false); btnIp2.setEnabled(false); btnIp3.setEnabled(false); btnIp4.setEnabled(false);
-        btnIp1.setAlpha(0.5f); btnIp2.setAlpha(0.5f); btnIp3.setAlpha(0.5f); btnIp4.setAlpha(0.5f);
+        btnIp1.setEnabled(false);
+        btnIp2.setEnabled(false);
+        btnIp3.setEnabled(false);
+        btnIp4.setEnabled(false);
+
+        btnIp1.setAlpha(0.5f);
+        btnIp2.setAlpha(0.5f);
+        btnIp3.setAlpha(0.5f);
+        btnIp4.setAlpha(0.5f);
     }
 
     private void enableIpButtons() {
-        btnIp1.setEnabled(true); btnIp2.setEnabled(true); btnIp3.setEnabled(true); btnIp4.setEnabled(true);
-        btnIp1.setAlpha(1f); btnIp2.setAlpha(1f); btnIp3.setAlpha(1f); btnIp4.setAlpha(1f);
+        btnIp1.setEnabled(true);
+        btnIp2.setEnabled(true);
+        btnIp3.setEnabled(true);
+        btnIp4.setEnabled(true);
+
+        btnIp1.setAlpha(1f);
+        btnIp2.setAlpha(1f);
+        btnIp3.setAlpha(1f);
+        btnIp4.setAlpha(1f);
     }
 
     private void disableAll() {
         disableIpButtons();
+
         btnResetIpMission.setEnabled(false);
         btnResetIpMission.setAlpha(0.5f);
     }

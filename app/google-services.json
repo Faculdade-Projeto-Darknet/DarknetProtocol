@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279348768648",
+    "project_id": "darknet-c5759",
+    "storage_bucket": "darknet-c5759.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279348768648:android:60aaed54dcc0e62ad7543d",
+        "android_client_info": {
+          "package_name": "com.darknetprotocol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279348768648-ahaecvncvmsm6cv7aqng95lvdnie5sld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRsIeWdGAe87Hool7ldVCTCLUBS9g6MlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279348768648-7li2j9d0qgum11f8gib3pd0vrdnlipib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
