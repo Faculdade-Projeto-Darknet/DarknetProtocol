@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cyber_bg_dark">
@@ -10,120 +12,145 @@
         android:layout_height="match_parent"
         android:src="@drawable/bg_darknet"
         android:scaleType="centerCrop"
-        android:alpha="0.25"/>
+        android:alpha="0.28"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"/>
 
     <LinearLayout
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="14dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/bg_cyber_card"
-        android:padding="26dp">
+        android:padding="28dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DARKNET"
-            android:textColor="@color/cyber_green"
-            android:textSize="38sp"
+            android:textColor="@color/white"
+            android:textSize="42sp"
             android:textStyle="bold"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/orbitron_bold"
             android:letterSpacing="0.12"
             android:shadowColor="@color/cyber_green"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="15" />
+            android:shadowRadius="12"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PROTOCOL"
             android:textColor="@color/cyber_green"
-            android:textSize="19sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:letterSpacing="0.35"
-            android:shadowColor="@color/cyber_green"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="10" />
+            android:fontFamily="@font/jetbrains_regular"
+            android:letterSpacing="0.28"
+            android:layout_marginTop="4dp"/>
 
         <TextView
-            android:id="@+id/txtCursor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
-            android:gravity="center"
-            android:text="&gt;_"
-            android:textColor="@color/cyber_green"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:shadowColor="@color/cyber_green"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="12"/>
-
-        <TextView
-            android:id="@+id/txtStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CONECTE-SE AO SISTEMA"
-            android:textColor="@color/white"
+            android:text="ENTRE. HACK. SOBREVIVA."
+            android:textColor="@color/cyber_text_secondary"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/jetbrains_regular"
             android:gravity="center"
-            android:layout_marginTop="34dp"
-            android:letterSpacing="0.05"/>
+            android:layout_marginTop="16dp"
+            android:letterSpacing="0.08"/>
 
-        <ProgressBar
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_cyber_card"
+            android:padding="22dp"
+            android:layout_marginTop="42dp">
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONECTE-SE AO SISTEMA"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jetbrains_regular"
+                android:gravity="center"/>
+
+            <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="240dp"
-            android:layout_height="16dp"
-            android:progress="0"
-            android:max="100"
-            android:visibility="invisible"
-            android:progressDrawable="@drawable/progress_neon"
-            android:layout_marginTop="14dp"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnStart"
-            android:layout_width="220dp"
-            android:layout_height="52dp"
-            android:text="INICIAR"
-            android:textColor="@color/cyber_green"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_button"
-            android:layout_marginTop="18dp"
-            android:letterSpacing="0.1"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:padding="0dp"/>
-
-        <com.google.android.gms.common.SignInButton
-        android:id="@+id/btnGoogleLogin"
-        android:layout_width="220dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"/>
-
-        <Space
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_height="8dp"
+            android:layout_marginTop="18dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_modern_cyber"
+            android:indeterminate="false"
+            android:visibility="gone"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="22dp"
+                android:text="CONTINUAR COMO CONVIDADO"
+                android:textColor="@color/cyber_bg_dark"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:backgroundTint="@color/cyber_green"
+                android:minHeight="0dp"
+                android:minWidth="0dp"/>
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btnGoogleLogin"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="v1.0.0"
-            android:textColor="@color/cyber_text_secondary"
-            android:textSize="11sp"
-            android:fontFamily="monospace"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="28dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="MISSÕES"
+                android:textColor="@color/cyber_green"
+                android:textSize="10sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="HACKING"
+                android:textColor="@color/cyber_green"
+                android:textSize="10sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PROGRESSO"
+                android:textColor="@color/cyber_green"
+                android:textSize="10sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:gravity="center"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

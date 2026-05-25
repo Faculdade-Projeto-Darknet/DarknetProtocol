@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     GoogleSignInClient googleSignInClient;
-
     PlayerPrefs playerPrefs;
 
     ActivityResultLauncher<Intent> googleLoginLauncher;
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnStart = findViewById(R.id.btnStart);
         btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
-
         txtStatus = findViewById(R.id.txtStatus);
         progressBar = findViewById(R.id.progressBar);
 
@@ -77,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
         btnGoogleLogin.setOnClickListener(v -> {
             SoundManager.playSound(this, R.raw.cyber_click);
 
-            Intent signInIntent =
-                    googleSignInClient.getSignInIntent();
+            Intent signInIntent = googleSignInClient.getSignInIntent();
 
             googleLoginLauncher.launch(signInIntent);
         });
@@ -187,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         new CloudSaveManager(playerPrefs)
                 .loadProgress(() -> {
                     txtStatus.setText("PROGRESSO SINCRONIZADO");
+
                     Toast.makeText(
                             this,
                             "Progresso carregado.",
@@ -208,28 +206,29 @@ public class MainActivity extends AppCompatActivity {
         btnGoogleLogin.setEnabled(false);
 
         progressBar.setVisibility(View.VISIBLE);
+        progressBar.setAlpha(0f);
 
         Handler handler = new Handler();
 
         txtStatus.setText("CONECTANDO...");
-        progressBar.setProgress(25);
+        animateProgress(25);
 
         handler.postDelayed(() -> {
             SoundManager.playSound(this, R.raw.cyber_click);
             txtStatus.setText("ACESSANDO SERVIDOR...");
-            progressBar.setProgress(50);
+            animateProgress(50);
         }, 1000);
 
         handler.postDelayed(() -> {
             SoundManager.playSound(this, R.raw.cyber_click);
             txtStatus.setText("VALIDANDO CRIPTOGRAFIA...");
-            progressBar.setProgress(75);
+            animateProgress(75);
         }, 2000);
 
         handler.postDelayed(() -> {
             SoundManager.playSound(this, R.raw.cyber_success);
             txtStatus.setText("ACESSO LIBERADO");
-            progressBar.setProgress(100);
+            animateProgress(100);
         }, 3000);
 
         handler.postDelayed(() -> {
@@ -247,5 +246,14 @@ public class MainActivity extends AppCompatActivity {
 
             finish();
         }, 4000);
+    }
+
+    private void animateProgress(int progress) {
+        progressBar.animate()
+                .alpha(1f)
+                .setDuration(250)
+                .start();
+
+        progressBar.setProgress(progress, true);
     }
 }
