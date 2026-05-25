@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_marginTop="6dp"
+    android:orientation="horizontal"
+    android:paddingStart="36dp"
+    android:paddingEnd="36dp">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyZ"
+        style="@style/CyberKeyStyle"
+        android:text="Z"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyX"
+        style="@style/CyberKeyStyle"
+        android:text="X"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyC"
+        style="@style/CyberKeyStyle"
+        android:text="C"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyV"
+        style="@style/CyberKeyStyle"
+        android:text="V"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyB"
+        style="@style/CyberKeyStyle"
+        android:text="B"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyN"
+        style="@style/CyberKeyStyle"
+        android:text="N"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyM"
+        style="@style/CyberKeyStyle"
+        android:text="M"/>
+
+</LinearLayout>

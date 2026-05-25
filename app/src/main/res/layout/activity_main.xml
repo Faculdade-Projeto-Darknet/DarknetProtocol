@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     android:background="@color/cyber_bg_dark">
 
+    <!-- ===================================================== -->
+    <!-- BACKGROUND -->
+    <!-- ===================================================== -->
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,10 +18,16 @@
         android:scaleType="centerCrop"
         android:alpha="0.28"/>
 
+    <!-- OVERLAY ESCURO -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#CC000000"/>
+
+    <!-- ===================================================== -->
+    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- ===================================================== -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,6 +35,10 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="28dp">
+
+        <!-- ================================================= -->
+        <!-- LOGO -->
+        <!-- ================================================= -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,6 +63,10 @@
             android:letterSpacing="0.28"
             android:layout_marginTop="4dp"/>
 
+        <!-- ================================================= -->
+        <!-- SUBTÍTULO -->
+        <!-- ================================================= -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,6 +78,10 @@
             android:layout_marginTop="16dp"
             android:letterSpacing="0.08"/>
 
+        <!-- ================================================= -->
+        <!-- CARD LOGIN -->
+        <!-- ================================================= -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,6 +89,8 @@
             android:background="@drawable/bg_cyber_card"
             android:padding="22dp"
             android:layout_marginTop="42dp">
+
+            <!-- STATUS -->
 
             <TextView
                 android:id="@+id/txtStatus"
@@ -79,17 +103,21 @@
                 android:fontFamily="@font/jetbrains_regular"
                 android:gravity="center"/>
 
+            <!-- BARRA DE PROGRESSO -->
+
             <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_marginTop="18dp"
-            android:max="100"
-            android:progress="0"
-            android:progressDrawable="@drawable/progress_modern_cyber"
-            android:indeterminate="false"
-            android:visibility="gone"/>
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="18dp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/progress_modern_cyber"
+                android:indeterminate="false"
+                android:visibility="gone"/>
+
+            <!-- BOTÃO CONVIDADO -->
 
             <Button
                 android:id="@+id/btnStart"
@@ -105,6 +133,8 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"/>
 
+            <!-- LOGIN GOOGLE -->
+
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btnGoogleLogin"
                 android:layout_width="match_parent"
@@ -112,6 +142,10 @@
                 android:layout_marginTop="14dp"/>
 
         </LinearLayout>
+
+        <!-- ================================================= -->
+        <!-- INFO INFERIOR -->
+        <!-- ================================================= -->
 
         <LinearLayout
             android:layout_width="match_parent"

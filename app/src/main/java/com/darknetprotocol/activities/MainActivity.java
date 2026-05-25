@@ -31,57 +31,154 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*
+     * =========================================================
+     * FIREBASE / GOOGLE LOGIN
+     * =========================================================
+     */
+
     private static final String WEB_CLIENT_ID =
             "279348768648-ahaecvncvmsm6cv7aqng95lvdnie5sld.apps.googleusercontent.com";
 
-    Button btnStart;
-    SignInButton btnGoogleLogin;
+    private FirebaseAuth firebaseAuth;
+    private GoogleSignInClient googleSignInClient;
 
-    TextView txtStatus;
-    ProgressBar progressBar;
+    /*
+     * =========================================================
+     * COMPONENTES DA INTERFACE
+     * =========================================================
+     */
 
-    FirebaseAuth firebaseAuth;
-    GoogleSignInClient googleSignInClient;
-    PlayerPrefs playerPrefs;
+    private Button btnStart;
+    private SignInButton btnGoogleLogin;
 
-    ActivityResultLauncher<Intent> googleLoginLauncher;
+    private TextView txtStatus;
+    private ProgressBar progressBar;
 
-    boolean isStarting = false;
+    /*
+     * =========================================================
+     * SISTEMA DO JOGO
+     * =========================================================
+     */
+
+    private PlayerPrefs playerPrefs;
+
+    /*
+     * =========================================================
+     * LOGIN RESULT
+     * =========================================================
+     */
+
+    private ActivityResultLauncher<Intent> googleLoginLauncher;
+
+    /*
+     * =========================================================
+     * CONTROLE
+     * =========================================================
+     */
+
+    private boolean isStarting = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        btnStart = findViewById(R.id.btnStart);
-        btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
-        txtStatus = findViewById(R.id.txtStatus);
-        progressBar = findViewById(R.id.progressBar);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        playerPrefs = new PlayerPrefs(this);
-
+        initializeViews();
+        initializeFirebase();
         setupGoogleLogin();
+        setupButtons();
+        checkCurrentUser();
+    }
 
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+    /*
+     * =========================================================
+     * INICIALIZAÇÃO
+     * =========================================================
+     */
+
+    private void initializeViews() {
+
+        btnStart = findViewById(R.id.btnStart);
+
+        btnGoogleLogin =
+                findViewById(R.id.btnGoogleLogin);
+
+        txtStatus =
+                findViewById(R.id.txtStatus);
+
+        progressBar =
+                findViewById(R.id.progressBar);
+    }
+
+    private void initializeFirebase() {
+
+        firebaseAuth =
+                FirebaseAuth.getInstance();
+
+        playerPrefs =
+                new PlayerPrefs(this);
+    }
+
+    /*
+     * =========================================================
+     * VERIFICA LOGIN ATUAL
+     * =========================================================
+     */
+
+    private void checkCurrentUser() {
+
+        FirebaseUser currentUser =
+                firebaseAuth.getCurrentUser();
 
         if (currentUser != null) {
-            txtStatus.setText("LOGIN: " + currentUser.getDisplayName());
+
+            txtStatus.setText(
+                    "LOGIN: " +
+                            currentUser.getDisplayName()
+            );
+
             loadCloudProgress();
         }
+    }
 
-        btnStart.setOnClickListener(v -> startProtocol());
+    /*
+     * =========================================================
+     * BOTÕES
+     * =========================================================
+     */
+
+    private void setupButtons() {
+
+        btnStart.setOnClickListener(v ->
+                startProtocol()
+        );
 
         btnGoogleLogin.setOnClickListener(v -> {
-            SoundManager.playSound(this, R.raw.cyber_click);
 
-            Intent signInIntent = googleSignInClient.getSignInIntent();
+            SoundManager.playSound(
+                    this,
+                    R.raw.cyber_click
+            );
 
-            googleLoginLauncher.launch(signInIntent);
+            Intent signInIntent =
+                    googleSignInClient.getSignInIntent();
+
+            googleLoginLauncher.launch(
+                    signInIntent
+            );
         });
     }
 
+    /*
+     * =========================================================
+     * CONFIGURA LOGIN GOOGLE
+     * =========================================================
+     */
+
     private void setupGoogleLogin() {
+
         GoogleSignInOptions googleSignInOptions =
                 new GoogleSignInOptions.Builder(
                         GoogleSignInOptions.DEFAULT_SIGN_IN
@@ -100,18 +197,23 @@ public class MainActivity extends AppCompatActivity {
                 registerForActivityResult(
                         new ActivityResultContracts.StartActivityForResult(),
                         result -> {
-                            Intent data = result.getData();
+
+                            Intent data =
+                                    result.getData();
 
                             Task<GoogleSignInAccount> task =
-                                    GoogleSignIn.getSignedInAccountFromIntent(data);
+                                    GoogleSignIn
+                                            .getSignedInAccountFromIntent(data);
 
                             try {
+
                                 GoogleSignInAccount account =
                                         task.getResult(ApiException.class);
 
                                 firebaseLoginWithGoogle(account);
 
                             } catch (ApiException e) {
+
                                 SoundManager.playSound(
                                         this,
                                         R.raw.cyber_error
@@ -127,16 +229,28 @@ public class MainActivity extends AppCompatActivity {
                 );
     }
 
-    private void firebaseLoginWithGoogle(GoogleSignInAccount account) {
+    /*
+     * =========================================================
+     * LOGIN FIREBASE
+     * =========================================================
+     */
+
+    private void firebaseLoginWithGoogle(
+            GoogleSignInAccount account
+    ) {
+
         AuthCredential credential =
                 GoogleAuthProvider.getCredential(
                         account.getIdToken(),
                         null
                 );
 
-        firebaseAuth.signInWithCredential(credential)
+        firebaseAuth
+                .signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
+
                     if (task.isSuccessful()) {
+
                         FirebaseUser user =
                                 firebaseAuth.getCurrentUser();
 
@@ -146,10 +260,14 @@ public class MainActivity extends AppCompatActivity {
                         );
 
                         if (user != null) {
+
                             txtStatus.setText(
-                                    "LOGIN: " + user.getDisplayName()
+                                    "LOGIN: " +
+                                            user.getDisplayName()
                             );
+
                         } else {
+
                             txtStatus.setText(
                                     "LOGIN GOOGLE CONCLUÍDO"
                             );
@@ -164,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
                         loadCloudProgress();
 
                     } else {
+
                         SoundManager.playSound(
                                 this,
                                 R.raw.cyber_error
@@ -178,12 +297,24 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+     * =========================================================
+     * CARREGA PROGRESSO DO FIREBASE
+     * =========================================================
+     */
+
     private void loadCloudProgress() {
-        txtStatus.setText("SINCRONIZANDO PROGRESSO...");
+
+        txtStatus.setText(
+                "SINCRONIZANDO PROGRESSO..."
+        );
 
         new CloudSaveManager(playerPrefs)
                 .loadProgress(() -> {
-                    txtStatus.setText("PROGRESSO SINCRONIZADO");
+
+                    txtStatus.setText(
+                            "PROGRESSO SINCRONIZADO"
+                    );
 
                     Toast.makeText(
                             this,
@@ -193,14 +324,24 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+     * =========================================================
+     * INICIA JOGO
+     * =========================================================
+     */
+
     private void startProtocol() {
+
         if (isStarting) {
             return;
         }
 
         isStarting = true;
 
-        SoundManager.playSound(this, R.raw.cyber_click);
+        SoundManager.playSound(
+                this,
+                R.raw.cyber_click
+        );
 
         btnStart.setEnabled(false);
         btnGoogleLogin.setEnabled(false);
@@ -210,32 +351,81 @@ public class MainActivity extends AppCompatActivity {
 
         Handler handler = new Handler();
 
+        /*
+         * ETAPA 1
+         */
+
         txtStatus.setText("CONECTANDO...");
         animateProgress(25);
 
+        /*
+         * ETAPA 2
+         */
+
         handler.postDelayed(() -> {
-            SoundManager.playSound(this, R.raw.cyber_click);
-            txtStatus.setText("ACESSANDO SERVIDOR...");
+
+            SoundManager.playSound(
+                    this,
+                    R.raw.cyber_click
+            );
+
+            txtStatus.setText(
+                    "ACESSANDO SERVIDOR..."
+            );
+
             animateProgress(50);
+
         }, 1000);
 
+        /*
+         * ETAPA 3
+         */
+
         handler.postDelayed(() -> {
-            SoundManager.playSound(this, R.raw.cyber_click);
-            txtStatus.setText("VALIDANDO CRIPTOGRAFIA...");
+
+            SoundManager.playSound(
+                    this,
+                    R.raw.cyber_click
+            );
+
+            txtStatus.setText(
+                    "VALIDANDO CRIPTOGRAFIA..."
+            );
+
             animateProgress(75);
+
         }, 2000);
 
-        handler.postDelayed(() -> {
-            SoundManager.playSound(this, R.raw.cyber_success);
-            txtStatus.setText("ACESSO LIBERADO");
-            animateProgress(100);
-        }, 3000);
+        /*
+         * ETAPA 4
+         */
 
         handler.postDelayed(() -> {
-            Intent intent = new Intent(
-                    MainActivity.this,
-                    MissionsActivity.class
+
+            SoundManager.playSound(
+                    this,
+                    R.raw.cyber_success
             );
+
+            txtStatus.setText(
+                    "ACESSO LIBERADO"
+            );
+
+            animateProgress(100);
+
+        }, 3000);
+
+        /*
+         * ABRE TELA DE MISSÕES
+         */
+
+        handler.postDelayed(() -> {
+
+            Intent intent =
+                    new Intent(
+                            MainActivity.this,
+                            MissionsActivity.class
+                    );
 
             startActivity(intent);
 
@@ -245,15 +435,26 @@ public class MainActivity extends AppCompatActivity {
             );
 
             finish();
+
         }, 4000);
     }
 
+    /*
+     * =========================================================
+     * ANIMAÇÃO DA BARRA
+     * =========================================================
+     */
+
     private void animateProgress(int progress) {
+
         progressBar.animate()
                 .alpha(1f)
                 .setDuration(250)
                 .start();
 
-        progressBar.setProgress(progress, true);
+        progressBar.setProgress(
+                progress,
+                true
+        );
     }
 }

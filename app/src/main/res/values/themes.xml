@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ===================================================== -->
+    <!-- TEMA PRINCIPAL -->
+    <!-- ===================================================== -->
 
     <style
-        name="Base.Theme.DarknetProtocol"
-        parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        name="Theme.DarknetProtocol"
+        parent="Theme.Material3.DayNight.NoActionBar">
 
         <item name="colorPrimary">@color/cyber_green</item>
-        <item name="colorPrimaryVariant">@color/cyber_green</item>
-        <item name="colorSecondary">@color/cyber_green</item>
+
+        <item name="colorPrimaryVariant">
+            @color/cyber_green
+        </item>
+
+        <item name="colorSecondary">
+            @color/cyber_green
+        </item>
 
         <item name="android:statusBarColor">
             @android:color/transparent
         </item>
 
     </style>
-
-    <style
-        name="Theme.DarknetProtocol"
-        parent="Base.Theme.DarknetProtocol" />
 
 </resources>

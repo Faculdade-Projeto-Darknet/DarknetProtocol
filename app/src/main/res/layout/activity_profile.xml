@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     android:background="@color/cyber_bg_dark">
 
+    <!-- ===================================================== -->
+    <!-- SCROLL -->
+    <!-- ===================================================== -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +25,9 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
+            <!-- ================================================= -->
             <!-- HEADER -->
+            <!-- ================================================= -->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,7 +50,9 @@
                 android:fontFamily="@font/jetbrains_regular"
                 android:layout_marginTop="4dp"/>
 
+            <!-- ================================================= -->
             <!-- CARD PERFIL -->
+            <!-- ================================================= -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,7 +130,9 @@
 
             </LinearLayout>
 
+            <!-- ================================================= -->
             <!-- XP -->
+            <!-- ================================================= -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,7 +182,9 @@
 
             </LinearLayout>
 
+            <!-- ================================================= -->
             <!-- STATS -->
+            <!-- ================================================= -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -245,7 +257,9 @@
 
             </LinearLayout>
 
+            <!-- ================================================= -->
             <!-- CONQUISTAS -->
+            <!-- ================================================= -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -276,7 +290,9 @@
 
             </LinearLayout>
 
+            <!-- ================================================= -->
             <!-- RESET -->
+            <!-- ================================================= -->
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnResetProfile"
@@ -294,6 +310,10 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- ===================================================== -->
+    <!-- NAVIGATION -->
+    <!-- ===================================================== -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

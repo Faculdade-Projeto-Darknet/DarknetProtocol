@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     android:background="@color/cyber_bg_dark">
 
+    <!-- ===================================================== -->
+    <!-- CONTEÚDO -->
+    <!-- ===================================================== -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,6 +23,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="24dp">
+
+            <!-- ================================================= -->
+            <!-- HEADER -->
+            <!-- ================================================= -->
 
             <TextView
                 android:layout_width="match_parent"
@@ -44,6 +52,10 @@
                 android:gravity="center"
                 android:letterSpacing="0.08"
                 android:layout_marginBottom="22dp"/>
+
+            <!-- ================================================= -->
+            <!-- ABAS -->
+            <!-- ================================================= -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,7 +98,12 @@
                     android:minHeight="0dp"
                     android:minWidth="0dp"
                     android:padding="0dp"/>
+
             </LinearLayout>
+
+            <!-- ================================================= -->
+            <!-- MISSÕES DISPONÍVEIS -->
+            <!-- ================================================= -->
 
             <LinearLayout
                 android:id="@+id/layoutAvailableMissions"
@@ -94,319 +111,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/mission1"
-                    android:layout_width="match_parent"
-                    android:layout_height="142dp"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:background="@drawable/bg_mission_card_dark"
-                    android:layout_marginBottom="16dp"
-                    android:clickable="true"
-                    android:focusable="true">
+                <!-- MISSÃO 01 -->
 
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:text="01"
-                        android:textColor="@color/cyber_green"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/orbitron_bold"
-                        android:gravity="center"
-                        android:background="@drawable/profile_circle_bg"
-                        android:layout_gravity="center_vertical"
-                        android:shadowColor="@color/cyber_green"
-                        android:shadowRadius="8"/>
+                <include layout="@layout/item_mission_1"/>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="15dp">
+                <!-- MISSÃO 02 -->
 
-                        <TextView
-                            android:text="MISSÃO 01"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                <include layout="@layout/item_mission_2"/>
 
-                        <TextView
-                            android:text="INFILTRAÇÃO"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/orbitron_bold"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                <!-- MISSÃO 03 -->
 
-                        <TextView
-                            android:text="Mapeie a rede e extraia o Projeto Orion"
-                            android:textColor="@color/cyber_text_secondary"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                <include layout="@layout/item_mission_3"/>
 
-                        <TextView
-                            android:text="+200 XP • FÁCIL"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="11dp"
-                            android:background="@drawable/bg_cyber_button"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
+                <!-- MISSÃO 04 -->
 
-                <LinearLayout
-                    android:id="@+id/mission2"
-                    android:layout_width="match_parent"
-                    android:layout_height="142dp"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:background="@drawable/bg_mission_card_dark"
-                    android:layout_marginBottom="16dp"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:text="02"
-                        android:textColor="@color/cyber_green"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/orbitron_bold"
-                        android:gravity="center"
-                        android:background="@drawable/profile_circle_bg"
-                        android:layout_gravity="center_vertical"
-                        android:shadowColor="@color/cyber_green"
-                        android:shadowRadius="8"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="15dp">
-
-                        <TextView
-                            android:text="MISSÃO 02"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="SENHA DO COFRE"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/orbitron_bold"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="Descubra a senha do servidor central"
-                            android:textColor="@color/cyber_text_secondary"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="+250 XP • MÉDIA"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="11dp"
-                            android:background="@drawable/bg_cyber_button"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/mission3"
-                    android:layout_width="match_parent"
-                    android:layout_height="142dp"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:background="@drawable/bg_mission_card_dark"
-                    android:layout_marginBottom="16dp"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:text="03"
-                        android:textColor="@color/cyber_green"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/orbitron_bold"
-                        android:gravity="center"
-                        android:background="@drawable/profile_circle_bg"
-                        android:layout_gravity="center_vertical"
-                        android:shadowColor="@color/cyber_green"
-                        android:shadowRadius="8"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="15dp">
-
-                        <TextView
-                            android:text="MISSÃO 03"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="ARQUIVO FANTASMA"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/orbitron_bold"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="Descriptografe os dados do Projeto Orion"
-                            android:textColor="@color/cyber_text_secondary"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="+300 XP • MÉDIA"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="11dp"
-                            android:background="@drawable/bg_cyber_button"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/mission4"
-                    android:layout_width="match_parent"
-                    android:layout_height="142dp"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:background="@drawable/bg_mission_card_dark"
-                    android:layout_marginBottom="18dp"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:text="04"
-                        android:textColor="@color/cyber_green"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/orbitron_bold"
-                        android:gravity="center"
-                        android:background="@drawable/profile_circle_bg"
-                        android:layout_gravity="center_vertical"
-                        android:shadowColor="@color/cyber_green"
-                        android:shadowRadius="8"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="15dp">
-
-                        <TextView
-                            android:text="MISSÃO 04"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="NÓ INVASOR"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/orbitron_bold"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="Identifique o IP suspeito nos logs"
-                            android:textColor="@color/cyber_text_secondary"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="+350 XP • MÉDIA"
-                            android:textColor="@color/cyber_green"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/jetbrains_regular"
-                            android:layout_marginTop="11dp"
-                            android:background="@drawable/bg_cyber_button"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
+                <include layout="@layout/item_mission_4"/>
 
             </LinearLayout>
+
+            <!-- ================================================= -->
+            <!-- MISSÕES CONCLUÍDAS -->
+            <!-- ================================================= -->
 
             <LinearLayout
                 android:id="@+id/layoutCompletedMissions"
@@ -419,16 +144,22 @@
                     android:id="@+id/txtCompletedList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="&gt; Nenhuma missão concluída no banco de dados."
+                    android:text="&gt; Nenhuma missão concluída."
                     android:textColor="@color/cyber_green"
                     android:textSize="14sp"
                     android:fontFamily="@font/jetbrains_regular"
                     android:background="@drawable/bg_mission_card_dark"
                     android:padding="18dp"/>
+
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
+
+    <!-- ===================================================== -->
+    <!-- NAVEGAÇÃO -->
+    <!-- ===================================================== -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

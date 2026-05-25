@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_marginTop="16dp"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyQ"
+        style="@style/CyberKeyStyle"
+        android:text="Q"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyW"
+        style="@style/CyberKeyStyle"
+        android:text="W"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyE"
+        style="@style/CyberKeyStyle"
+        android:text="E"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyR"
+        style="@style/CyberKeyStyle"
+        android:text="R"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyT"
+        style="@style/CyberKeyStyle"
+        android:text="T"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyY"
+        style="@style/CyberKeyStyle"
+        android:text="Y"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyU"
+        style="@style/CyberKeyStyle"
+        android:text="U"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyI"
+        style="@style/CyberKeyStyle"
+        android:text="I"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyO"
+        style="@style/CyberKeyStyle"
+        android:text="O"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/keyP"
+        style="@style/CyberKeyStyle"
+        android:text="P"/>
+
+</LinearLayout>
