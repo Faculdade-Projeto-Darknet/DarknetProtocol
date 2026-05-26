@@ -19,7 +19,7 @@
 
 O **Darknet Protocol** é um aplicativo Android com temática hacker/cyberpunk desenvolvido para fins educacionais.
 
-O projeto simula operações ofensivas controladas em um ambiente estilizado inspirado em:
+O projeto simula operações ofensivas controladas em um ambiente inspirado em:
 - terminais futuristas
 - sistemas de invasão simulados
 - interfaces cyberpunk
@@ -35,6 +35,32 @@ O objetivo é ensinar conceitos básicos de:
 - experiência visual interativa
 
 Porque aprender segurança ofensiva em slide branco do PowerPoint deveria violar convenções internacionais.
+
+---
+
+# 📸 PREVIEW
+
+## 🖥️ TERMINAL
+
+<p align="center">
+  <img src="prints/terminal.png" width="260"/>
+</p>
+
+---
+
+## 🎯 MISSÕES
+
+<p align="center">
+  <img src="prints/missions.png" width="260"/>
+</p>
+
+---
+
+## 👤 PERFIL
+
+<p align="center">
+  <img src="prints/profile.png" width="260"/>
+</p>
 
 ---
 
