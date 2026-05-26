@@ -2,12 +2,11 @@ package com.darknetprotocol.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.darknetprotocol.utils.CloudSaveManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
-import com.darknetprotocol.SoundManager;
+import com.darknetprotocol.utils.SoundManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {

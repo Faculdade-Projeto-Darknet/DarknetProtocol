@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
-import com.darknetprotocol.SoundManager;
+import com.darknetprotocol.utils.SoundManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

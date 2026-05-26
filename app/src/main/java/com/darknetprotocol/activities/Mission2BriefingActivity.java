@@ -3,12 +3,11 @@ package com.darknetprotocol.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import com.darknetprotocol.utils.CloudSaveManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
-import com.darknetprotocol.SoundManager;
+import com.darknetprotocol.utils.SoundManager;
 
 public class Mission2BriefingActivity extends AppCompatActivity {
 

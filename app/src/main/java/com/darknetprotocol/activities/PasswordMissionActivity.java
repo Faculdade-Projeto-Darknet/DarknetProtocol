@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.darknetprotocol.R;
-import com.darknetprotocol.SoundManager;
+import com.darknetprotocol.utils.SoundManager;
 import com.darknetprotocol.utils.CloudSaveManager;
 import com.darknetprotocol.utils.PlayerPrefs;
 

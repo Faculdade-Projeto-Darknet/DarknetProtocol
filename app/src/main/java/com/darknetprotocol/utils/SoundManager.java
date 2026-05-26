@@ -1,4 +1,4 @@
-package com.darknetprotocol;
+package com.darknetprotocol.utils;
 
 import android.content.Context;
 import android.media.MediaPlayer;
