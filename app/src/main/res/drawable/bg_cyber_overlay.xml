@@ -2,27 +2,11 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- IMAGEM -->
-
     <item>
-
         <bitmap
             android:src="@drawable/cyber_bg"
             android:gravity="center"
             android:tileMode="disabled"/>
-
-    </item>
-
-    <!-- OVERLAY ESCURO -->
-
-    <item>
-
-        <shape android:shape="rectangle">
-
-            <solid android:color="#CC070B11"/>
-
-        </shape>
-
     </item>
 
 </layer-list>
