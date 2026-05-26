@@ -1,91 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cyber_bg_dark"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingBottom="24dp">
 
         <TextView
-            android:text="BRIEFING - MISSÃO 04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BRIEFING • MISSÃO 04"
             android:textColor="@color/cyber_green"
-            android:textSize="16sp"
-            android:fontFamily="monospace"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:fontFamily="@font/jetbrains_regular"
+            android:letterSpacing="0.12"/>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="NÓ INVASOR"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="34sp"
             android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:fontFamily="@font/orbitron_bold"
+            android:layout_marginTop="10dp"
             android:shadowColor="@color/cyber_green"
-            android:shadowRadius="8"/>
+            android:shadowRadius="12"/>
 
         <TextView
-            android:text="Após descriptografar os arquivos do Projeto Orion, um acesso suspeito foi detectado nos logs da HexaCryp. Sua missão é identificar qual IP está fora da rede local."
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"/>
-
-        <TextView
-            android:text="OBJETIVO"
-            android:textColor="@color/cyber_green"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="28dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="Analise os IPs disponíveis e escolha o endereço suspeito.\n\nDica: redes locais geralmente começam com 192.168, 10. ou 172.16."
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_card"
-            android:padding="18dp"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="RECOMPENSA: até 350 XP\nTENTATIVAS: 3\nDIFICULDADE: Média"
-            android:textColor="@color/cyber_green"
+            android:text="Após descriptografar os arquivos do Projeto Orion, um acesso suspeito foi detectado nos logs da HexaCryp. Sua missão é identificar qual endereço IP está fora da rede local."
+            android:textColor="@color/cyber_text_secondary"
             android:textSize="14sp"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_card"
-            android:padding="18dp"
+            android:fontFamily="@font/jetbrains_regular"
             android:layout_marginTop="16dp"
+            android:lineSpacingExtra="5dp"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_mission_card_dark"
+            android:padding="20dp"
+            android:layout_marginTop="26dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OBJETIVO"
+                android:textColor="@color/cyber_green"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Analise os IPs disponíveis e escolha o endereço suspeito."
+                android:textColor="@color/cyber_text_secondary"
+                android:textSize="13sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REDES LOCAIS:\n192.168.x.x\n10.x.x.x\n172.16.x.x"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:background="@drawable/bg_cyber_button"
+                android:padding="18dp"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="6dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="XP\n+350"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="TENTATIVAS\n03"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="NÍVEL\nMÉDIO"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AVISO ÉTICO: esta missão ensina leitura básica de endereços IP em um ambiente fictício. Nada aqui rastreia pessoas reais. Porque transformar aula de rede em perseguição digital seria o tipo de ideia que faz professor perder fé na turma."
+            android:textColor="@color/cyber_text_secondary"
+            android:textSize="12sp"
+            android:fontFamily="@font/jetbrains_regular"
+            android:background="@drawable/bg_mission_card_dark"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:lineSpacingExtra="4dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStartMission4"
-            android:text="INICIAR MISSÃO"
-            android:textColor="@color/cyber_green"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_button"
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="28dp"
+            android:text="INICIAR MISSÃO"
+            android:textColor="@color/cyber_bg_dark"
+            android:textStyle="bold"
             android:textSize="14sp"
-            android:letterSpacing="0.05"/>
+            android:fontFamily="@font/jetbrains_regular"
+            android:backgroundTint="@color/cyber_green"
+            android:minHeight="0dp"
+            android:minWidth="0dp"/>
 
     </LinearLayout>
 

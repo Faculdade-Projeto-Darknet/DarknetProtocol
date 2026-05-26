@@ -1,91 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cyber_bg_dark"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingBottom="24dp">
 
         <TextView
-            android:text="BRIEFING - MISSÃO 01"
-            android:textColor="@color/cyber_green"
-            android:textSize="16sp"
-            android:fontFamily="monospace"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="INVASÃO À REDE"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="12dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="BRIEFING • MISSÃO 01"
+            android:textColor="@color/cyber_green"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/jetbrains_regular"
+            android:letterSpacing="0.12"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INFILTRAÇÃO"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/orbitron_bold"
+            android:layout_marginTop="10dp"
             android:shadowColor="@color/cyber_green"
-            android:shadowRadius="8"/>
+            android:shadowRadius="12"/>
 
         <TextView
-            android:text="A corporação fictícia HexaCryp esconde arquivos relacionados ao Projeto Orion. Sua tarefa é executar uma sequência correta de infiltração simulada para acessar os dados."
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"/>
-
-        <TextView
-            android:text="OBJETIVO"
-            android:textColor="@color/cyber_green"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="28dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="Execute os comandos na ordem correta:\n\nSCAN → PROXY → BYPASS → EXTRACT"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_card"
-            android:padding="18dp"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="RECOMPENSA: até 200 XP\nRISCO: Detecção aumenta ao errar\nDIFICULDADE: Fácil"
-            android:textColor="@color/cyber_green"
+            android:text="A corporação fictícia HexaCryp esconde arquivos ligados ao Projeto Orion. Sua missão é executar uma sequência simulada de infiltração e recuperar os dados sem disparar o sistema de detecção."
+            android:textColor="@color/cyber_text_secondary"
             android:textSize="14sp"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_card"
-            android:padding="18dp"
+            android:fontFamily="@font/jetbrains_regular"
             android:layout_marginTop="16dp"
+            android:lineSpacingExtra="5dp"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_mission_card_dark"
+            android:padding="20dp"
+            android:layout_marginTop="26dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OBJETIVO"
+                android:textColor="@color/cyber_green"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Execute os comandos na ordem correta para concluir a invasão simulada:"
+                android:textColor="@color/cyber_text_secondary"
+                android:textSize="13sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SCAN → PROXY → BYPASS → EXTRACT"
+                android:textColor="@color/cyber_green"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jetbrains_regular"
+                android:gravity="center"
+                android:background="@drawable/bg_cyber_button"
+                android:padding="14dp"
+                android:layout_marginTop="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="XP\n+200"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="RISCO\nMÉDIO"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="NÍVEL\nFÁCIL"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AVISO ÉTICO: esta missão é uma simulação educativa. Nada aqui realiza ataque real, invasão real ou coleta de dados. Porque cometer crime digital por causa de app de faculdade seria um nível de burrice que nem o compilador merece assistir."
+            android:textColor="@color/cyber_text_secondary"
+            android:textSize="12sp"
+            android:fontFamily="@font/jetbrains_regular"
+            android:background="@drawable/bg_mission_card_dark"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:lineSpacingExtra="4dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStartMission1"
-            android:text="INICIAR MISSÃO"
-            android:textColor="@color/cyber_green"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_button"
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="28dp"
+            android:text="INICIAR MISSÃO"
+            android:textColor="@color/cyber_bg_dark"
+            android:textStyle="bold"
             android:textSize="14sp"
-            android:letterSpacing="0.05"/>
+            android:fontFamily="@font/jetbrains_regular"
+            android:backgroundTint="@color/cyber_green"
+            android:minHeight="0dp"
+            android:minWidth="0dp"/>
 
     </LinearLayout>
 

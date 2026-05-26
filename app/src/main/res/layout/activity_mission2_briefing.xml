@@ -1,91 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cyber_bg_dark"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingBottom="24dp">
 
         <TextView
-            android:text="BRIEFING - MISSÃO 02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BRIEFING • MISSÃO 02"
             android:textColor="@color/cyber_green"
-            android:textSize="16sp"
-            android:fontFamily="monospace"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:fontFamily="@font/jetbrains_regular"
+            android:letterSpacing="0.12"/>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="QUEBRA DE SENHA"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="34sp"
             android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:fontFamily="@font/orbitron_bold"
+            android:layout_marginTop="10dp"
             android:shadowColor="@color/cyber_green"
-            android:shadowRadius="8"/>
+            android:shadowRadius="12"/>
 
         <TextView
-            android:text="Após recuperar arquivos do Projeto Orion, você encontrou um cofre digital protegido por senha. Use as pistas do terminal para descobrir a palavra correta."
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"/>
-
-        <TextView
-            android:text="OBJETIVO"
-            android:textColor="@color/cyber_green"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="28dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="Descubra a senha usando o teclado próprio do jogo.\n\nDica inicial: a senha está ligada ao Projeto Orion."
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_card"
-            android:padding="18dp"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="RECOMPENSA: até 250 XP\nTENTATIVAS: 4\nDIFICULDADE: Média"
-            android:textColor="@color/cyber_green"
+            android:text="Após recuperar arquivos ligados ao Projeto Orion, você encontrou um cofre digital protegido por autenticação criptografada. Use as pistas do terminal para descobrir a senha correta antes do bloqueio definitivo."
+            android:textColor="@color/cyber_text_secondary"
             android:textSize="14sp"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_card"
-            android:padding="18dp"
+            android:fontFamily="@font/jetbrains_regular"
             android:layout_marginTop="16dp"
+            android:lineSpacingExtra="5dp"/>
+
+        <!-- OBJETIVO -->
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_mission_card_dark"
+            android:padding="20dp"
+            android:layout_marginTop="26dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OBJETIVO"
+                android:textColor="@color/cyber_green"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descubra a senha correta utilizando o teclado interno do sistema."
+                android:textColor="@color/cyber_text_secondary"
+                android:textSize="13sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DICA INICIAL: a senha possui ligação direta com o Projeto Orion."
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jetbrains_regular"
+                android:gravity="center"
+                android:background="@drawable/bg_cyber_button"
+                android:padding="14dp"
+                android:layout_marginTop="14dp"/>
+
+        </LinearLayout>
+
+        <!-- STATS -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="XP\n+250"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="TENTATIVAS\n04"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_weight="1"
+                android:text="NÍVEL\nMÉDIO"
+                android:textColor="@color/cyber_green"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:gravity="center"
+                android:background="@drawable/bg_mission_card_dark"/>
+
+        </LinearLayout>
+
+        <!-- AVISO -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AVISO ÉTICO: esta missão é uma simulação educativa de autenticação digital. Nenhum sistema real é acessado. O mundo já tem gente demais tentando adivinhar senha como se fosse desafio de TikTok."
+            android:textColor="@color/cyber_text_secondary"
+            android:textSize="12sp"
+            android:fontFamily="@font/jetbrains_regular"
+            android:background="@drawable/bg_mission_card_dark"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:lineSpacingExtra="4dp"/>
+
+        <!-- BOTÃO -->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStartMission2"
-            android:text="INICIAR MISSÃO"
-            android:textColor="@color/cyber_green"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_cyber_button"
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="28dp"
+            android:text="INICIAR MISSÃO"
+            android:textColor="@color/cyber_bg_dark"
+            android:textStyle="bold"
             android:textSize="14sp"
-            android:letterSpacing="0.05"/>
+            android:fontFamily="@font/jetbrains_regular"
+            android:backgroundTint="@color/cyber_green"
+            android:minHeight="0dp"
+            android:minWidth="0dp"/>
 
     </LinearLayout>
 

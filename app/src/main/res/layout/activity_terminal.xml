@@ -15,13 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigation"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:paddingBottom="26dp">
 
             <!-- ================================================= -->
             <!-- HEADER -->
@@ -30,55 +31,158 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TERMINAL_ÉTICO"
+                android:text="TERMINAL ÉTICO"
                 android:textColor="@color/cyber_green"
-                android:textSize="24sp"
+                android:textSize="32sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/orbitron_bold"
                 android:shadowColor="@color/cyber_green"
-                android:shadowRadius="10"/>
+                android:shadowRadius="14"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ambiente educacional de simulação ofensiva controlada."
+                android:textColor="@color/cyber_text_secondary"
+                android:textSize="13sp"
+                android:fontFamily="@font/jetbrains_regular"
+                android:layout_marginTop="8dp"/>
+
+            <!-- ================================================= -->
+            <!-- STATUS BAR -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:text="STATUS\nONLINE"
+                    android:textColor="@color/cyber_green"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:fontFamily="@font/orbitron_bold"
+                    android:background="@drawable/bg_mission_card_dark"/>
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:text="NÓS\n04"
+                    android:textColor="@color/cyber_green"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:fontFamily="@font/orbitron_bold"
+                    android:background="@drawable/bg_mission_card_dark"/>
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:text="PING\n12ms"
+                    android:textColor="@color/cyber_green"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:fontFamily="@font/orbitron_bold"
+                    android:background="@drawable/bg_mission_card_dark"/>
+
+            </LinearLayout>
 
             <!-- ================================================= -->
             <!-- TERMINAL -->
             <!-- ================================================= -->
 
-            <TextView
-                android:id="@+id/txtTerminal"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="240dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_cyber_card"
-                android:fontFamily="monospace"
+                android:orientation="vertical"
+                android:background="@drawable/bg_mission_card_dark"
                 android:padding="18dp"
-                android:text="&gt; Terminal iniciado.\n&gt; Digite HELP."
-                android:textColor="@color/cyber_green"
-                android:textSize="13sp"
-                android:maxLines="999"
-                android:scrollbars="vertical"/>
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CONSOLE"
+                    android:textColor="@color/cyber_green"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/orbitron_bold"/>
+
+                <TextView
+                    android:id="@+id/txtTerminal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="260dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="monospace"
+                    android:text="&gt; Terminal iniciado.\n&gt; Digite HELP."
+                    android:textColor="@color/cyber_green"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLines="999"
+                    android:scrollbars="vertical"/>
+
+            </LinearLayout>
 
             <!-- ================================================= -->
-            <!-- DISPLAY -->
+            <!-- COMMAND DISPLAY -->
             <!-- ================================================= -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LINHA DE COMANDO"
+                android:textColor="@color/cyber_green"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:layout_marginTop="22dp"/>
 
             <TextView
                 android:id="@+id/txtCommandDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_cyber_card"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_mission_card_dark"
                 android:fontFamily="monospace"
-                android:padding="16dp"
-                android:text="&gt;"
+                android:padding="18dp"
+                android:text="&gt;_"
                 android:textColor="@color/cyber_green"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:shadowColor="@color/cyber_green"
-                android:shadowRadius="4"/>
+                android:shadowRadius="8"/>
 
             <!-- ================================================= -->
-            <!-- TECLADO -->
+            <!-- KEYBOARD -->
             <!-- ================================================= -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TECLADO"
+                android:textColor="@color/cyber_green"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/orbitron_bold"
+                android:layout_marginTop="22dp"/>
 
             <include layout="@layout/keyboard_row_1"/>
             <include layout="@layout/keyboard_row_2"/>
@@ -90,8 +194,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="18dp"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -101,13 +205,11 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="6dp"
                     android:text="APAGAR"
-                    android:textColor="#FF4444"
+                    android:textColor="#FF6666"
                     android:textStyle="bold"
                     android:textSize="12sp"
-                    android:fontFamily="monospace"
-                    android:background="@drawable/bg_cyber_button"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"/>
+                    android:fontFamily="@font/jetbrains_regular"
+                    android:background="@drawable/bg_reset_button"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSpace"
@@ -118,13 +220,12 @@
                     android:layout_marginEnd="4dp"
                     android:text="ESPAÇO"
                     android:textColor="@color/cyber_green"
+                    android:textStyle="bold"
                     android:textSize="13sp"
-                    android:fontFamily="monospace"
-                    android:background="@drawable/bg_cyber_button"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"/>
+                    android:fontFamily="@font/jetbrains_regular"
+                    android:background="@drawable/bg_cyber_button"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnExecute"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -134,10 +235,8 @@
                     android:textColor="@color/cyber_bg_dark"
                     android:textStyle="bold"
                     android:textSize="13sp"
-                    android:fontFamily="monospace"
-                    android:backgroundTint="@color/cyber_green"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"/>
+                    android:fontFamily="@font/jetbrains_regular"
+                    android:backgroundTint="@color/cyber_green"/>
 
             </LinearLayout>
 
@@ -148,13 +247,14 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnClearTerminal"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="14dp"
                 android:text="LIMPAR HISTÓRICO"
                 android:textColor="@color/cyber_text_secondary"
                 android:textSize="13sp"
-                android:fontFamily="monospace"
-                android:background="@drawable/bg_cyber_button"/>
+                android:fontFamily="@font/jetbrains_regular"
+                android:background="@drawable/bg_cyber_button"
+                android:backgroundTint="#151515"/>
 
         </LinearLayout>
 
