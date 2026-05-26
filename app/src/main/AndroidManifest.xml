@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DarknetProtocol">
         <activity
+            android:name=".activities.SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.IpMissionActivity"
             android:exported="false" />
         <activity
