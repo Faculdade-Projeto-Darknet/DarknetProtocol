@@ -196,26 +196,6 @@ O projeto utiliza:
 - Firebase Authentication
 - Firebase Firestore
 
-## Configuração
-
-1. Crie um projeto no Firebase
-2. Adicione um aplicativo Android
-3. Baixe o arquivo:
-
-```txt
-google-services.json
-```
-
-4. Coloque em:
-
-```txt
-app/google-services.json
-```
-
-Porque Android sem Firebase hoje em dia é praticamente um Tamagotchi glorificado.
-
----
-
 # 🚀 COMO EXECUTAR
 
 Clone o projeto:
