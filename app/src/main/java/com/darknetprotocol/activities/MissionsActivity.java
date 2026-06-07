@@ -1,20 +1,38 @@
 package com.darknetprotocol.activities;
 
+// Importa a classe Intent, utilizada para abrir outras telas
 import android.content.Intent;
+
+// Importa ColorStateList, usada para alterar cores dinamicamente
 import android.content.res.ColorStateList;
+
+// Importa Bundle, utilizado no ciclo de vida da Activity
 import android.os.Bundle;
+
+// Importa View para controle de visibilidade dos componentes
 import android.view.View;
+
+// Importa componentes visuais utilizados na interface
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+// Classe base para Activities compatíveis com AppCompat
 import androidx.appcompat.app.AppCompatActivity;
 
+// Importa recursos do projeto (layouts, ids, animações, sons, etc.)
 import com.darknetprotocol.R;
+
+// Classe responsável por reproduzir efeitos sonoros
 import com.darknetprotocol.utils.SoundManager;
+
+// Classe responsável por armazenar e recuperar dados do jogador
 import com.darknetprotocol.utils.PlayerPrefs;
+
+// Componente de navegação inferior
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+// Activity responsável por exibir e gerenciar as missões do jogo
 public class MissionsActivity extends AppCompatActivity {
 
     /*
@@ -23,6 +41,7 @@ public class MissionsActivity extends AppCompatActivity {
      * =========================================================
      */
 
+    // Layouts clicáveis das missões
     private LinearLayout mission1;
     private LinearLayout mission2;
     private LinearLayout mission3;
@@ -34,7 +53,10 @@ public class MissionsActivity extends AppCompatActivity {
      * =========================================================
      */
 
+    // Área de missões disponíveis
     private LinearLayout layoutAvailableMissions;
+
+    // Área de missões concluídas
     private LinearLayout layoutCompletedMissions;
 
     /*
@@ -43,7 +65,10 @@ public class MissionsActivity extends AppCompatActivity {
      * =========================================================
      */
 
+    // Botão da aba "Disponíveis"
     private Button btnAvailable;
+
+    // Botão da aba "Concluídas"
     private Button btnCompleted;
 
     /*
@@ -52,6 +77,7 @@ public class MissionsActivity extends AppCompatActivity {
      * =========================================================
      */
 
+    // Lista das missões já concluídas
     private TextView txtCompletedList;
 
     /*
@@ -60,20 +86,32 @@ public class MissionsActivity extends AppCompatActivity {
      * =========================================================
      */
 
+    // Barra de navegação inferior
     private BottomNavigationView bottomNavigation;
+
+    // Gerencia os dados salvos do jogador
     private PlayerPrefs playerPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Define o layout da tela
         setContentView(R.layout.activity_missions);
 
+        // Inicializa os componentes da interface
         initializeViews();
+
+        // Configura os botões das missões
         setupMissionButtons();
+
+        // Configura os botões das abas
         setupTabButtons();
+
+        // Configura o menu inferior
         setupBottomNavigation();
 
+        // Exibe inicialmente as missões disponíveis
         showAvailable();
     }
 
@@ -87,12 +125,14 @@ public class MissionsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        // Mantém a aba de missões selecionada ao retornar para a tela
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(
                     R.id.nav_missions
             );
         }
 
+        // Atualiza a lista de missões disponíveis
         updateAvailableMissions();
     }
 
@@ -104,6 +144,7 @@ public class MissionsActivity extends AppCompatActivity {
 
     private void initializeViews() {
 
+        // Inicializa o sistema de preferências
         playerPrefs = new PlayerPrefs(this);
 
         /*
@@ -158,6 +199,7 @@ public class MissionsActivity extends AppCompatActivity {
 
     private void setupMissionButtons() {
 
+        // Abre o briefing da missão 1
         mission1.setOnClickListener(v -> {
             playClick();
             openActivity(
@@ -165,6 +207,7 @@ public class MissionsActivity extends AppCompatActivity {
             );
         });
 
+        // Abre o briefing da missão 2
         mission2.setOnClickListener(v -> {
             playClick();
             openActivity(
@@ -172,6 +215,7 @@ public class MissionsActivity extends AppCompatActivity {
             );
         });
 
+        // Abre o briefing da missão 3
         mission3.setOnClickListener(v -> {
             playClick();
             openActivity(
@@ -179,6 +223,7 @@ public class MissionsActivity extends AppCompatActivity {
             );
         });
 
+        // Abre o briefing da missão 4
         mission4.setOnClickListener(v -> {
             playClick();
             openActivity(
@@ -195,11 +240,13 @@ public class MissionsActivity extends AppCompatActivity {
 
     private void setupTabButtons() {
 
+        // Exibe as missões disponíveis
         btnAvailable.setOnClickListener(v -> {
             playClick();
             showAvailable();
         });
 
+        // Exibe as missões concluídas
         btnCompleted.setOnClickListener(v -> {
             playClick();
             showCompleted();
@@ -214,28 +261,24 @@ public class MissionsActivity extends AppCompatActivity {
 
     private void setupBottomNavigation() {
 
+        // Mantém a aba atual selecionada
         bottomNavigation.setSelectedItemId(
                 R.id.nav_missions
         );
 
+        // Monitora os cliques do menu inferior
         bottomNavigation.setOnItemSelectedListener(item -> {
 
             int id = item.getItemId();
 
-            /*
-             * TELA ATUAL
-             */
-
+            // Permanece na tela atual
             if (id == R.id.nav_missions) {
                 return true;
             }
 
             playClick();
 
-            /*
-             * TERMINAL
-             */
-
+            // Abre a tela Terminal
             if (id == R.id.nav_terminal) {
 
                 openActivity(
@@ -245,10 +288,7 @@ public class MissionsActivity extends AppCompatActivity {
                 return true;
             }
 
-            /*
-             * PERFIL
-             */
-
+            // Abre a tela Perfil
             if (id == R.id.nav_profile) {
 
                 openActivity(
@@ -359,33 +399,22 @@ public class MissionsActivity extends AppCompatActivity {
                 new StringBuilder();
 
         if (mission1Completed) {
-            completed.append(
-                    "✓ 01 - INVASÃO À REDE\n"
-            );
+            completed.append("✓ 01 - INVASÃO À REDE\n");
         }
 
         if (mission2Completed) {
-            completed.append(
-                    "✓ 02 - QUEBRA DE SENHA\n"
-            );
+            completed.append("✓ 02 - QUEBRA DE SENHA\n");
         }
 
         if (mission3Completed) {
-            completed.append(
-                    "✓ 03 - ARQUIVO FANTASMA\n"
-            );
+            completed.append("✓ 03 - ARQUIVO FANTASMA\n");
         }
 
         if (mission4Completed) {
-            completed.append(
-                    "✓ 04 - NÓ INVASOR\n"
-            );
+            completed.append("✓ 04 - NÓ INVASOR\n");
         }
 
-        /*
-         * SEM MISSÕES COMPLETADAS
-         */
-
+        // Caso nenhuma missão tenha sido concluída
         if (!mission1Completed &&
                 !mission2Completed &&
                 !mission3Completed &&

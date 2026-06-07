@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Tela inicial do jogo Darknet Protocol
+    Responsável pelo login e acesso ao sistema
+-->
+
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,9 +13,10 @@
     android:background="@color/cyber_bg_dark">
 
     <!-- ===================================================== -->
-    <!-- BACKGROUND -->
+    <!-- IMAGEM DE FUNDO -->
     <!-- ===================================================== -->
 
+    <!-- Background principal da tela -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,8 +24,7 @@
         android:scaleType="centerCrop"
         android:alpha="0.28"/>
 
-    <!-- OVERLAY ESCURO -->
-
+    <!-- Overlay escuro para melhorar a leitura dos textos -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,9 +42,10 @@
         android:padding="28dp">
 
         <!-- ================================================= -->
-        <!-- LOGO -->
+        <!-- LOGO DO JOGO -->
         <!-- ================================================= -->
 
+        <!-- Nome principal -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +58,7 @@
             android:shadowColor="@color/cyber_green"
             android:shadowRadius="12"/>
 
+        <!-- Subtítulo -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +71,7 @@
             android:layout_marginTop="4dp"/>
 
         <!-- ================================================= -->
-        <!-- SUBTÍTULO -->
+        <!-- FRASE DE IMPACTO -->
         <!-- ================================================= -->
 
         <TextView
@@ -79,7 +86,7 @@
             android:letterSpacing="0.08"/>
 
         <!-- ================================================= -->
-        <!-- CARD LOGIN -->
+        <!-- CARD DE LOGIN -->
         <!-- ================================================= -->
 
         <LinearLayout
@@ -90,8 +97,7 @@
             android:padding="22dp"
             android:layout_marginTop="42dp">
 
-            <!-- STATUS -->
-
+            <!-- Status atual do sistema -->
             <TextView
                 android:id="@+id/txtStatus"
                 android:layout_width="match_parent"
@@ -103,8 +109,7 @@
                 android:fontFamily="@font/jetbrains_regular"
                 android:gravity="center"/>
 
-            <!-- BARRA DE PROGRESSO -->
-
+            <!-- Barra exibida durante login/carregamento -->
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -117,8 +122,7 @@
                 android:indeterminate="false"
                 android:visibility="gone"/>
 
-            <!-- BOTÃO CONVIDADO -->
-
+            <!-- Botão para jogar sem login -->
             <Button
                 android:id="@+id/btnStart"
                 android:layout_width="match_parent"
@@ -133,8 +137,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"/>
 
-            <!-- LOGIN GOOGLE -->
-
+            <!-- Botão oficial de login Google -->
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btnGoogleLogin"
                 android:layout_width="match_parent"
@@ -144,7 +147,7 @@
         </LinearLayout>
 
         <!-- ================================================= -->
-        <!-- INFO INFERIOR -->
+        <!-- INDICADORES INFERIORES -->
         <!-- ================================================= -->
 
         <LinearLayout
@@ -154,6 +157,7 @@
             android:gravity="center"
             android:layout_marginTop="28dp">
 
+            <!-- Área de missões -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -164,6 +168,7 @@
                 android:fontFamily="@font/jetbrains_regular"
                 android:gravity="center"/>
 
+            <!-- Área temática -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -174,6 +179,7 @@
                 android:fontFamily="@font/jetbrains_regular"
                 android:gravity="center"/>
 
+            <!-- Área de progresso -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

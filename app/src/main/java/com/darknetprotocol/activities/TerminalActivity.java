@@ -1,41 +1,60 @@
 package com.darknetprotocol.activities;
 
+// Importa classes utilizadas para navegação entre telas
 import android.content.Intent;
+
+// Importa Bundle, utilizado no ciclo de vida da Activity
 import android.os.Bundle;
+
+// Importa componentes visuais utilizados na interface
 import android.widget.Button;
 import android.widget.TextView;
 
+// Classe base para Activities compatíveis com AppCompat
 import androidx.appcompat.app.AppCompatActivity;
 
+// Recursos do projeto (layouts, ids, sons e animações)
 import com.darknetprotocol.R;
+
+// Classe responsável pelos efeitos sonoros
 import com.darknetprotocol.utils.SoundManager;
+
+// Componente de navegação inferior
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+// Estruturas utilizadas para armazenar os comandos do terminal
 import java.util.HashMap;
 import java.util.Map;
 
+// Activity responsável pelo terminal interativo do jogo
 public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * COMPONENTES
+     * COMPONENTES DA INTERFACE
      * =========================================================
      */
 
+    // Área principal onde as mensagens do terminal são exibidas
     private TextView txtTerminal;
+
+    // Exibe o comando que o usuário está digitando
     private TextView txtCommandDisplay;
 
+    // Menu de navegação inferior
     private BottomNavigationView bottomNavigation;
 
     /*
      * =========================================================
-     * TERMINAL
+     * SISTEMA DO TERMINAL
      * =========================================================
      */
 
+    // Armazena o comando digitado pelo jogador
     private final StringBuilder currentCommand =
             new StringBuilder();
 
+    // Lista de comandos disponíveis e suas respostas
     private final Map<String, String> commands =
             new HashMap<>();
 
@@ -43,19 +62,28 @@ public class TerminalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Define o layout da tela
         setContentView(R.layout.activity_terminal);
 
+        // Inicializa os componentes visuais
         initializeViews();
 
+        // Carrega os comandos disponíveis
         setupCommands();
+
+        // Configura o teclado virtual
         setupKeyboard();
+
+        // Configura botões de controle
         setupControls();
+
+        // Configura navegação inferior
         setupBottomNavigation();
     }
 
     /*
      * =========================================================
-     * RESUME
+     * AO RETORNAR PARA A TELA
      * =========================================================
      */
 
@@ -63,6 +91,7 @@ public class TerminalActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        // Mantém a aba Terminal selecionada
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(
                     R.id.nav_terminal
@@ -72,7 +101,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * INICIALIZA COMPONENTES
+     * INICIALIZAÇÃO DOS COMPONENTES
      * =========================================================
      */
 
@@ -90,7 +119,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * COMANDOS TERMINAL
+     * CADASTRA COMANDOS DO TERMINAL
      * =========================================================
      */
 
@@ -188,7 +217,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * TECLADO
+     * CONFIGURA TECLADO VIRTUAL
      * =========================================================
      */
 
@@ -213,10 +242,13 @@ public class TerminalActivity extends AppCompatActivity {
 
                 button.setOnClickListener(v -> {
 
+                    // Reproduz som de clique
                     playClick();
 
+                    // Adiciona letra ao comando atual
                     currentCommand.append(key);
 
+                    // Atualiza exibição do comando
                     updateCommandDisplay();
                 });
             }
@@ -225,7 +257,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * CONTROLES TERMINAL
+     * CONFIGURA BOTÕES DE CONTROLE
      * =========================================================
      */
 
@@ -243,10 +275,7 @@ public class TerminalActivity extends AppCompatActivity {
         Button btnClearTerminal =
                 findViewById(R.id.btnClearTerminal);
 
-        /*
-         * DELETE
-         */
-
+        // Remove último caractere digitado
         btnDelete.setOnClickListener(v -> {
 
             if (currentCommand.length() > 0) {
@@ -261,10 +290,7 @@ public class TerminalActivity extends AppCompatActivity {
             }
         });
 
-        /*
-         * SPACE
-         */
-
+        // Adiciona espaço ao comando
         btnSpace.setOnClickListener(v -> {
 
             playClick();
@@ -274,10 +300,7 @@ public class TerminalActivity extends AppCompatActivity {
             updateCommandDisplay();
         });
 
-        /*
-         * EXECUTAR
-         */
-
+        // Executa o comando digitado
         btnExecute.setOnClickListener(v -> {
 
             executeCommand(
@@ -288,10 +311,7 @@ public class TerminalActivity extends AppCompatActivity {
             );
         });
 
-        /*
-         * LIMPAR TERMINAL
-         */
-
+        // Limpa completamente a saída do terminal
         btnClearTerminal.setOnClickListener(v -> {
 
             SoundManager.playSound(
@@ -313,16 +333,15 @@ public class TerminalActivity extends AppCompatActivity {
 
     private void executeCommand(String command) {
 
+        // Ignora comandos vazios
         if (command.isEmpty()) {
             return;
         }
 
+        // Exibe o comando digitado
         terminalOutput("> " + command);
 
-        /*
-         * CLEAR
-         */
-
+        // Comando responsável por limpar o terminal
         if (command.equals("CLEAR")) {
 
             txtTerminal.setText(
@@ -336,10 +355,7 @@ public class TerminalActivity extends AppCompatActivity {
             return;
         }
 
-        /*
-         * COMANDO EXISTE
-         */
-
+        // Verifica se o comando existe
         if (commands.containsKey(command)) {
 
             terminalOutput(
@@ -363,7 +379,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * DISPLAY COMANDO
+     * ATUALIZA EXIBIÇÃO DO COMANDO
      * =========================================================
      */
 
@@ -376,7 +392,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * RESET COMANDO
+     * LIMPA COMANDO ATUAL
      * =========================================================
      */
 
@@ -389,7 +405,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * OUTPUT TERMINAL
+     * EXIBE TEXTO NO TERMINAL
      * =========================================================
      */
 
@@ -423,7 +439,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * NAVEGAÇÃO
+     * NAVEGAÇÃO ENTRE TELAS
      * =========================================================
      */
 
@@ -437,20 +453,14 @@ public class TerminalActivity extends AppCompatActivity {
 
             int id = item.getItemId();
 
-            /*
-             * TELA ATUAL
-             */
-
+            // Permanece na tela atual
             if (id == R.id.nav_terminal) {
                 return true;
             }
 
             playClick();
 
-            /*
-             * MISSÕES
-             */
-
+            // Abre tela de missões
             if (id == R.id.nav_missions) {
 
                 openActivity(
@@ -461,10 +471,7 @@ public class TerminalActivity extends AppCompatActivity {
                 return true;
             }
 
-            /*
-             * PERFIL
-             */
-
+            // Abre tela de perfil
             if (id == R.id.nav_profile) {
 
                 openActivity(
@@ -481,7 +488,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * ABRIR ACTIVITY
+     * ABRE NOVA ACTIVITY
      * =========================================================
      */
 
@@ -520,7 +527,7 @@ public class TerminalActivity extends AppCompatActivity {
 
     /*
      * =========================================================
-     * SONS
+     * EFEITOS SONOROS
      * =========================================================
      */
 

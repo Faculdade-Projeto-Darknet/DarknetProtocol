@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Tela da Missão 04 - Nó Invasor
+    Objetivo: identificar qual IP pertence ao invasor
+-->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -8,14 +12,18 @@
     android:clipToPadding="false"
     android:padding="20dp">
 
+    <!-- Container principal da tela -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="28dp">
 
-        <!-- HEADER -->
+        <!-- ===================================================== -->
+        <!-- CABEÇALHO DA MISSÃO -->
+        <!-- ===================================================== -->
 
+        <!-- Número da missão -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,6 +34,7 @@
             android:fontFamily="@font/jetbrains_regular"
             android:letterSpacing="0.12"/>
 
+        <!-- Nome da missão -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +47,7 @@
             android:shadowColor="@color/cyber_green"
             android:shadowRadius="12"/>
 
+        <!-- Descrição da missão -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +58,9 @@
             android:layout_marginTop="16dp"
             android:lineSpacingExtra="4dp"/>
 
-        <!-- STATUS -->
+        <!-- ===================================================== -->
+        <!-- PAINEL DE STATUS -->
+        <!-- ===================================================== -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,6 +70,7 @@
             android:padding="18dp"
             android:layout_marginTop="24dp">
 
+            <!-- Status atual da missão -->
             <TextView
                 android:id="@+id/txtIpStatus"
                 android:layout_width="match_parent"
@@ -70,6 +83,7 @@
                 android:shadowColor="@color/cyber_green"
                 android:shadowRadius="6"/>
 
+            <!-- Estatísticas da missão -->
             <TextView
                 android:id="@+id/txtIpStats"
                 android:layout_width="match_parent"
@@ -82,7 +96,9 @@
 
         </LinearLayout>
 
-        <!-- TERMINAL -->
+        <!-- ===================================================== -->
+        <!-- TERMINAL / LOG DA MISSÃO -->
+        <!-- ===================================================== -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,6 +108,7 @@
             android:padding="18dp"
             android:layout_marginTop="18dp">
 
+            <!-- Título da área de logs -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,6 +118,7 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/orbitron_bold"/>
 
+            <!-- Terminal que registra as ações da missão -->
             <TextView
                 android:id="@+id/txtIpLog"
                 android:layout_width="match_parent"
@@ -115,7 +133,9 @@
 
         </LinearLayout>
 
-        <!-- ESCOLHAS -->
+        <!-- ===================================================== -->
+        <!-- LISTA DE IPS -->
+        <!-- ===================================================== -->
 
         <TextView
             android:layout_width="match_parent"
@@ -128,6 +148,7 @@
             android:layout_marginTop="24dp"
             android:letterSpacing="0.08"/>
 
+        <!-- IP 1 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIp1"
             android:layout_width="match_parent"
@@ -140,6 +161,7 @@
             android:fontFamily="monospace"
             android:background="@drawable/bg_cyber_button"/>
 
+        <!-- IP 2 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIp2"
             android:layout_width="match_parent"
@@ -152,6 +174,7 @@
             android:fontFamily="monospace"
             android:background="@drawable/bg_cyber_button"/>
 
+        <!-- IP 3 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIp3"
             android:layout_width="match_parent"
@@ -164,6 +187,7 @@
             android:fontFamily="monospace"
             android:background="@drawable/bg_cyber_button"/>
 
+        <!-- IP 4 (correto na missão) -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIp4"
             android:layout_width="match_parent"
@@ -176,7 +200,9 @@
             android:fontFamily="monospace"
             android:background="@drawable/bg_cyber_button"/>
 
-        <!-- RESET -->
+        <!-- ===================================================== -->
+        <!-- BOTÃO DE RESET -->
+        <!-- ===================================================== -->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnResetIpMission"
